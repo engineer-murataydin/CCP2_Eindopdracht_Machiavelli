@@ -47,7 +47,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -61,7 +61,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -79,49 +79,44 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MVBuilding.h" />
-    <ClInclude Include="MVCard.h" />
-    <ClInclude Include="MVCharacter.h" />
-    <ClInclude Include="MVCharacterFactory.h" />
-    <ClInclude Include="MVCoin.h" />
-    <ClInclude Include="MVEnum.h" />
-    <ClInclude Include="MVFileController.h" />
-    <ClInclude Include="MVGame.h" />
-    <ClInclude Include="MVGameController.h" />
-    <ClInclude Include="MVGameState.h" />
-    <ClInclude Include="MVGameStateMachine.h" />
-    <ClInclude Include="MVHelpCard.h" />
-    <ClInclude Include="MVIGameObject.h" />
-    <ClInclude Include="MVInputController.h" />
-    <ClInclude Include="MVItemFactory.h" />
-    <ClInclude Include="MVMainFactory.h" />
-    <ClInclude Include="MVPlayer.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
+    <ClCompile Include="MachiavelliServer\Controller\MVFileController.cpp" />
+    <ClCompile Include="MachiavelliServer\Controller\MVGame.cpp" />
+    <ClCompile Include="MachiavelliServer\Controller\MVGameController.cpp" />
+    <ClCompile Include="MachiavelliServer\Controller\MVGameStateMachine.cpp" />
+    <ClCompile Include="MachiavelliServer\Controller\MVInputController.cpp" />
+    <ClCompile Include="MachiavelliServer\Enum\MVEnum.cpp" />
+    <ClCompile Include="MachiavelliServer\Factory\MVCharacterFactory.cpp" />
+    <ClCompile Include="MachiavelliServer\Factory\MVItemFactory.cpp" />
+    <ClCompile Include="MachiavelliServer\Factory\MVMainFactory.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\Character\MVBuilding.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\Character\MVCharacter.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\Character\MVPlayer.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\Item\MVCard.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\Item\MVCoin.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\Item\MVHelpCard.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\MVIGameObject.cpp" />
+    <ClCompile Include="MachiavelliServer\States\MVGameState.cpp" />
+    <ClCompile Include="MVMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MVBuilding.cpp" />
-    <ClCompile Include="MVCard.cpp" />
-    <ClCompile Include="MVCharacter.cpp" />
-    <ClCompile Include="MVCharacterFactory.cpp" />
-    <ClCompile Include="MVCoin.cpp" />
-    <ClCompile Include="MVEnum.cpp" />
-    <ClCompile Include="MVFileController.cpp" />
-    <ClCompile Include="MVGame.cpp" />
-    <ClCompile Include="MVGameController.cpp" />
-    <ClCompile Include="MVGameState.cpp" />
-    <ClCompile Include="MVGameStateMachine.cpp" />
-    <ClCompile Include="MVHelpCard.cpp" />
-    <ClCompile Include="MVIGameObject.cpp" />
-    <ClCompile Include="MVInputController.cpp" />
-    <ClCompile Include="MVItemFactory.cpp" />
-    <ClCompile Include="MVMain.cpp" />
-    <ClCompile Include="MVMainFactory.cpp" />
-    <ClCompile Include="MVPlayer.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
+    <ClInclude Include="MachiavelliServer\Controller\MVFileController.h" />
+    <ClInclude Include="MachiavelliServer\Controller\MVGame.h" />
+    <ClInclude Include="MachiavelliServer\Controller\MVGameController.h" />
+    <ClInclude Include="MachiavelliServer\Controller\MVGameStateMachine.h" />
+    <ClInclude Include="MachiavelliServer\Controller\MVInputController.h" />
+    <ClInclude Include="MachiavelliServer\Enum\MVEnum.h" />
+    <ClInclude Include="MachiavelliServer\Factory\MVCharacterFactory.h" />
+    <ClInclude Include="MachiavelliServer\Factory\MVItemFactory.h" />
+    <ClInclude Include="MachiavelliServer\Factory\MVMainFactory.h" />
+    <ClInclude Include="MachiavelliServer\Model\Character\MVBuilding.h" />
+    <ClInclude Include="MachiavelliServer\Model\Character\MVCharacter.h" />
+    <ClInclude Include="MachiavelliServer\Model\Character\MVPlayer.h" />
+    <ClInclude Include="MachiavelliServer\Model\Item\MVCard.h" />
+    <ClInclude Include="MachiavelliServer\Model\Item\MVCoin.h" />
+    <ClInclude Include="MachiavelliServer\Model\Item\MVHelpCard.h" />
+    <ClInclude Include="MachiavelliServer\Model\MVIGameObject.h" />
+    <ClInclude Include="MachiavelliServer\States\MVGameState.h" />
+    <ClInclude Include="targetver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

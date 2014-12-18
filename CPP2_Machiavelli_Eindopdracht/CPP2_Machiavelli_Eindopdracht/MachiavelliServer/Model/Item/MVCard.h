@@ -1,5 +1,5 @@
 #pragma once
-#include "MVIGameObject.h"
+#include "../MVIGameObject.h"
 class MVCard :
 	public MVIGameObject
 {
