@@ -1,7 +1,7 @@
 #include "MVCard.h"
 
 
-MVCard::MVCard()
+MVCard::MVCard(string name) : name{ name }
 {
 }
 

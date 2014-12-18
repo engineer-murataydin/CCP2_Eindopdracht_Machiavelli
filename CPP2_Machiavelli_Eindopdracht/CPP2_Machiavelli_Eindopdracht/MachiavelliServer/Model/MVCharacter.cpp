@@ -1,7 +1,6 @@
 #include "MVCharacter.h"
 
-
-MVCharacter::MVCharacter()
+MVCharacter::MVCharacter(string name) :MVCard(name)
 {
 }
 

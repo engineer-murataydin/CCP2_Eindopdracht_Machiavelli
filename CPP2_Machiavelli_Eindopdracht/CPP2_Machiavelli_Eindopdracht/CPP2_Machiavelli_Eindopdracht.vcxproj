@@ -88,15 +88,18 @@
     <ClCompile Include="MachiavelliServer\Factory\MVCharacterFactory.cpp" />
     <ClCompile Include="MachiavelliServer\Factory\MVItemFactory.cpp" />
     <ClCompile Include="MachiavelliServer\Factory\MVMainFactory.cpp" />
-    <ClCompile Include="MachiavelliServer\Model\Character\MVBuilding.cpp" />
-    <ClCompile Include="MachiavelliServer\Model\Character\MVCharacter.cpp" />
-    <ClCompile Include="MachiavelliServer\Model\Character\MVPlayer.cpp" />
-    <ClCompile Include="MachiavelliServer\Model\Item\MVCard.cpp" />
-    <ClCompile Include="MachiavelliServer\Model\Item\MVCoin.cpp" />
-    <ClCompile Include="MachiavelliServer\Model\Item\MVHelpCard.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\MVBuilding.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\MVCharacter.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\MVPlayer.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\MVCard.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\MVCoin.cpp" />
     <ClCompile Include="MachiavelliServer\Model\MVIGameObject.cpp" />
+    <ClCompile Include="MachiavelliServer\Server\Server.cpp" />
+    <ClCompile Include="MachiavelliServer\Server\Socket.cpp" />
+    <ClCompile Include="MachiavelliServer\Server\throw.cpp" />
     <ClCompile Include="MachiavelliServer\States\MVGameState.cpp" />
     <ClCompile Include="MVMain.cpp" />
+    <ClCompile Include="MachiavelliServer\Model\MVSpecialBuilding.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MachiavelliServer\Controller\MVFileController.h" />
@@ -108,14 +111,19 @@
     <ClInclude Include="MachiavelliServer\Factory\MVCharacterFactory.h" />
     <ClInclude Include="MachiavelliServer\Factory\MVItemFactory.h" />
     <ClInclude Include="MachiavelliServer\Factory\MVMainFactory.h" />
-    <ClInclude Include="MachiavelliServer\Model\Character\MVBuilding.h" />
-    <ClInclude Include="MachiavelliServer\Model\Character\MVCharacter.h" />
-    <ClInclude Include="MachiavelliServer\Model\Character\MVPlayer.h" />
-    <ClInclude Include="MachiavelliServer\Model\Item\MVCard.h" />
-    <ClInclude Include="MachiavelliServer\Model\Item\MVCoin.h" />
-    <ClInclude Include="MachiavelliServer\Model\Item\MVHelpCard.h" />
+    <ClInclude Include="MachiavelliServer\Model\MVBuilding.h" />
+    <ClInclude Include="MachiavelliServer\Model\MVCharacter.h" />
+    <ClInclude Include="MachiavelliServer\Model\MVPlayer.h" />
+    <ClInclude Include="MachiavelliServer\Model\MVCard.h" />
+    <ClInclude Include="MachiavelliServer\Model\MVCoin.h" />
     <ClInclude Include="MachiavelliServer\Model\MVIGameObject.h" />
+    <ClInclude Include="MachiavelliServer\Server\ClientCommand.h" />
+    <ClInclude Include="MachiavelliServer\Server\Server.h" />
+    <ClInclude Include="MachiavelliServer\Server\Socket.h" />
+    <ClInclude Include="MachiavelliServer\Server\Sync_queue.h" />
+    <ClInclude Include="MachiavelliServer\Server\throw.h" />
     <ClInclude Include="MachiavelliServer\States\MVGameState.h" />
+    <ClInclude Include="MachiavelliServer\Model\MVSpecialBuilding.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
