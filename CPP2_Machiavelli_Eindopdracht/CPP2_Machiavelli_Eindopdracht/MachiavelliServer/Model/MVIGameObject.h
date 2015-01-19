@@ -3,6 +3,6 @@ class MVIGameObject
 {
 public:
 	MVIGameObject();
-	~MVIGameObject();
+	virtual ~MVIGameObject();
 };
 

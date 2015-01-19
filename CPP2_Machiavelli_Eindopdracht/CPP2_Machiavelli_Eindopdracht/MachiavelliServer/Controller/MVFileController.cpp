@@ -71,7 +71,10 @@ vector<string> MVFileController::csv_read_row(std::istream &in, char delimiter)
 		else if (!inquotes && (c == '\r' || c == '\n'))
 		{
 			if (in.peek() == '\n') { in.get(); }
-			row.push_back(ss.str());
+			if (ss.str() != "")
+			{
+				row.push_back(ss.str());
+			}
 			return row;
 		}
 		else

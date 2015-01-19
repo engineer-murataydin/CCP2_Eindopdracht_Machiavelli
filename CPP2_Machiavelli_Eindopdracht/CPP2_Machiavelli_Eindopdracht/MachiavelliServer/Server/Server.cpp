@@ -7,7 +7,7 @@ Sync_queue<ClientCommand> Server::queue;
 
 void Server::consume_command() // runs in its own thread
 {
-	while (true) {
+	while (MVGame::isRunning()) {
 		ClientCommand command;
 		queue.get(command); // will block here unless there still are command objects in the queue
 		shared_ptr<Socket> client{ command.get_client() };
@@ -43,7 +43,7 @@ void Server::handle_client(Socket* socket) // this function runs in a separate t
 
 	client->write(socketexample::prompt);
 
-	while (true) { // game loop
+	while (game->isRunning()) { // game loop
 		try {
 			// read first line of request
 			string cmd = client->readline();
@@ -74,9 +74,9 @@ Server::~Server()
 	//TODO
 }
 
-Server::Server(MVGame* game)
+Server::Server(unique_ptr<MVGame> game)
 {
-	this->game = unique_ptr<MVGame>(game);
+	this->game = move(game);
 	// start command consumer thread
 	thread consumer{ consume_command };
 	consumer.detach(); // detaching is usually ugly, but in this case the right thing to do
@@ -84,7 +84,7 @@ Server::Server(MVGame* game)
 	// create a server socket
 	ServerSocket server(socketexample::tcp_port);
 
-	while (connected < 2) {
+	while (true) {
 		try {
 			// wait for connection from client; will create new socket
 			cerr << "server listening" << '\n';
@@ -93,9 +93,11 @@ Server::Server(MVGame* game)
 			while (connected < 2 && (client = server.accept()) != nullptr) {
 
 				// communicate with client over new socket in separate thread
-				game->addPlayer(new MVPlayer(client));
-				thread handler{ handle_client, client };
-				handler.detach(); // detaching is usually ugly, but in this case the right thing to do
+				if (this->game->addPlayer(unique_ptr<MVPlayer>(new MVPlayer(client))))
+				{
+					thread handler{ handle_client, client };
+					handler.detach(); // detaching is usually ugly, but in this case the right thing to do
+				}
 				cerr << "server listening again" << '\n';
 			}
 		}

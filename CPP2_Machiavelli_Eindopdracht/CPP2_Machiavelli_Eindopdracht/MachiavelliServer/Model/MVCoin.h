@@ -5,6 +5,6 @@ class MVCoin :
 {
 public:
 	MVCoin();
-	~MVCoin();
+	virtual ~MVCoin();
 };
 

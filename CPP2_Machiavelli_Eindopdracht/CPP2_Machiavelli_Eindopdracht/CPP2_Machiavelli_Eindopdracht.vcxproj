@@ -120,6 +120,7 @@
     <ClInclude Include="MachiavelliServer\Server\throw.h" />
     <ClInclude Include="MachiavelliServer\States\MVGameState.h" />
     <ClInclude Include="MachiavelliServer\Model\MVSpecialBuilding.h" />
+    <ClInclude Include="MachiavelliServer\Model\MVDeck.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>

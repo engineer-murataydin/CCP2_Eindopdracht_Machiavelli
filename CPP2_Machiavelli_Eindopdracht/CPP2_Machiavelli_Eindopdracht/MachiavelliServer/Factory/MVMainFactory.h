@@ -14,12 +14,11 @@ using namespace std;
 class MVMainFactory
 {
 public:
-	MVMainFactory();
 	~MVMainFactory();
 
-	vector<shared_ptr<MVCharacter>> loadCharacters();
-	vector<shared_ptr<MVBuilding>> loadBuildings();
+	static vector<shared_ptr<MVCharacter>> loadCharacters();
+	static vector<shared_ptr<MVBuilding>> loadBuildings();
 
 private:
+	MVMainFactory();
 };
-

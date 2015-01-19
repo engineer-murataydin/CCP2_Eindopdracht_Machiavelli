@@ -12,7 +12,7 @@ MVMainFactory::MVMainFactory() {}
 
 MVMainFactory::~MVMainFactory() {}
 
-vector<shared_ptr<MVCharacter>> loadCharacters()
+vector<shared_ptr<MVCharacter>> MVMainFactory::loadCharacters()
 {
 	vector<shared_ptr<MVCharacter>> characters;
 	vector<vector<string>> characterData = MVFileController::readInputFile("MachiavelliServer/ExternSourceFiles/karakterkaarten.csv");
@@ -24,7 +24,7 @@ vector<shared_ptr<MVCharacter>> loadCharacters()
 	return characters;
 }
 
-vector<shared_ptr<MVBuilding>> loadBuildings()
+vector<shared_ptr<MVBuilding>> MVMainFactory::loadBuildings()
 {
 	vector<shared_ptr<MVBuilding>> buildings;
 	vector<vector<string>> buildingData = MVFileController::readInputFile("MachiavelliServer/ExternSourceFiles/bouwkaarten.csv");

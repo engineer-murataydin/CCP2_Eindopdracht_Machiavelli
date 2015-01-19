@@ -19,7 +19,7 @@ namespace socketexample {
 class Server
 {
 public:
-	Server(MVGame* game);
+	Server(unique_ptr<MVGame> game);
 	~Server();
 
 private:

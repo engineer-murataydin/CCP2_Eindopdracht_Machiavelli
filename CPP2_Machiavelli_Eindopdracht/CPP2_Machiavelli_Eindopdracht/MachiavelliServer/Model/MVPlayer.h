@@ -12,11 +12,12 @@ class MVPlayer
 {
 public:
 	MVPlayer(Socket* socket);
-	~MVPlayer();
+	virtual ~MVPlayer();
 
 	bool isKing() const;
 	shared_ptr<Socket> getSocket() const;
-
+	vector<shared_ptr<MVCharacter>> getCharacterCards() const;
+	bool HasCharacterCard(int id) const;
 
 private:
 	vector<shared_ptr<MVCharacter>> characterCards;

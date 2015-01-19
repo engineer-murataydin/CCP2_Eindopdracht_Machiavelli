@@ -6,7 +6,7 @@ class MVBuilding :
 {
 public:
 	MVBuilding(string name, int price, MVEnum::Colors color);
-	~MVBuilding();
+	virtual ~MVBuilding();
 	virtual int getPoints() const;
 	MVEnum::Colors getColor() const;
 protected:

@@ -140,6 +140,9 @@
     <ClInclude Include="MachiavelliServer\Server\Server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MachiavelliServer\Model\MVDeck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MachiavelliServer\ExternSourceFiles\bouwkaarten.csv" />

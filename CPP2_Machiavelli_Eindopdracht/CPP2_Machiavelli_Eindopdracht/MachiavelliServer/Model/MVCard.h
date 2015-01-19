@@ -9,7 +9,7 @@ class MVCard :
 {
 public:
 	MVCard(string name);
-	~MVCard();
+	virtual ~MVCard();
 
 protected:
 	string name;

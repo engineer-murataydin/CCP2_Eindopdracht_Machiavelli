@@ -6,8 +6,8 @@ class MVCharacter :
 {
 public:
 	MVCharacter(int order, string name);
-	~MVCharacter();
-
+	virtual  ~MVCharacter();
+	int getOrder() const;
 private:
 	int order;
 };

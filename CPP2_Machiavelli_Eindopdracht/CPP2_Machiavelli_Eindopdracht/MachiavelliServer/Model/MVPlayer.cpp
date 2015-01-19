@@ -21,3 +21,20 @@ shared_ptr<Socket> MVPlayer::getSocket() const
 {
 	return socket;
 }
+
+bool MVPlayer::HasCharacterCard(int id) const
+{
+	for (size_t i = 0; i < characterCards.size(); i++)
+	{
+		if (characterCards[i]->getOrder() == id)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+vector<shared_ptr<MVCharacter>> MVPlayer::getCharacterCards() const
+{
+	return characterCards;
+}
