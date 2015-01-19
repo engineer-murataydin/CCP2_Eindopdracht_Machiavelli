@@ -36,12 +36,6 @@
     <ClCompile Include="MachiavelliServer\Enum\MVEnum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MachiavelliServer\Factory\MVCharacterFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MachiavelliServer\Factory\MVItemFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MachiavelliServer\Factory\MVMainFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -101,12 +95,6 @@
     <ClInclude Include="MachiavelliServer\Enum\MVEnum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MachiavelliServer\Factory\MVCharacterFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MachiavelliServer\Factory\MVItemFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MachiavelliServer\Factory\MVMainFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -152,5 +140,9 @@
     <ClInclude Include="MachiavelliServer\Server\Server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MachiavelliServer\ExternSourceFiles\bouwkaarten.csv" />
+    <None Include="MachiavelliServer\ExternSourceFiles\karakterkaarten.csv" />
   </ItemGroup>
 </Project>

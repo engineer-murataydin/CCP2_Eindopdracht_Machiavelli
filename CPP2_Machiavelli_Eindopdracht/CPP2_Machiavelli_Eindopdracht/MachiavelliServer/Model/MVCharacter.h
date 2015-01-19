@@ -5,7 +5,7 @@ class MVCharacter :
 	public MVCard
 {
 public:
-	MVCharacter(string name);
+	MVCharacter(int id, string name);
 	~MVCharacter();
 };
 

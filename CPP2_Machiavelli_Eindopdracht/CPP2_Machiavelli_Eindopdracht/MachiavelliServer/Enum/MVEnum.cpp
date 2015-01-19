@@ -1,31 +1,44 @@
+//
+#include <string>
+
+//
 #include "MVEnum.h"
 
+//
+using namespace std;
 
-MVEnum::MVEnum()
+MVEnum::MVEnum() {}
+
+MVEnum::~MVEnum() {}
+
+MVEnum::Colors MVEnum::getColor(string color)
 {
+	for (int i = GEEL; i <= LILA; i++)
+	{
+		Colors tempColor = static_cast<Colors>(i);
+		if (colorToString(tempColor) == color)
+		{
+			return tempColor;
+		}
+	}
+	return UNKNOWN;
 }
 
-
-MVEnum::~MVEnum()
-{
-}
-
-
-string MVEnum::enumToString(Colors color)
+string MVEnum::colorToString(Colors color)
 {
 	switch (color)
 	{
-	case MVEnum::Yellow:
-		return "Geel";
-	case MVEnum::Blue:
-		return "Blauw";
-	case MVEnum::Green:
-		return "Groen";
-	case MVEnum::Red:
-		return "Rood";
-	case MVEnum::Lilac:
-		return "Lilla";
+	case MVEnum::GEEL:
+		return "geel";
+	case MVEnum::BLAUW:
+		return "blauw";
+	case MVEnum::GROEN:
+		return "groen";
+	case MVEnum::ROOD:
+		return "rood";
+	case MVEnum::LILA:
+		return "lila";
 	default:
-		return "??";
+		break;
 	}
 }

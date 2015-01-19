@@ -1,5 +1,5 @@
 #include "Server.h"
-
+#include "../Controller/MVFileController.h"
 
 Sync_queue<ClientCommand> Server::queue;
 
@@ -36,7 +36,7 @@ void Server::handle_client(Socket* socket) // this function runs in a separate t
 {
 	shared_ptr<Socket> client{ socket };
 	client->write("Welcome to Machavelli! To quit, type 'quit'.\n");
-	if ()
+	//if ()
 	client->write(socketexample::prompt);
 
 	while (true) { // game loop
