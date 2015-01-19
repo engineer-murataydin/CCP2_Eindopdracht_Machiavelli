@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 {
 	unique_ptr<Server> server(new Server(new MVGame()));
 
-	while (true);
+	//while (true);
 
 	return 0;
 }

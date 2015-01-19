@@ -1,7 +1,8 @@
 #include "MVCharacter.h"
 
-MVCharacter::MVCharacter(string name) :MVCard(name)
+MVCharacter::MVCharacter(int order, string name) :MVCard(name), order(order)
 {
+
 }
 
 

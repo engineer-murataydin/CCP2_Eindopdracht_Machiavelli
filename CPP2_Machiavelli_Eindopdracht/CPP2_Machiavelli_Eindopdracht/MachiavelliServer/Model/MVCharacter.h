@@ -5,7 +5,10 @@ class MVCharacter :
 	public MVCard
 {
 public:
-	MVCharacter(string name);
+	MVCharacter(int order, string name);
 	~MVCharacter();
+
+private:
+	int order;
 };
 

@@ -1,5 +1,6 @@
 #include "Server.h"
 
+
 int Server::connected;
 unique_ptr<MVGame> Server::game;
 Sync_queue<ClientCommand> Server::queue;

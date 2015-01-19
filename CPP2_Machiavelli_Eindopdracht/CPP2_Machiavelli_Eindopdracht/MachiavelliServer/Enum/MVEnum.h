@@ -1,7 +1,9 @@
 #pragma once
 
+//
 #include <string>
 
+//
 using namespace std;
 
 class MVEnum
@@ -12,9 +14,9 @@ public:
 
 	enum Colors
 	{
-		Yellow, Blue, Green, Red, Lilac
+		UNKNOWN = -1, GEEL, BLAUW, GROEN, ROOD, LILA
 	};
-
-	static string enumToString(Colors color);
+	static Colors getColor(string color);
+	static string colorToString(Colors color);
 };
 

@@ -12,6 +12,5 @@ public:
 protected:
 	const int cost;
 	const MVEnum::Colors color;
-
 };
 

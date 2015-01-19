@@ -1,5 +1,7 @@
 #pragma once
 #include "MVBuilding.h"
+#include "../Enum/MVEnum.h"
+
 class MVSpecialBuilding :
 	public MVBuilding
 {
