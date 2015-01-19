@@ -1,11 +1,20 @@
+//
 #include "MVCard.h"
 
+//
 
-MVCard::MVCard(string name) : name{ name }
+//
+using namespace std;
+
+MVCard::MVCard(string name) : name(name)
 {
 }
 
-
 MVCard::~MVCard()
 {
+}
+ 
+string MVCard::getName() const
+{
+	return name;
 }

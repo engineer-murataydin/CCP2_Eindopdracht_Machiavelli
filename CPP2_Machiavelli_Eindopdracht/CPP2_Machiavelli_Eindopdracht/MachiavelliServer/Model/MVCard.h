@@ -4,14 +4,13 @@
 
 using namespace std;
 
-class MVCard :
-	public MVIGameObject
+class MVCard : public MVIGameObject
 {
 public:
 	MVCard(string name);
 	~MVCard();
-
+	string getName() const;
 protected:
-	string name;
+	const string name;
 };
 
