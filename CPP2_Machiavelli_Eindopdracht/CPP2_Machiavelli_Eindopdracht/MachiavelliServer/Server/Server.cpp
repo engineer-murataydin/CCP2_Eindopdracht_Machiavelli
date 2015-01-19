@@ -1,6 +1,7 @@
 #include "Server.h"
 
-
+int Server::connected;
+unique_ptr<MVGame> Server::game;
 Sync_queue<ClientCommand> Server::queue;
 
 void Server::consume_command() // runs in its own thread
@@ -9,12 +10,14 @@ void Server::consume_command() // runs in its own thread
 		ClientCommand command;
 		queue.get(command); // will block here unless there still are command objects in the queue
 		shared_ptr<Socket> client{ command.get_client() };
+		game->isTurn(client);
+
 		if (client) {
 			try {
 				// TODO handle command here
 				client->write("Hey, you wrote: '");
 				client->write(command.get_cmd());
-				client->write("', but I'm not doing anything with it.\n");
+				client->write("', but I'm not doing anything with it.\n\r");
 			}
 			catch (const exception& ex) {
 				client->write("Sorry, ");
@@ -22,7 +25,7 @@ void Server::consume_command() // runs in its own thread
 				client->write("\n");
 			}
 			catch (...) {
-				client->write("Sorry, something went wrong during handling of your request.\n");
+				client->write("Sorry, something went wrong during handling of your request.\n\r");
 			}
 			client->write(socketexample::prompt);
 		}
@@ -35,8 +38,8 @@ void Server::consume_command() // runs in its own thread
 void Server::handle_client(Socket* socket) // this function runs in a separate thread
 {
 	shared_ptr<Socket> client{ socket };
-	client->write("Welcome to Machavelli! To quit, type 'quit'.\n");
-	if ()
+	client->write("Welcome to Machavelli! To quit, type 'quit'.\n\r");
+
 	client->write(socketexample::prompt);
 
 	while (true) { // game loop
@@ -46,7 +49,7 @@ void Server::handle_client(Socket* socket) // this function runs in a separate t
 			cerr << "client (" << client->get() << ") said: " << cmd << '\n';
 
 			if (cmd == "quit") {
-				client->write("Bye!\n");
+				client->write("Bye!\n\r");
 				break; // out of game loop, will end this thread and close connection
 			}
 
@@ -60,7 +63,7 @@ void Server::handle_client(Socket* socket) // this function runs in a separate t
 			client->write("\n");
 		}
 		catch (...) {
-			client->write("ERROR: something went wrong during handling of your request. Sorry!\n");
+			client->write("ERROR: something went wrong during handling of your request. Sorry!\n\r");
 		}
 	}
 }
@@ -70,8 +73,9 @@ Server::~Server()
 	//TODO
 }
 
-Server::Server()
+Server::Server(MVGame* game)
 {
+	this->game = unique_ptr<MVGame>(game);
 	// start command consumer thread
 	thread consumer{ consume_command };
 	consumer.detach(); // detaching is usually ugly, but in this case the right thing to do
@@ -79,14 +83,16 @@ Server::Server()
 	// create a server socket
 	ServerSocket server(socketexample::tcp_port);
 
-	while (true) {
+	while (connected < 2) {
 		try {
 			// wait for connection from client; will create new socket
 			cerr << "server listening" << '\n';
 			Socket* client = nullptr;
 
-			while ((client = server.accept()) != nullptr) {
+			while (connected < 2 && (client = server.accept()) != nullptr) {
+
 				// communicate with client over new socket in separate thread
+				game->addPlayer(new MVPlayer(client));
 				thread handler{ handle_client, client };
 				handler.detach(); // detaching is usually ugly, but in this case the right thing to do
 				cerr << "server listening again" << '\n';

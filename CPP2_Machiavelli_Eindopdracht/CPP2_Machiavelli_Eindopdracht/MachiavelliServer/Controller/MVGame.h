@@ -4,14 +4,19 @@
 #include "../Model/MVCoin.h"
 #include <vector>
 
+using namespace std;
+
 class MVGame
 {
 public:
-	MVGame(vector<unique_ptr<MVPlayer>> players);
+	MVGame();
 	~MVGame();
 
+	bool addPlayer(MVPlayer* player);
+	bool isTurn(shared_ptr<Socket> socket);
 private:
-	vector<unique_ptr<MVPlayer>> players;
+	int turn;
+	vector<shared_ptr<MVPlayer>> players;
 	vector<unique_ptr<MVCoin>> coins;
 };
 
