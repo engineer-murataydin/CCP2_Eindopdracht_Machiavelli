@@ -3,12 +3,13 @@
 
 #include "MachiavelliServer\Server\Server.h"
 #include "MachiavelliServer/Controller/MVGame.h"
+#include "MachiavelliServer\Enum\MVEnum.h"
 #include <memory>
 #include <vld.h>
 
 BOOL WINAPI ConsoleHandler(DWORD CEvent)
 {
-	MVGame::Instance()->quit();
+	MVGame::Instance()->quit(MVEnum::DISCONNECTED);
 	return TRUE;
 }
 

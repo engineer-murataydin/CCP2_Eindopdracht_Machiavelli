@@ -3,6 +3,7 @@
 #include <time.h>
 #include "../States/MVGameState.h"
 #include "../States/MVLobbyState.h"
+#include "../Enum/MVEnum.h"
 
 bool MVGame::running;
 default_random_engine MVGame::dre;
@@ -108,7 +109,7 @@ void MVGame::start()
 {
 	for (size_t i = 0; i < players.size(); i++)
 	{
-		players[i]->write("Begin!!!\n\r");
+		players[i]->write("Play the game!!! Welcome to Machiavelli\n\r");
 	}
 
 	uniform_int_distribution<int> dist(0, players.size() - 1);
@@ -120,8 +121,12 @@ default_random_engine MVGame::getDre()
 	return dre;
 }
 
-void MVGame::quit()
+void MVGame::quit(MVEnum::Messages message)
 {
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		players[i]->write(MVEnum::messageToString(message));
+	}
 	running = false;
 }
 
@@ -164,4 +169,15 @@ shared_ptr<MVPlayer> MVGame::getPlayer(shared_ptr<Socket> socket) const
 		}
 	}
 	return nullptr;
+}
+
+void MVGame::checkPlayers()
+{
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		if (players[i]->getSocket()->get() <= 0)
+		{
+			quit(MVEnum::DISCONNECTED_PLAYER);
+		}
+	}
 }

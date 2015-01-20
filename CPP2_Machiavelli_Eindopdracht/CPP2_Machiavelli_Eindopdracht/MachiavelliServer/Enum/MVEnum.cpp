@@ -80,3 +80,31 @@ string MVEnum::characterToString(Characters character)
 		break;
 	}
 }
+
+MVEnum::Messages MVEnum::getMessage(string message)
+{
+	for (int i = CONNECTED; i <= DISCONNECTED; i++)
+	{
+		Messages tempMessage = static_cast<Messages>(i);
+		if (messageToString(tempMessage) == message)
+		{
+			return tempMessage;
+		}
+	}
+	return UNKNOWN_MESSAGE;
+}
+
+string MVEnum::messageToString(Messages message)
+{
+	switch (message)
+	{
+	case MVEnum::CONNECTED:
+		return "Connected";
+	case MVEnum::DISCONNECTED:
+		return "Disconnected";
+	case MVEnum::DISCONNECTED_PLAYER:
+		return "Player has disconnected";
+	default:
+		break;
+	}
+}
