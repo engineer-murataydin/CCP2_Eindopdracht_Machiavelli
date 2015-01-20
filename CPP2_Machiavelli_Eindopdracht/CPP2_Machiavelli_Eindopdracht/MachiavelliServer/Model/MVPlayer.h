@@ -4,6 +4,7 @@
 #include "MVBuilding.h"
 #include <memory>
 #include <vector>
+#include <queue>
 #include "../Server/Socket.h"
 
 using namespace std;
@@ -20,12 +21,13 @@ public:
 	vector<shared_ptr<MVCharacter>> getCharacterCards() const;
 	bool HasCharacterCard(int id) const;
 	void write(string msg);
-
+	bool addCoin();
+	bool addCoins(int amount);
 
 private:
 	vector<shared_ptr<MVCharacter>> characterCards;
 	vector<shared_ptr<MVBuilding>> BuildingCards;
-	vector<shared_ptr<MVCoin>> Coins;
+	queue<unique_ptr<MVCoin>> Coins;
 	shared_ptr<Socket> socket;
 
 	bool king;

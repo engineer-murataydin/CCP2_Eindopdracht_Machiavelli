@@ -4,6 +4,7 @@
 #include "../Model/MVCoin.h"
 #include "../Model/MVDeck.h"
 #include <vector>
+#include <queue>
 #include <random>
 
 
@@ -27,6 +28,8 @@ public:
 	static default_random_engine getDre();
 	shared_ptr<MVPlayer> getCurrentPlayer();
 	vector<shared_ptr<MVPlayer>> getPlayers();
+	unique_ptr<MVCoin> MoveCoin();
+	bool hasCoins();
 
 	void update(shared_ptr<MVPlayer> player, string msg);
 	void render(shared_ptr<MVPlayer> player) const;
@@ -44,7 +47,7 @@ private:
 	void start();
 	shared_ptr<MVPlayer> currentPlayerTurn;
 	vector<shared_ptr<MVPlayer>> players;
-	vector<unique_ptr<MVCoin>> coins;
+	queue<unique_ptr<MVCoin>> coins;
 	MVDeck<MVCharacter> characterDeck;
 	MVDeck<MVBuilding> buildingDeck;
 

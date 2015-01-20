@@ -23,8 +23,10 @@ void Server::consume_command() // runs in its own thread
 					}
 					else
 					{
-						client->write("niet jouw beurt!");
+						client->write("niet jouw beurt!\n\r");
 					}
+
+					game->render(game->getPlayer(client));
 				}
 				catch (const exception& ex) {
 					client->write("Sorry, ");

@@ -26,5 +26,5 @@ void MVLobbyState::checkState()
 
 void MVLobbyState::render(shared_ptr<MVPlayer> player) const
 {
-	player->write("Wachten op andere speler");
+	player->write("Wachten op andere speler\n\r");
 }

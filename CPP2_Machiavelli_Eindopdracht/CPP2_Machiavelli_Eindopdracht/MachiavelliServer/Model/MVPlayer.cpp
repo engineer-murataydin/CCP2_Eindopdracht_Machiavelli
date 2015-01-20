@@ -1,5 +1,5 @@
 #include "MVPlayer.h"
-
+#include "../Controller/MVGame.h"
 
 MVPlayer::MVPlayer(Socket* socket)
 {
@@ -53,4 +53,26 @@ void MVPlayer::write(string msg)
 void MVPlayer::setKing(bool value)
 {
 	king = value;
+}
+
+bool MVPlayer::addCoin()
+{
+	if (MVGame::Instance()->hasCoins())
+	{
+		Coins.push(move(MVGame::Instance()->MoveCoin()));
+		return true;
+	}
+	return false;
+}
+
+bool MVPlayer::addCoins(int amount)
+{
+	for (int i = 0; i < amount; i++)
+	{
+		if (!addCoin())
+		{
+			return false;
+		}
+	}
+	return true;
 }

@@ -40,7 +40,7 @@ MVGame::MVGame()
 
 	for (size_t i = 0; i < 30; i++)
 	{
-		coins.push_back(unique_ptr<MVCoin>(new MVCoin()));
+		coins.push(unique_ptr<MVCoin>(new MVCoin()));
 	}
 
 	buildingDeck.shuffle();
@@ -76,14 +76,7 @@ bool MVGame::addPlayer(shared_ptr<MVPlayer> player)
 
 bool MVGame::isTurn(shared_ptr<Socket> socket)
 {
-	for (size_t i = 0; i < players.size(); i++)
-	{
-		if (players[i]->getSocket() == socket)
-		{
-			return players[i]->HasCharacterCard(turn);
-		}
-	}
-	return false;
+	return getPlayer(socket) == currentPlayerTurn;
 }
 
 void MVGame::nextTurn()
@@ -108,7 +101,8 @@ void MVGame::start()
 {
 	for (size_t i = 0; i < players.size(); i++)
 	{
-		players[i]->write("Begin!!!\n\r");
+		players[i]->addCoin();
+		players[i]->write("\n\rBegin!!!\n\r");
 	}
 
 	uniform_int_distribution<int> dist(0, players.size() - 1);
@@ -164,4 +158,17 @@ shared_ptr<MVPlayer> MVGame::getPlayer(shared_ptr<Socket> socket) const
 		}
 	}
 	return nullptr;
+}
+
+unique_ptr<MVCoin> MVGame::MoveCoin()
+{
+	unique_ptr<MVCoin> coin(move(coins.front()));
+	coins.pop();
+	return coin;
+}
+
+
+bool MVGame::hasCoins()
+{
+	return !coins.empty();
 }
