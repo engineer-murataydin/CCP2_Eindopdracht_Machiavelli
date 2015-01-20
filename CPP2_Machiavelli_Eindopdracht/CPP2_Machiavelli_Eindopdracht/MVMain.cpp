@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 {
 	SetConsoleCtrlHandler(ConsoleHandler, true);
 
-	unique_ptr<Server> server(new Server(MVGame::Instance()));
+	shared_ptr<Server> server(Server::Instance());
 
 	//while (true);
 
