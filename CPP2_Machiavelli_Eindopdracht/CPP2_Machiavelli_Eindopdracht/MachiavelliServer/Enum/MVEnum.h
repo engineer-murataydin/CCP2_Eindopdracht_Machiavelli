@@ -18,5 +18,12 @@ public:
 	};
 	static Colors getColor(string color);
 	static string colorToString(Colors color);
+
+	enum Characters
+	{
+		UNKNOWN = -1, MOORDENAAR, DIEF, MAGIER, KONING, PREDIKER, KOOPMAN, BOUWMEESTER, CONDOTTIERE 
+	};
+	static Characters getCharacter(string character);
+	static string characterToString(Characters character);
 };
 
