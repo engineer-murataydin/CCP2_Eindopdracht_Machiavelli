@@ -48,7 +48,6 @@ MVGame::MVGame()
 	characterDeck.shuffle();
 
 	state = unique_ptr<MVGameState>(new MVLobbyState(instance));
-
 }
 
 

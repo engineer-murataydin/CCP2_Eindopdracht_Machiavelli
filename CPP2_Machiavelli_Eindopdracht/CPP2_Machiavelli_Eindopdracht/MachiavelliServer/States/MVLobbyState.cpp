@@ -1,14 +1,14 @@
 #include "MVLobbyState.h"
 #include "MVDealState.h"
 
-
 MVLobbyState::MVLobbyState(shared_ptr<MVGame> game) :MVGameState(game)
 {
+	cerr << "Enter LobbyState" << endl;
 }
-
 
 MVLobbyState::~MVLobbyState()
 {
+	cerr << "Exit LobbyState" << endl;
 }
 
 void MVLobbyState::update(shared_ptr<MVPlayer> player, string message)
