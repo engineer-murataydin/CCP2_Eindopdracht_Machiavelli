@@ -29,7 +29,10 @@ public:
 	shared_ptr<MVPlayer> getCurrentPlayer();
 	vector<shared_ptr<MVPlayer>> getPlayers();
 	unique_ptr<MVCoin> MoveCoin();
+	unique_ptr<MVBuilding> MoveBuilding(int pos = 0);
+	unique_ptr<MVCharacter>MoveCharacter(int pos = 0);
 	bool hasCoins();
+	bool hasBuildingCards();
 
 	void update(shared_ptr<MVPlayer> player, string msg);
 	void render(shared_ptr<MVPlayer> player) const;

@@ -101,7 +101,8 @@ void MVGame::start()
 {
 	for (size_t i = 0; i < players.size(); i++)
 	{
-		players[i]->addCoin();
+		players[i]->addCoins(2);
+		players[i]->addBuildingCards(4);
 		players[i]->write("\n\rBegin!!!\n\r");
 	}
 
@@ -171,4 +172,19 @@ unique_ptr<MVCoin> MVGame::MoveCoin()
 bool MVGame::hasCoins()
 {
 	return !coins.empty();
+}
+
+bool MVGame::hasBuildingCards()
+{
+	return buildingDeck.HasCard();
+}
+
+unique_ptr<MVBuilding> MVGame::MoveBuilding(int pos)
+{
+	return buildingDeck.moveCardAt(pos);
+}
+
+unique_ptr<MVCharacter> MVGame::MoveCharacter(int pos)
+{
+	return characterDeck.moveCardAt(pos);
 }

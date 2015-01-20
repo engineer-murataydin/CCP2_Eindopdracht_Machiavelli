@@ -23,6 +23,8 @@ public:
 	void write(string msg);
 	bool addCoin();
 	bool addCoins(int amount);
+	bool addBuildingCard();
+	bool addBuildingCards(int amount);
 
 private:
 	vector<shared_ptr<MVCharacter>> characterCards;

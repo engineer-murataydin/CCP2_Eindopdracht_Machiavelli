@@ -76,3 +76,25 @@ bool MVPlayer::addCoins(int amount)
 	}
 	return true;
 }
+
+bool MVPlayer::addBuildingCard()
+{
+	if (MVGame::Instance()->hasBuildingCards())
+	{
+		BuildingCards.push_back(move(MVGame::Instance()->MoveBuilding()));
+		return true;
+	}
+	return false;
+}
+
+bool MVPlayer::addBuildingCards(int amount)
+{
+	for (int i = 0; i < amount; i++)
+	{
+		if (!addBuildingCard())
+		{
+			return false;
+		}
+	}
+	return true;
+}

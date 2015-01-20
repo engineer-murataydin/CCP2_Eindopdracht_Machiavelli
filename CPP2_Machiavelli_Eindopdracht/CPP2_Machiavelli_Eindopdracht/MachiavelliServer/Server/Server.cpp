@@ -26,6 +26,7 @@ void Server::consume_command() // runs in its own thread
 						client->write("niet jouw beurt!\n\r");
 					}
 
+					game->checkState();
 					game->render(game->getPlayer(client));
 				}
 				catch (const exception& ex) {
