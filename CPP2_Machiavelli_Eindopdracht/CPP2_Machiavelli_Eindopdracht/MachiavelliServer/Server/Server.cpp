@@ -1,6 +1,5 @@
 #include "Server.h"
 
-
 int Server::connected;
 shared_ptr<MVGame> Server::game;
 Sync_queue<ClientCommand> Server::queue;
@@ -98,7 +97,7 @@ Server::Server(shared_ptr<MVGame> game)
 			cerr << "server listening" << '\n';
 			Socket* client = nullptr;
 
-			while (connected < 2 && (client = server.accept()) != nullptr) {
+			while (connected <= 2 && (client = server.accept()) != nullptr) {
 
 				// communicate with client over new socket in separate thread
 				if (this->game->addPlayer(unique_ptr<MVPlayer>(new MVPlayer(client))))

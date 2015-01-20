@@ -21,7 +21,7 @@ MVEnum::Colors MVEnum::getColor(string color)
 			return tempColor;
 		}
 	}
-	return UNKNOWN;
+	return UNKNOWN_COLOR;
 }
 
 string MVEnum::colorToString(Colors color)
@@ -38,6 +38,44 @@ string MVEnum::colorToString(Colors color)
 		return "rood";
 	case MVEnum::LILA:
 		return "lila";
+	default:
+		break;
+	}
+}
+
+MVEnum::Characters MVEnum::getCharacter(string character)
+{
+	for (int i = MOORDENAAR; i <= CONDOTTIERE; i++)
+	{
+		Characters tempCharacter = static_cast<Characters>(i);
+		if (characterToString(tempCharacter) == character)
+		{
+			return tempCharacter;
+		}
+	}
+	return UNKNOWN_CHARACHTER;
+}
+
+string MVEnum::characterToString(Characters character)
+{
+	switch (character)
+	{
+	case MVEnum::MOORDENAAR:
+		return "Moordenaar";
+	case MVEnum::DIEF:
+		return "Dief";
+	case MVEnum::MAGIER:
+		return "Magier";
+	case MVEnum::KONING:
+		return "Koning";
+	case MVEnum::PREDIKER:
+		return "Prediker";
+	case MVEnum::KOOPMAN:
+		return "Koopman";
+	case MVEnum::BOUWMEESTER:
+		return "Bouwmeester";
+	case MVEnum::CONDOTTIERE:
+		return "Condottiere";
 	default:
 		break;
 	}

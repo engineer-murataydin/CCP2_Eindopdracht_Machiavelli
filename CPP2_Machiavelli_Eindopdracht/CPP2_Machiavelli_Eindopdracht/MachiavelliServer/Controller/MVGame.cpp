@@ -125,7 +125,6 @@ void MVGame::quit()
 	running = false;
 }
 
-
 shared_ptr<MVPlayer> MVGame::getCurrentPlayer()
 {
 	return currentPlayerTurn;
