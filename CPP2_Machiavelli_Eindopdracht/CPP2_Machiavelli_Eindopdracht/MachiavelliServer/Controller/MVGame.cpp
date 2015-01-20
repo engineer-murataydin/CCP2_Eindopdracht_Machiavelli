@@ -120,3 +120,8 @@ void MVGame::quit()
 {
 	running = false;
 }
+
+vector<shared_ptr<MVPlayer>> MVGame::getPlayers()
+{
+	return players;
+}

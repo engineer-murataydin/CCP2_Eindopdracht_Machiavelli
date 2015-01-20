@@ -21,7 +21,7 @@ MVEnum::Colors MVEnum::getColor(string color)
 			return tempColor;
 		}
 	}
-	return UNKNOWN;
+	return UNKNOWN_COLOR;
 }
 
 string MVEnum::colorToString(Colors color)
@@ -53,7 +53,7 @@ MVEnum::Characters MVEnum::getCharacter(string character)
 			return tempCharacter;
 		}
 	}
-	return UNKNOWN;
+	return UNKNOWN_CHARACHTER;
 }
 
 string MVEnum::characterToString(Characters character)

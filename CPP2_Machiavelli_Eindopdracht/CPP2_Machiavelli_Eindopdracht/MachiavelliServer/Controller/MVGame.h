@@ -25,6 +25,8 @@ public:
 	static bool isRunning();
 	static default_random_engine getDre();
 
+	vector<shared_ptr<MVPlayer>> getPlayers();
+
 private:
 	MVGame();
 	static shared_ptr<MVGame> instance;
