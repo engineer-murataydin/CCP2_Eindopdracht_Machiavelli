@@ -26,7 +26,6 @@ void Server::consume_command() // runs in its own thread
 						client->write("niet jouw beurt!\n\r");
 					}
 
-					game->checkState();
 					game->render(game->getPlayer(client));
 				}
 				catch (const exception& ex) {
@@ -49,6 +48,7 @@ void Server::consume_command() // runs in its own thread
 
 void Server::handle_client(Socket* socket) // this function runs in a separate thread
 {
+	game->checkState();
 	shared_ptr<Socket> client{ socket };
 
 	client->write(socketexample::prompt);
@@ -63,7 +63,7 @@ void Server::handle_client(Socket* socket) // this function runs in a separate t
 				client->write("Bye!\n\r");
 				break; // out of game loop, will end this thread and close connection
 			}
-
+			game->checkState();
 			ClientCommand command{ cmd, client };
 			queue.put(command);
 

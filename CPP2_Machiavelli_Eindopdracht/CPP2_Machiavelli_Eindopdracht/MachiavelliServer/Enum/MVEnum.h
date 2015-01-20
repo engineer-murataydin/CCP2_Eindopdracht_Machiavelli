@@ -25,5 +25,12 @@ public:
 	};
 	static Characters getCharacter(string character);
 	static string characterToString(Characters character);
+
+	enum Messages
+	{
+		UNKNOWN_MESSAGE = -1, CONNECTED, DISCONNECTED, DISCONNECTED_PLAYER
+	};
+	static Messages getMessage(string message);
+	static string messageToString(Messages message);
 };
 

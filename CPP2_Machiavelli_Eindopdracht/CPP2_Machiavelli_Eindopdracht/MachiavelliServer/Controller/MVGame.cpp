@@ -3,6 +3,7 @@
 #include <time.h>
 #include "../States/MVGameState.h"
 #include "../States/MVLobbyState.h"
+#include "../Enum/MVEnum.h"
 
 bool MVGame::running;
 default_random_engine MVGame::dre;
@@ -47,7 +48,6 @@ MVGame::MVGame()
 	characterDeck.shuffle();
 
 	state = unique_ptr<MVGameState>(new MVLobbyState(instance));
-
 }
 
 
@@ -103,7 +103,6 @@ void MVGame::start()
 	{
 		players[i]->addCoins(2);
 		players[i]->addBuildingCards(4);
-		players[i]->write("\n\rBegin!!!\n\r");
 	}
 
 	uniform_int_distribution<int> dist(0, players.size() - 1);
@@ -115,8 +114,12 @@ default_random_engine MVGame::getDre()
 	return dre;
 }
 
-void MVGame::quit()
+void MVGame::quit(MVEnum::Messages message)
 {
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		players[i]->write(MVEnum::messageToString(message));
+	}
 	running = false;
 }
 
@@ -187,4 +190,15 @@ unique_ptr<MVBuilding> MVGame::MoveBuilding(int pos)
 unique_ptr<MVCharacter> MVGame::MoveCharacter(int pos)
 {
 	return characterDeck.moveCardAt(pos);
+}
+
+void MVGame::checkPlayers()
+{
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		if (players[i]->getSocket()->get() <= 0)
+		{
+			quit(MVEnum::DISCONNECTED_PLAYER);
+		}
+	}
 }

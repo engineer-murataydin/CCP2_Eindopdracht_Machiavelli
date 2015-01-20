@@ -6,7 +6,7 @@
 #include <vector>
 #include <queue>
 #include <random>
-
+#include "../Enum/MVEnum.h"
 
 class MVGameState;
 
@@ -19,7 +19,7 @@ public:
 	static shared_ptr<MVGame> Instance();
 	~MVGame();
 
-	void quit();
+	void quit(MVEnum::Messages message);
 	bool addPlayer(shared_ptr<MVPlayer> player);
 	bool isTurn(shared_ptr<Socket> socket);
 
@@ -39,6 +39,8 @@ public:
 	void checkState();
 
 	void setState(unique_ptr<MVGameState> state);
+
+	void checkPlayers();
 
 	shared_ptr<MVPlayer> getPlayer(shared_ptr<Socket> socket) const;
 

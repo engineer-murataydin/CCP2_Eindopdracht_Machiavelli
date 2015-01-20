@@ -16,6 +16,9 @@
 #include <stdexcept>
 #include <memory>
 
+//
+#include "../Controller/MVGame.h"
+
 #if defined(__APPLE__) || defined(__linux__)
 
 	#include <sys/socket.h>
@@ -129,6 +132,8 @@ void Socket::write(const char *buf, size_t len)
 Socket::~Socket()
 {
 	if (sock > 0) close();
+
+	MVGame::Instance()->checkPlayers();
 }
 
 void Socket::close()
