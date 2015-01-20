@@ -50,7 +50,6 @@ MVGame::MVGame()
 	state = unique_ptr<MVGameState>(new MVLobbyState(instance));
 }
 
-
 MVGame::~MVGame()
 {
 	running = false;
@@ -126,6 +125,8 @@ void MVGame::quit(MVEnum::Messages message)
 	{
 		players[i]->write(MVEnum::messageToString(message));
 	}
+	/*shared_ptr<MVGame> mvgame(new MVGame());
+	Instance().swap(mvgame);*/
 	running = false;
 }
 

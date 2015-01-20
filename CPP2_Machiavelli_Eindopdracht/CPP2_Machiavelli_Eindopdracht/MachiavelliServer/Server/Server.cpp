@@ -3,6 +3,17 @@
 int Server::connected;
 shared_ptr<MVGame> Server::game;
 Sync_queue<ClientCommand> Server::queue;
+shared_ptr<Server> Server::instance = nullptr;
+
+shared_ptr<Server> Server::Instance()
+{
+	if (!instance)
+	{
+		instance = shared_ptr<Server>(new Server());
+	}
+	return instance;
+}
+
 
 void Server::consume_command() // runs in its own thread
 {
@@ -23,7 +34,7 @@ void Server::consume_command() // runs in its own thread
 					}
 					else
 					{
-						client->write("niet jouw beurt!");
+						client->write("Niet jouw beurt!");
 					}
 				}
 				catch (const exception& ex) {
@@ -81,9 +92,9 @@ Server::~Server()
 	//TODO
 }
 
-Server::Server(shared_ptr<MVGame> game)
+Server::Server()
 {
-	this->game = move(game);
+	this->game = shared_ptr<MVGame>(MVGame::Instance());
 	// start command consumer thread
 	thread consumer{ consume_command };
 	consumer.detach(); // detaching is usually ugly, but in this case the right thing to do
