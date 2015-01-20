@@ -78,6 +78,9 @@
     <ClCompile Include="MachiavelliServer\States\MVLobbyState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\MVDealState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MachiavelliServer\Controller\MVFileController.h">
@@ -147,6 +150,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MachiavelliServer\States\MVLobbyState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\MVDealState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

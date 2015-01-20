@@ -21,9 +21,20 @@ public:
 	void quit();
 	bool addPlayer(shared_ptr<MVPlayer> player);
 	bool isTurn(shared_ptr<Socket> socket);
+
 	void nextTurn();
 	static bool isRunning();
 	static default_random_engine getDre();
+	shared_ptr<MVPlayer> getCurrentPlayer();
+	vector<shared_ptr<MVPlayer>> getPlayers();
+
+	void update(shared_ptr<MVPlayer> player, string msg);
+	void render(shared_ptr<MVPlayer> player) const;
+	void checkState();
+
+	void setState(unique_ptr<MVGameState> state);
+
+	shared_ptr<MVPlayer> getPlayer(shared_ptr<Socket> socket) const;
 
 private:
 	MVGame();

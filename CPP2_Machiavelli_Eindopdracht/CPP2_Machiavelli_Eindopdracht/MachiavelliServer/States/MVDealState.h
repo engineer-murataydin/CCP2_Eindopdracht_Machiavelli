@@ -1,12 +1,11 @@
 #pragma once
 #include "MVGameState.h"
-
-class MVLobbyState :
+class MVDealState :
 	public MVGameState
 {
 public:
-	MVLobbyState(shared_ptr<MVGame> game);
-	virtual ~MVLobbyState();
+	MVDealState(shared_ptr<MVGame> game);
+	virtual ~MVDealState();
 	virtual void update(shared_ptr<MVPlayer> player, string message);
 	virtual void render(shared_ptr<MVPlayer> player) const;
 	virtual void checkState();

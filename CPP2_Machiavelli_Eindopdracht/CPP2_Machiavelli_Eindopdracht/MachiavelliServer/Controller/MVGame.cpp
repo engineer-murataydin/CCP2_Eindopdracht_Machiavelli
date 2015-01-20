@@ -46,7 +46,7 @@ MVGame::MVGame()
 	buildingDeck.shuffle();
 	characterDeck.shuffle();
 
-	state = unique_ptr<MVGameState>(new MVGameState(instance));
+	state = unique_ptr<MVGameState>(new MVLobbyState(instance));
 
 }
 
@@ -58,6 +58,10 @@ MVGame::~MVGame()
 
 bool MVGame::addPlayer(shared_ptr<MVPlayer> player)
 {
+	if (players.size() == 0)
+	{
+		currentPlayerTurn = player;
+	}
 	if (players.size() < 2)
 	{
 		players.push_back(player);
@@ -119,4 +123,46 @@ default_random_engine MVGame::getDre()
 void MVGame::quit()
 {
 	running = false;
+}
+
+
+shared_ptr<MVPlayer> MVGame::getCurrentPlayer()
+{
+	return currentPlayerTurn;
+}
+
+vector<shared_ptr<MVPlayer>> MVGame::getPlayers()
+{
+	return players;
+}
+
+void MVGame::setState(unique_ptr<MVGameState> state)
+{
+	this->state = move(state);
+}
+void MVGame::update(shared_ptr<MVPlayer> player, string msg)
+{
+	state->update(player, msg);
+}
+
+void MVGame::render(shared_ptr<MVPlayer> player) const
+{
+	state->render(player);
+}
+
+void MVGame::checkState()
+{
+	state->checkState();
+}
+
+shared_ptr<MVPlayer> MVGame::getPlayer(shared_ptr<Socket> socket) const
+{
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		if (players[i]->getSocket() == socket)
+		{
+			return players[i];
+		}
+	}
+	return nullptr;
 }

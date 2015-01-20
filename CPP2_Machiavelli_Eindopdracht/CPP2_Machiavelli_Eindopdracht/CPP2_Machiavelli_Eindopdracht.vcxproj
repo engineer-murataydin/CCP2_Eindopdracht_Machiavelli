@@ -97,6 +97,7 @@
     <ClCompile Include="MachiavelliServer\Server\throw.cpp" />
     <ClCompile Include="MachiavelliServer\States\MVGameState.cpp" />
     <ClCompile Include="MachiavelliServer\States\MVLobbyState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\MVDealState.cpp" />
     <ClCompile Include="MVMain.cpp" />
     <ClCompile Include="MachiavelliServer\Model\MVSpecialBuilding.cpp" />
   </ItemGroup>
@@ -123,6 +124,7 @@
     <ClInclude Include="MachiavelliServer\Model\MVSpecialBuilding.h" />
     <ClInclude Include="MachiavelliServer\Model\MVDeck.h" />
     <ClInclude Include="MachiavelliServer\States\MVLobbyState.h" />
+    <ClInclude Include="MachiavelliServer\States\MVDealState.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>

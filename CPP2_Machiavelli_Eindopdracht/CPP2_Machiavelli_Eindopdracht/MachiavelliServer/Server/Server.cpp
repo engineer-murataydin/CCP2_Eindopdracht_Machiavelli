@@ -18,9 +18,14 @@ void Server::consume_command() // runs in its own thread
 			if (client) {
 				try {
 					// TODO handle command here
-					client->write("Hey, you wrote: '");
-					client->write(command.get_cmd());
-					client->write("', but I'm not doing anything with it.\n\r");
+					if (game->getCurrentPlayer()->getSocket() == client)
+					{
+						game->update(game->getPlayer(client), command.get_cmd());
+					}
+					else
+					{
+						client->write("niet jouw beurt!");
+					}
 				}
 				catch (const exception& ex) {
 					client->write("Sorry, ");
@@ -28,7 +33,7 @@ void Server::consume_command() // runs in its own thread
 					client->write("\n");
 				}
 				catch (...) {
-					client->write("Sorry, something went wrong during handling of your request.\n\r");
+					client->write("Sorry, er ging iets mis! ;)\n\r");
 				}
 				client->write(socketexample::prompt);
 			}
@@ -37,7 +42,7 @@ void Server::consume_command() // runs in its own thread
 			}
 		}
 	}
-	catch (...) { }
+	catch (...) {}
 }
 
 void Server::handle_client(Socket* socket) // this function runs in a separate thread
