@@ -39,7 +39,6 @@ void Server::consume_command() // runs in its own thread
 void Server::handle_client(Socket* socket) // this function runs in a separate thread
 {
 	shared_ptr<Socket> client{ socket };
-	client->write("Welcome to Machavelli! To quit, type 'quit'.\n\r");
 
 	client->write(socketexample::prompt);
 

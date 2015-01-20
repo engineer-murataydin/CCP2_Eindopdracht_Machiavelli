@@ -1,18 +1,37 @@
 #include "MVGame.h"
 #include "../Factory/MVMainFactory.h"
+#include <time.h>
 
 bool MVGame::running;
+default_random_engine MVGame::dre;
 
 MVGame::MVGame()
 {
+	dre = default_random_engine(time(NULL));
+
 	running = true;
+
+	vector<unique_ptr<MVBuilding>> buildings = MVMainFactory::loadBuildings();
+	vector<unique_ptr<MVCharacter>> characters = MVMainFactory::loadCharacters();
+
+	for (size_t i = 0; i < buildings.size(); i++)
+	{
+		buildingDeck.AddCard(move(buildings[i]));
+	}
+
+	for (size_t i = 0; i < characters.size(); i++)
+	{
+		characterDeck.AddCard(move(characters[i]));
+	}
+
 	for (size_t i = 0; i < 30; i++)
 	{
 		coins.push_back(unique_ptr<MVCoin>(new MVCoin()));
 	}
-	players = vector<unique_ptr<MVPlayer>>();
-	vector<shared_ptr<MVBuilding>> buildings = MVMainFactory::loadBuildings();
-	//vector<shared_ptr<MVCharacter>> characters = MVMainFactory::loadCharacters();
+
+	buildingDeck.shuffle();
+	characterDeck.shuffle();
+
 }
 
 
@@ -21,11 +40,15 @@ MVGame::~MVGame()
 	running = false;
 }
 
-bool MVGame::addPlayer(unique_ptr<MVPlayer> player)
+bool MVGame::addPlayer(shared_ptr<MVPlayer> player)
 {
 	if (players.size() < 2)
 	{
-		players.push_back(move(player));
+		players.push_back(player);
+		if (players.size() == 2)
+		{
+			start();
+		}
 		return true;
 	}
 	return false;
@@ -59,4 +82,20 @@ void MVGame::nextTurn()
 bool MVGame::isRunning()
 {
 	return running;
+}
+
+void MVGame::start()
+{
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		players[i]->write("Begin!!!\n\r");
+	}
+
+	uniform_int_distribution<int> dist(0, players.size() - 1);
+	players[dist(dre)]->setKing(true);
+}
+
+default_random_engine MVGame::getDre()
+{
+	return dre;
 }

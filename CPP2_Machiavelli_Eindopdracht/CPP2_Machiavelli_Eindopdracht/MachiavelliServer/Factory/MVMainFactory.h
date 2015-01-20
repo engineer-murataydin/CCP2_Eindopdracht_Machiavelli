@@ -16,8 +16,8 @@ class MVMainFactory
 public:
 	~MVMainFactory();
 
-	static vector<shared_ptr<MVCharacter>> loadCharacters();
-	static vector<shared_ptr<MVBuilding>> loadBuildings();
+	static vector<unique_ptr<MVCharacter>> loadCharacters();
+	static vector<unique_ptr<MVBuilding>> loadBuildings();
 
 private:
 	MVMainFactory();

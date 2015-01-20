@@ -38,3 +38,19 @@ vector<shared_ptr<MVCharacter>> MVPlayer::getCharacterCards() const
 {
 	return characterCards;
 }
+
+void MVPlayer::write(string msg)
+{
+	try
+	{
+		socket->write(msg);
+	}
+	catch (...)
+	{
+	}
+}
+
+void MVPlayer::setKing(bool value)
+{
+	king = value;
+}
