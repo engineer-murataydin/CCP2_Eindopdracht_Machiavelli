@@ -6,9 +6,17 @@
 #include <memory>
 #include <vld.h>
 
+BOOL WINAPI ConsoleHandler(DWORD CEvent)
+{
+	MVGame::Instance()->quit();
+	return TRUE;
+}
+
 int main(int argc, char* argv[])
 {
-	unique_ptr<Server> server(new Server(unique_ptr<MVGame>(new MVGame())));
+	SetConsoleCtrlHandler(ConsoleHandler, true);
+
+	unique_ptr<Server> server(new Server(MVGame::Instance()));
 
 	//while (true);
 

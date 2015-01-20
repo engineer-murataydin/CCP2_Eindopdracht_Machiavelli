@@ -5,16 +5,20 @@
 #include "../Model/MVDeck.h"
 #include <vector>
 #include <random>
-#include "../States/MVGameState.h"
+
+
+class MVGameState;
+
 
 using namespace std;
 
 class MVGame
 {
 public:
-	MVGame();
+	static shared_ptr<MVGame> Instance();
 	~MVGame();
 
+	void quit();
 	bool addPlayer(shared_ptr<MVPlayer> player);
 	bool isTurn(shared_ptr<Socket> socket);
 	void nextTurn();
@@ -22,6 +26,8 @@ public:
 	static default_random_engine getDre();
 
 private:
+	MVGame();
+	static shared_ptr<MVGame> instance;
 	static bool running;
 	int turn;
 	void start();
@@ -31,7 +37,7 @@ private:
 	MVDeck<MVCharacter> characterDeck;
 	MVDeck<MVBuilding> buildingDeck;
 
-	MVGameState state;
+	unique_ptr<MVGameState> state;
 
 	static default_random_engine dre;
 };

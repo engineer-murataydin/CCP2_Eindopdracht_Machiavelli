@@ -2,38 +2,42 @@
 
 
 int Server::connected;
-unique_ptr<MVGame> Server::game;
+shared_ptr<MVGame> Server::game;
 Sync_queue<ClientCommand> Server::queue;
 
 void Server::consume_command() // runs in its own thread
 {
-	while (MVGame::isRunning()) {
-		ClientCommand command;
-		queue.get(command); // will block here unless there still are command objects in the queue
-		shared_ptr<Socket> client{ command.get_client() };
-		game->isTurn(client);
+	try
+	{
+		while (MVGame::isRunning()) {
+			ClientCommand command;
+			queue.get(command); // will block here unless there still are command objects in the queue
+			shared_ptr<Socket> client{ command.get_client() };
+			game->isTurn(client);
 
-		if (client) {
-			try {
-				// TODO handle command here
-				client->write("Hey, you wrote: '");
-				client->write(command.get_cmd());
-				client->write("', but I'm not doing anything with it.\n\r");
+			if (client) {
+				try {
+					// TODO handle command here
+					client->write("Hey, you wrote: '");
+					client->write(command.get_cmd());
+					client->write("', but I'm not doing anything with it.\n\r");
+				}
+				catch (const exception& ex) {
+					client->write("Sorry, ");
+					client->write(ex.what());
+					client->write("\n");
+				}
+				catch (...) {
+					client->write("Sorry, something went wrong during handling of your request.\n\r");
+				}
+				client->write(socketexample::prompt);
 			}
-			catch (const exception& ex) {
-				client->write("Sorry, ");
-				client->write(ex.what());
-				client->write("\n");
+			else {
+				cerr << "trying to handle command for client who has disappeared...\n";
 			}
-			catch (...) {
-				client->write("Sorry, something went wrong during handling of your request.\n\r");
-			}
-			client->write(socketexample::prompt);
-		}
-		else {
-			cerr << "trying to handle command for client who has disappeared...\n";
 		}
 	}
+	catch (...) { }
 }
 
 void Server::handle_client(Socket* socket) // this function runs in a separate thread
@@ -73,7 +77,7 @@ Server::~Server()
 	//TODO
 }
 
-Server::Server(unique_ptr<MVGame> game)
+Server::Server(shared_ptr<MVGame> game)
 {
 	this->game = move(game);
 	// start command consumer thread

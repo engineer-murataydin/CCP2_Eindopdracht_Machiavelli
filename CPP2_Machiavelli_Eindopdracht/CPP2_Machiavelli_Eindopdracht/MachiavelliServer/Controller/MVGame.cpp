@@ -1,12 +1,26 @@
 #include "MVGame.h"
 #include "../Factory/MVMainFactory.h"
 #include <time.h>
+#include "../States/MVGameState.h"
+#include "../States/MVLobbyState.h"
 
 bool MVGame::running;
 default_random_engine MVGame::dre;
+shared_ptr<MVGame> MVGame::instance = nullptr;
+
+shared_ptr<MVGame> MVGame::Instance()
+{
+	if (!instance)
+	{
+		new MVGame();
+	}
+	return instance;
+}
+
 
 MVGame::MVGame()
 {
+	instance = shared_ptr<MVGame>(this);
 	dre = default_random_engine(time(NULL));
 
 	running = true;
@@ -31,6 +45,8 @@ MVGame::MVGame()
 
 	buildingDeck.shuffle();
 	characterDeck.shuffle();
+
+	state = unique_ptr<MVGameState>(new MVGameState(instance));
 
 }
 
@@ -98,4 +114,9 @@ void MVGame::start()
 default_random_engine MVGame::getDre()
 {
 	return dre;
+}
+
+void MVGame::quit()
+{
+	running = false;
 }

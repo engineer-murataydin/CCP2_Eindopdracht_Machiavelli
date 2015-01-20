@@ -19,11 +19,11 @@ namespace socketexample {
 class Server
 {
 public:
-	Server(unique_ptr<MVGame> game);
+	Server(shared_ptr<MVGame> game);
 	~Server();
 
 private:
-	static unique_ptr<MVGame> game;
+	static shared_ptr<MVGame> game;
 	static void handle_client(Socket* socket); // this function runs in a separate thread
 	static void consume_command(); // runs in its own thread
 	static Sync_queue<ClientCommand> queue;
