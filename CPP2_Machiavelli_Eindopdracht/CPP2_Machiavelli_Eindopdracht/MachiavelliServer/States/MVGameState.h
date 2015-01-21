@@ -14,6 +14,5 @@ public:
 
 protected:
 	shared_ptr<MVGame> game;
-
 };
 

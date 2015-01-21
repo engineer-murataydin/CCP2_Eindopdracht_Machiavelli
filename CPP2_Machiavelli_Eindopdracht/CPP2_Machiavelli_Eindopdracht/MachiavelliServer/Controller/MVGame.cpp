@@ -2,7 +2,7 @@
 #include "../Factory/MVMainFactory.h"
 #include <time.h>
 #include "../States/MVGameState.h"
-#include "../States/MVLobbyState.h"
+#include "../States/GameStates/MVLobbyState.h"
 #include "../Enum/MVEnum.h"
 
 bool MVGame::running;

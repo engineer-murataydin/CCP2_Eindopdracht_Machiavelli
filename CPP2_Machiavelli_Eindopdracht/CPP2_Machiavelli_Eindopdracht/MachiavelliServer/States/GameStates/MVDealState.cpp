@@ -1,6 +1,11 @@
+//
 #include "MVDealState.h"
 
-MVDealState::MVDealState(shared_ptr<MVGame> game) :MVGameState(game)
+//
+
+//
+
+MVDealState::MVDealState(shared_ptr<MVGame> game) : MVGameState(game)
 {
 	cerr << "Enter DealState" << endl;
 	vector<shared_ptr<MVPlayer>> players = MVGame::Instance()->getPlayers();

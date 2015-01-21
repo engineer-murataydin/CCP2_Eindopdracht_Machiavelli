@@ -75,10 +75,37 @@
     <ClCompile Include="MachiavelliServer\Server\Server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MachiavelliServer\States\MVLobbyState.cpp">
+    <ClCompile Include="MachiavelliServer\States\GameStates\MVDealState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MachiavelliServer\States\MVDealState.cpp">
+    <ClCompile Include="MachiavelliServer\States\GameStates\MVLobbyState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\MVCharacterState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVAssassinState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVThiefState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVMagicianState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVKingState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVPreacherState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVDealerState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVArchitectState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVCondottiereState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -149,10 +176,37 @@
     <ClInclude Include="MachiavelliServer\Model\MVDeck.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MachiavelliServer\States\MVLobbyState.h">
+    <ClInclude Include="MachiavelliServer\States\GameStates\MVDealState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MachiavelliServer\States\MVDealState.h">
+    <ClInclude Include="MachiavelliServer\States\GameStates\MVLobbyState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\MVCharacterState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVAssassinState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVThiefState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVMagicianState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVKingState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVPreacherState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVDealerState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVArchitectState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVCondottiereState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

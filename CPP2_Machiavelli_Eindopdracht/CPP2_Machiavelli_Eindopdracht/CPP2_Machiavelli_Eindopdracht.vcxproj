@@ -95,9 +95,18 @@
     <ClCompile Include="MachiavelliServer\Server\Server.cpp" />
     <ClCompile Include="MachiavelliServer\Server\Socket.cpp" />
     <ClCompile Include="MachiavelliServer\Server\throw.cpp" />
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVArchitectState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVAssassinState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVCondottiereState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVDealerState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVKingState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVMagicianState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVThiefState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVPreacherState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\MVCharacterState.cpp" />
     <ClCompile Include="MachiavelliServer\States\MVGameState.cpp" />
-    <ClCompile Include="MachiavelliServer\States\MVLobbyState.cpp" />
-    <ClCompile Include="MachiavelliServer\States\MVDealState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\GameStates\MVLobbyState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\GameStates\MVDealState.cpp" />
     <ClCompile Include="MVMain.cpp" />
     <ClCompile Include="MachiavelliServer\Model\MVSpecialBuilding.cpp" />
   </ItemGroup>
@@ -120,11 +129,20 @@
     <ClInclude Include="MachiavelliServer\Server\Socket.h" />
     <ClInclude Include="MachiavelliServer\Server\Sync_queue.h" />
     <ClInclude Include="MachiavelliServer\Server\throw.h" />
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVArchitectState.h" />
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVAssassinState.h" />
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVCondottiereState.h" />
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVDealerState.h" />
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVKingState.h" />
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVMagicianState.h" />
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVThiefState.h" />
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVPreacherState.h" />
+    <ClInclude Include="MachiavelliServer\States\MVCharacterState.h" />
     <ClInclude Include="MachiavelliServer\States\MVGameState.h" />
     <ClInclude Include="MachiavelliServer\Model\MVSpecialBuilding.h" />
     <ClInclude Include="MachiavelliServer\Model\MVDeck.h" />
-    <ClInclude Include="MachiavelliServer\States\MVLobbyState.h" />
-    <ClInclude Include="MachiavelliServer\States\MVDealState.h" />
+    <ClInclude Include="MachiavelliServer\States\GameStates\MVLobbyState.h" />
+    <ClInclude Include="MachiavelliServer\States\GameStates\MVDealState.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
