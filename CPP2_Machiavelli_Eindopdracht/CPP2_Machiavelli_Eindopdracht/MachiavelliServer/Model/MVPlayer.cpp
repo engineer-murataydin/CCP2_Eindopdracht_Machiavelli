@@ -7,12 +7,9 @@ MVPlayer::MVPlayer(Socket* socket)
 	this->socket = shared_ptr<Socket>(socket);
 }
 
-
 MVPlayer::~MVPlayer()
 {
 }
-
-
 
 shared_ptr<Socket> MVPlayer::getSocket() const
 {
@@ -96,4 +93,14 @@ bool MVPlayer::addBuildingCards(int amount)
 		}
 	}
 	return true;
+}
+
+void MVPlayer::addCharacterCard(shared_ptr<MVCharacter> characterCard)
+{
+	characterCards.push_back(characterCard);
+}
+
+vector<shared_ptr<MVCharacter>> MVPlayer::getCharacterCardsPlayer()
+{
+	return characterCards;
 }

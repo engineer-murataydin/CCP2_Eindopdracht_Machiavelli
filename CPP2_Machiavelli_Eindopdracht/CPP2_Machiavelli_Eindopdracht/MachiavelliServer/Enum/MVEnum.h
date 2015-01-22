@@ -53,7 +53,10 @@ public:
 		CHARACTER_CARDS_SHUFFLED,
 		BUILDING_CARDS_SHUFFLED,
 		YOU_ARE_THE_KING,
-		CARD_OVERVIEW_FULL
+		CARD_OVERVIEW_FULL,
+		TOP_CARD_OF_DECK,
+		CARD_ON_TABLE,
+		CHOOSE_CARD
 	};
 	static Messages getMessage(string message);
 	static string messageToString(Messages message);

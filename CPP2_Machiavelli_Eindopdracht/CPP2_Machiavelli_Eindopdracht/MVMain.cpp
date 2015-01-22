@@ -21,8 +21,7 @@ int main(int argc, char* argv[])
 
 
 	MVGame::Instance();
-	Server::Instance();
-	Server::Instance().reset();
+	shared_ptr<Server>(new Server());
 	MVGame::Instance().reset();
 
 	return 0;

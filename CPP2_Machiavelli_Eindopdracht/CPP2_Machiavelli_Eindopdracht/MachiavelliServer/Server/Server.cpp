@@ -1,17 +1,6 @@
 #include "Server.h"
 
 Sync_queue<ClientCommand> Server::queue;
-shared_ptr<Server> Server::instance = nullptr;
-
-shared_ptr<Server> Server::Instance()
-{
-	if (!instance)
-	{
-		instance = shared_ptr<Server>(new Server());
-	}
-	return instance;
-}
-
 
 void Server::consume_command() // runs in its own thread
 {
@@ -57,12 +46,12 @@ void Server::consume_command() // runs in its own thread
 
 void Server::handle_client(Socket* socket) // this function runs in a separate thread
 {
+	shared_ptr<Socket> client{ socket };
 	while (MVGame::isRunning()) { // game loop
 
-		shared_ptr<MVGame> game = MVGame::Instance();
+		shared_ptr<MVGame> game(MVGame::Instance());
 		game->checkState();
-		shared_ptr<Socket> client{ socket };
-		
+
 		try {
 			// read first line of request
 			string cmd = client->readline();

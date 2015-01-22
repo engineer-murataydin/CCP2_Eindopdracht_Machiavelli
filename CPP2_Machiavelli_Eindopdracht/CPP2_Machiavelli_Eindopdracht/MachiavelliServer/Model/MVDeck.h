@@ -15,7 +15,7 @@ public:
 	};
 
 	void shuffle()
-	{
+	{ 
 		random_shuffle(deck.begin(), deck.end());
 	};
 

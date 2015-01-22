@@ -25,6 +25,9 @@ public:
 	bool addBuildingCard();
 	bool addBuildingCards(int amount);
 
+	void addCharacterCard(shared_ptr<MVCharacter> characterCard);
+	vector<shared_ptr<MVCharacter>> getCharacterCardsPlayer();
+
 private:
 	vector<shared_ptr<MVCharacter>> characterCards;
 	vector<shared_ptr<MVBuilding>> BuildingCards;

@@ -132,6 +132,12 @@ string MVEnum::messageToString(Messages message)
 		return "You're the king!";
 	case MVEnum::CARD_OVERVIEW_FULL:
 		return "These are all character cards:";
+	case MVEnum::TOP_CARD_OF_DECK:
+		return "This is the card on top of the deck:";
+	case MVEnum::CARD_ON_TABLE:
+		return "The card is removed from the deck";
+	case MVEnum::CHOOSE_CARD:
+		return "Choose a character card number:";
 	default:
 		break;
 	}

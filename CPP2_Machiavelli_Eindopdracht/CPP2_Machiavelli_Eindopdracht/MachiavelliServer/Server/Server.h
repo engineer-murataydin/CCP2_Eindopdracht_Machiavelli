@@ -19,12 +19,10 @@ namespace socketexample {
 class Server
 {
 public:
-	static shared_ptr<Server> Instance();
+	Server();
 	~Server();
 
 private:
-	Server();
-	static shared_ptr<Server> instance;
 	static void handle_client(Socket* socket); // this function runs in a separate thread
 	static void consume_command(); // runs in its own thread
 	static Sync_queue<ClientCommand> queue;

@@ -131,10 +131,15 @@ void Socket::write(const char *buf, size_t len)
 
 Socket::~Socket()
 {
-	if (sock > 0) close();
+	if (sock > 0)
+	{
+		close();
 
-	if (MVGame::isRunning())
-		MVGame::Instance()->checkPlayers();
+		if (MVGame::isRunning())
+		{
+			MVGame::Instance()->checkPlayers();
+		}
+	}
 }
 
 void Socket::close()
@@ -226,4 +231,4 @@ ClientSocket::ClientSocket(const char *host, int port)
 
 	// connect to server
 	throw_if_min1(::connect(sock, (struct sockaddr*)list->ai_addr, list->ai_addrlen));
-}
+	}
