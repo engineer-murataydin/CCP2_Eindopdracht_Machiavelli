@@ -14,7 +14,7 @@ public:
 	virtual void onEnter() = 0;
 	virtual void onExit() = 0;
 	virtual void checkState() = 0;
-	virtual shared_ptr<MVPlayer> getCurrentPlayer();
+	virtual bool isCurrentPlayer(shared_ptr<MVPlayer>player);
 
 protected:
 	shared_ptr<MVGame> game;

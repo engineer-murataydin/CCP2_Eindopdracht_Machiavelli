@@ -5,17 +5,21 @@
 #include "../States/GameStates/MVLobbyState.h"
 #include "../Enum/MVEnum.h"
 
-bool MVGame::running;
+bool MVGame::running = true;
 default_random_engine MVGame::dre;
 shared_ptr<MVGame> MVGame::instance = nullptr;
 
 shared_ptr<MVGame> MVGame::Instance()
 {
-	if (!instance)
+	if (running)
 	{
-		new MVGame();
+		if (!instance)
+		{
+			new MVGame();
+		}
+		return instance;
 	}
-	return instance;
+	return shared_ptr<MVGame>();
 }
 
 
@@ -24,14 +28,12 @@ MVGame::MVGame()
 	instance = shared_ptr<MVGame>(this);
 	dre = default_random_engine(time(NULL));
 
-	running = true;
-
-	vector<unique_ptr<MVBuilding>> buildings = MVMainFactory::loadBuildings();
-	vector<unique_ptr<MVCharacter>> characters = MVMainFactory::loadCharacters();
+	vector<shared_ptr<MVBuilding>> buildings = MVMainFactory::loadBuildings();
+	vector<shared_ptr<MVCharacter>> characters = MVMainFactory::loadCharacters();
 
 	for (size_t i = 0; i < buildings.size(); i++)
 	{
-		buildingDeck.AddCard(move(buildings[i]));
+		buildingDeck.AddCard(buildings[i]);
 	}
 
 	for (size_t i = 0; i < characters.size(); i++)
@@ -61,13 +63,6 @@ bool MVGame::addPlayer(shared_ptr<MVPlayer> player)
 	}
 	return false;
 }
-
-bool MVGame::isTurn(shared_ptr<Socket> socket)
-{
-	//return getPlayer(socket) == currentPlayerTurn;
-	return false;
-}
-
 
 bool MVGame::isRunning()
 {
@@ -102,9 +97,8 @@ void MVGame::quit(MVEnum::Messages message)
 	for (size_t i = 0; i < players.size(); i++)
 	{
 		players[i]->write(MVEnum::messageToString(message));
+		//players[i]->getSocket()->close();
 	}
-	/*shared_ptr<MVGame> mvgame(new MVGame());
-	Instance().swap(mvgame);*/
 	running = false;
 }
 
@@ -190,6 +184,7 @@ void MVGame::checkPlayers()
 		if (players[i]->getSocket()->get() <= 0)
 		{
 			quit(MVEnum::DISCONNECTED_PLAYER);
+			break;
 		}
 	}
 }
@@ -206,9 +201,9 @@ shared_ptr<MVPlayer> MVGame::getPlayer(MVEnum::Characters character)
 	return shared_ptr<MVPlayer>();
 }
 
-shared_ptr<MVPlayer> MVGame::getCurrentPlayer()
+bool MVGame::isCurrentPlayer(shared_ptr<MVPlayer> player)
 {
-	return state->getCurrentPlayer();
+	return state->isCurrentPlayer(player);
 }
 
 void MVGame::characterKilled(MVEnum::Characters character)
@@ -244,4 +239,9 @@ MVDeck<MVCharacter> MVGame::getCharacterDeck()
 shared_ptr<MVGameState> MVGame::getState()
 {
 	return state;
+}
+
+void MVGame::restart()
+{
+	instance.reset(new MVGame());
 }

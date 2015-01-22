@@ -6,20 +6,24 @@
 #include "MachiavelliServer\Enum\MVEnum.h"
 #include <memory>
 #include <vld.h>
+#include <csignal>
 
-BOOL WINAPI ConsoleHandler(DWORD CEvent)
+void signal_handler(int sig)
 {
 	MVGame::Instance()->quit(MVEnum::DISCONNECTED);
-	return TRUE;
 }
 
 int main(int argc, char* argv[])
 {
-	SetConsoleCtrlHandler(ConsoleHandler, true);
+	signal(SIGINT, signal_handler);
+	signal(SIGTERM, signal_handler);
+	signal(SIGBREAK, signal_handler);
 
-	shared_ptr<Server> server(Server::Instance());
 
-	//while (true);
+	MVGame::Instance();
+	Server::Instance();
+	Server::Instance().reset();
+	MVGame::Instance().reset();
 
 	return 0;
 }

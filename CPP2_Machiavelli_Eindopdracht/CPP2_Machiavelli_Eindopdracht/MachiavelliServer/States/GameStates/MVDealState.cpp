@@ -25,8 +25,8 @@ void MVDealState::render(shared_ptr<MVPlayer> player) const
 
 	for (size_t i = 0; i < characterCards.size(); i++)
 	{
-		MVGame::Instance()->getKing()->write(MVEnum::messageToString(MVEnum::CARD_OVERVIEW_FULL));
-		MVGame::Instance()->getKing()->write(characterCards[i]->getName());
+		player->write(MVEnum::messageToString(MVEnum::CARD_OVERVIEW_FULL));
+		player->write(characterCards[i]->getName());
 	}
 }
 

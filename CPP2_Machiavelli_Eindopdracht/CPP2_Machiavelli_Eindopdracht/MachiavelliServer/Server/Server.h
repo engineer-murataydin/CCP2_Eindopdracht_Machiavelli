@@ -25,10 +25,8 @@ public:
 private:
 	Server();
 	static shared_ptr<Server> instance;
-	static shared_ptr<MVGame> game;
 	static void handle_client(Socket* socket); // this function runs in a separate thread
 	static void consume_command(); // runs in its own thread
 	static Sync_queue<ClientCommand> queue;
-	static int connected;
 
 };

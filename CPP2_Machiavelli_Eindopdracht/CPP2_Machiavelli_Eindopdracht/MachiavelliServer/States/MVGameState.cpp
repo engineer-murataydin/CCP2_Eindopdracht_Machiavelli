@@ -8,9 +8,9 @@
 MVGameState::MVGameState(shared_ptr<MVGame> game) : game(game)
 {}
 
-shared_ptr<MVPlayer> MVGameState::getCurrentPlayer()
+bool MVGameState::isCurrentPlayer(shared_ptr<MVPlayer>player)
 {
-	return shared_ptr<MVPlayer>();
+	return true;
 }
 
 MVGameState::~MVGameState()

@@ -20,12 +20,11 @@ public:
 	~MVGame();
 
 	bool addPlayer(shared_ptr<MVPlayer> player);
-	bool isTurn(shared_ptr<Socket> socket);
 
 	void nextTurn();
 	static bool isRunning();
 	static default_random_engine getDre();
-	shared_ptr<MVPlayer> getCurrentPlayer();
+	bool isCurrentPlayer(shared_ptr<MVPlayer>);
 	vector<shared_ptr<MVPlayer>> getPlayers();
 	unique_ptr<MVCoin> MoveCoin();
 	shared_ptr<MVBuilding> getBuilding();
@@ -62,6 +61,8 @@ public:
 private:
 	MVEnum::Characters killed;
 	MVEnum::Characters stolenFrom;
+
+	void restart();
 
 	MVGame();
 	shared_ptr<MVPlayer> king;

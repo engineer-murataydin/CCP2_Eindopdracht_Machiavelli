@@ -20,7 +20,7 @@ public:
 	virtual void onExit();
 	virtual void checkState();
 	virtual bool canEndTurn();
-	virtual shared_ptr<MVPlayer> getCurrentPlayer();
+	virtual bool isCurrentPlayer(shared_ptr<MVPlayer>player);
 
 protected:
 	bool actionOne;

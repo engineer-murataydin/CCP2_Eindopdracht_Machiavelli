@@ -20,9 +20,9 @@ void MVCharacterState::checkState()
 void MVCharacterState::render(shared_ptr<MVPlayer> player) const
 {}
 
-shared_ptr<MVPlayer> MVCharacterState::getCurrentPlayer()
+bool MVCharacterState::isCurrentPlayer(shared_ptr<MVPlayer>player)
 {
-	return game->getPlayer(character);
+	return game->getPlayer(character) == player;
 }
 
 bool MVCharacterState::canEndTurn()

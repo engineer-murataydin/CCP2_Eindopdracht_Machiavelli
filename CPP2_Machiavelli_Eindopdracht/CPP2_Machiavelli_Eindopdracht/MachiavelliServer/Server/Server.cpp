@@ -1,7 +1,5 @@
 #include "Server.h"
 
-int Server::connected;
-shared_ptr<MVGame> Server::game;
 Sync_queue<ClientCommand> Server::queue;
 shared_ptr<Server> Server::instance = nullptr;
 
@@ -19,16 +17,16 @@ void Server::consume_command() // runs in its own thread
 {
 	try
 	{
+		shared_ptr<MVGame> game = MVGame::Instance();
 		while (MVGame::isRunning()) {
 			ClientCommand command;
 			queue.get(command); // will block here unless there still are command objects in the queue
 			shared_ptr<Socket> client{ command.get_client() };
-			game->isTurn(client);
 
 			if (client) {
 				try {
 					// TODO handle command here
-					if (game->getCurrentPlayer()->getSocket() == client)
+					if (game->isCurrentPlayer(game->getPlayer(client)))
 					{
 						game->update(game->getPlayer(client), command.get_cmd());
 					}
@@ -59,12 +57,12 @@ void Server::consume_command() // runs in its own thread
 
 void Server::handle_client(Socket* socket) // this function runs in a separate thread
 {
-	game->checkState();
-	shared_ptr<Socket> client{ socket };
+	while (MVGame::isRunning()) { // game loop
 
-	client->write(socketexample::prompt);
-
-	while (game->isRunning()) { // game loop
+		shared_ptr<MVGame> game = MVGame::Instance();
+		game->checkState();
+		shared_ptr<Socket> client{ socket };
+		
 		try {
 			// read first line of request
 			string cmd = client->readline();
@@ -97,24 +95,23 @@ Server::~Server()
 
 Server::Server()
 {
-	this->game = shared_ptr<MVGame>(MVGame::Instance());
 	// start command consumer thread
 	thread consumer{ consume_command };
 	consumer.detach(); // detaching is usually ugly, but in this case the right thing to do
 
 	// create a server socket
 	ServerSocket server(socketexample::tcp_port);
-
-	while (true) {
+	shared_ptr<MVGame> game = MVGame::Instance();
+	while (game->isRunning()) {
 		try {
 			// wait for connection from client; will create new socket
 			cerr << "server listening" << '\n';
 			Socket* client = nullptr;
 
-			while (connected <= 2 && (client = server.accept()) != nullptr) {
+			while (game->isRunning() && game->getPlayers().size() <= 2 && (client = server.accept()) != nullptr) {
 
 				// communicate with client over new socket in separate thread
-				if (this->game->addPlayer(shared_ptr<MVPlayer>(new MVPlayer(client))))
+				if (game->addPlayer(shared_ptr<MVPlayer>(new MVPlayer(client))))
 				{
 					thread handler{ handle_client, client };
 					handler.detach(); // detaching is usually ugly, but in this case the right thing to do
