@@ -5,7 +5,7 @@
 
 //
 
-MVKingState::MVKingState(shared_ptr<MVGame> game) : MVCharacterState(game)
+MVKingState::MVKingState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::KONING)
 {
 	cerr << "Enter KingState" << endl;
 }

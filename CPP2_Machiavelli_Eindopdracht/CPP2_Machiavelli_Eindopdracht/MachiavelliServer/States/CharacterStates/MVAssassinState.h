@@ -10,7 +10,7 @@ using namespace std;
 
 class MVAssassinState :
 	public MVCharacterState
-{ 
+{
 public:
 	MVAssassinState(shared_ptr<MVGame> game);
 	virtual ~MVAssassinState();
@@ -21,6 +21,7 @@ public:
 	void killCharacter(MVEnum::Characters chosenCharacter);
 
 protected:
+	vector<MVEnum::Characters> getPlayersToKill();
 	string character;
 };
 

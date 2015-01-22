@@ -19,7 +19,7 @@ public:
 	bool isKing() const;
 	shared_ptr<Socket> getSocket() const;
 	vector<shared_ptr<MVCharacter>> getCharacterCards() const;
-	bool HasCharacterCard(int id) const;
+	bool HasCharacterCard(MVEnum::Characters id) const;
 	void write(string msg);
 	bool addCoin();
 	bool addCoins(int amount);
@@ -29,6 +29,7 @@ public:
 private:
 	vector<shared_ptr<MVCharacter>> characterCards;
 	vector<shared_ptr<MVBuilding>> BuildingCards;
+	vector<shared_ptr<MVBuilding>> BuildBuildings;
 	queue<unique_ptr<MVCoin>> Coins;
 	shared_ptr<Socket> socket;
 

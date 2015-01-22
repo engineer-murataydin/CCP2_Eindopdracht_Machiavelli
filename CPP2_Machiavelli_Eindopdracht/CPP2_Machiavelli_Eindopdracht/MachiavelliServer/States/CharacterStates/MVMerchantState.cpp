@@ -5,7 +5,7 @@
 
 //
 
-MVMerchantState::MVMerchantState(shared_ptr<MVGame> game) : MVCharacterState(game)
+MVMerchantState::MVMerchantState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::KOOPMAN)
 {
 	cerr << "Enter MerchantState" << endl;
 }

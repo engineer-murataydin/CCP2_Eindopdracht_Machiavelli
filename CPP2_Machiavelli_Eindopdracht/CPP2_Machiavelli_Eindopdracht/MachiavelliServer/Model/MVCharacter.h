@@ -1,13 +1,14 @@
 #pragma once
 #include "MVCard.h"
+#include "../Enum/MVEnum.h"
 
 class MVCharacter : public MVCard
 {
 public:
-	MVCharacter(int order, string name);
+	MVCharacter(MVEnum::Characters order, string name);
 	virtual  ~MVCharacter();
-	int getOrder() const;
+	MVEnum::Characters getOrder() const;
 private:
-	const int order;
+	const MVEnum::Characters order;
 };
 

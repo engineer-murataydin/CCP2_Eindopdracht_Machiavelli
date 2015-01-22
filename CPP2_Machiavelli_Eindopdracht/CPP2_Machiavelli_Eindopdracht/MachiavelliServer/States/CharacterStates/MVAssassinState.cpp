@@ -5,7 +5,7 @@
 
 //
 
-MVAssassinState::MVAssassinState(shared_ptr<MVGame> game) : MVCharacterState(game)
+MVAssassinState::MVAssassinState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::MOORDENAAR)
 {
 	cerr << "Enter AssassinState" << endl;
 }
@@ -32,34 +32,10 @@ void MVAssassinState::render(shared_ptr<MVPlayer> player) const
 
 void MVAssassinState::killCharacter(MVEnum::Characters chosenCharacter)
 {
-	character = MVEnum::characterToString(chosenCharacter);
+	game->characterKilled(chosenCharacter);
+}
 
-	if (character == "Dief")
-	{
-
-	} 
-	else if (character == "Magier")
-	{
-
-	}
-	else if (character == "Koning")
-	{
-
-	}
-	else if (character == "Prediker")
-	{
-
-	}
-	else if (character == "Koopman")
-	{
-
-	}
-	else if (character == "Bouwmeester")
-	{
-
-	}
-	else if (character == "Condottiere")
-	{
-
-	}
+vector<MVEnum::Characters> MVAssassinState::getPlayersToKill()
+{
+	return{ MVEnum::MOORDENAAR, MVEnum::DIEF, MVEnum::MAGIER, MVEnum::KONING, MVEnum::PREDIKER, MVEnum::KOOPMAN, MVEnum::BOUWMEESTER, MVEnum::CONDOTTIERE };
 }

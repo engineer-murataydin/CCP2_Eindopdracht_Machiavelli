@@ -54,10 +54,6 @@ MVGame::~MVGame()
 
 bool MVGame::addPlayer(shared_ptr<MVPlayer> player)
 {
-	if (players.size() == 0)
-	{
-		currentPlayerTurn = player;
-	}
 	if (players.size() < 2)
 	{
 		players.push_back(player);
@@ -68,21 +64,10 @@ bool MVGame::addPlayer(shared_ptr<MVPlayer> player)
 
 bool MVGame::isTurn(shared_ptr<Socket> socket)
 {
-	return getPlayer(socket) == currentPlayerTurn;
+	//return getPlayer(socket) == currentPlayerTurn;
+	return false;
 }
 
-void MVGame::nextTurn()
-{
-	turn++;
-	for (size_t i = 0; i < players.size(); i++)
-	{
-		if (players[i]->HasCharacterCard(turn))
-		{
-			//currentPlayerTurn = players[i];
-			return;
-		}
-	}
-}
 
 bool MVGame::isRunning()
 {
@@ -118,11 +103,6 @@ void MVGame::quit(MVEnum::Messages message)
 	/*shared_ptr<MVGame> mvgame(new MVGame());
 	Instance().swap(mvgame);*/
 	running = false;
-}
-
-shared_ptr<MVPlayer> MVGame::getCurrentPlayer()
-{
-	return currentPlayerTurn;
 }
 
 vector<shared_ptr<MVPlayer>> MVGame::getPlayers()
@@ -208,4 +188,31 @@ void MVGame::checkPlayers()
 			quit(MVEnum::DISCONNECTED_PLAYER);
 		}
 	}
+}
+
+shared_ptr<MVPlayer> MVGame::getPlayer(MVEnum::Characters character)
+{
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		if (players[i]->HasCharacterCard(character))
+		{
+			return players[i];
+		}
+	}
+	return shared_ptr<MVPlayer>();
+}
+
+shared_ptr<MVPlayer> MVGame::getCurrentPlayer()
+{
+	return state->getCurrentPlayer();
+}
+
+void MVGame::characterKilled(MVEnum::Characters character)
+{
+	killed = character;
+}
+
+void MVGame::characterStolen(MVEnum::Characters character)
+{
+	stolenFrom = character;
 }

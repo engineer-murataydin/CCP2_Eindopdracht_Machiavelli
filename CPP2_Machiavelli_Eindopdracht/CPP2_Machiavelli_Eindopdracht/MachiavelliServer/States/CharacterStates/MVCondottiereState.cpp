@@ -5,7 +5,7 @@
 
 //
 
-MVCondottiereState::MVCondottiereState(shared_ptr<MVGame> game) : MVCharacterState(game)
+MVCondottiereState::MVCondottiereState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::CONDOTTIERE)
 {
 	cerr << "Enter CondottiereState" << endl;
 }

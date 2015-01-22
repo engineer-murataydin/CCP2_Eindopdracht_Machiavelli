@@ -22,7 +22,7 @@ shared_ptr<Socket> MVPlayer::getSocket() const
 	return socket;
 }
 
-bool MVPlayer::HasCharacterCard(int id) const
+bool MVPlayer::HasCharacterCard(MVEnum::Characters id) const
 {
 	for (size_t i = 0; i < characterCards.size(); i++)
 	{

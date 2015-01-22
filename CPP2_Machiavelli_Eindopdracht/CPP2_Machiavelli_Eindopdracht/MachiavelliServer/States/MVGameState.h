@@ -12,6 +12,7 @@ public:
 	virtual void update(shared_ptr<MVPlayer> player, string message) = 0;
 	virtual void render(shared_ptr<MVPlayer> player) const = 0;
 	virtual void checkState() = 0;
+	virtual shared_ptr<MVPlayer> getCurrentPlayer();
 
 	vector<shared_ptr<MVPlayer>> getAllPlayers();
 

@@ -43,6 +43,18 @@ string MVEnum::colorToString(Colors color)
 	}
 }
 
+MVEnum::Characters MVEnum::getCharacter(int id)
+{
+	for (int i = MOORDENAAR; i <= CONDOTTIERE; i++)
+	{
+		if (i == id)
+		{
+			return static_cast<Characters>(i);
+		}
+		return UNKNOWN_CHARACHTER;
+	}
+}
+
 MVEnum::Characters MVEnum::getCharacter(string character)
 {
 	for (int i = MOORDENAAR; i <= CONDOTTIERE; i++)

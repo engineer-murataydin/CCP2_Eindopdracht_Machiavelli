@@ -17,3 +17,8 @@ vector<shared_ptr<MVPlayer>> MVGameState::getAllPlayers()
 {
 	return players;
 }
+
+shared_ptr<MVPlayer> MVGameState::getCurrentPlayer()
+{
+	return shared_ptr<MVPlayer>();
+}

@@ -5,7 +5,7 @@
 
 //
 
-MVPreacherState::MVPreacherState(shared_ptr<MVGame> game) : MVCharacterState(game)
+MVPreacherState::MVPreacherState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::PREDIKER)
 {
 	cerr << "Enter PreacherState" << endl;
 }

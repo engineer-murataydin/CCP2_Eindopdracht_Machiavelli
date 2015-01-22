@@ -46,14 +46,20 @@ public:
 	void quit(MVEnum::Messages message);
 	void start();
 
+	void characterKilled(MVEnum::Characters character);
+	void characterStolen(MVEnum::Characters character);
+
+	shared_ptr<MVPlayer> getPlayer(MVEnum::Characters character);
 	shared_ptr<MVPlayer> getPlayer(shared_ptr<Socket> socket) const;
 
 private:
+	MVEnum::Characters killed;
+	MVEnum::Characters stolenFrom;
+
 	MVGame();
 	static shared_ptr<MVGame> instance;
 	static bool running;
 	int turn;
-	shared_ptr<MVPlayer> currentPlayerTurn;
 	vector<shared_ptr<MVPlayer>> players;
 	queue<unique_ptr<MVCoin>> coins;
 	MVDeck<MVCharacter> characterDeck;

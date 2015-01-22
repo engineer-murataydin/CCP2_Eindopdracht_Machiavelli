@@ -5,7 +5,7 @@
 
 //
 
-MVThiefState::MVThiefState(shared_ptr<MVGame> game) : MVCharacterState(game)
+MVThiefState::MVThiefState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::DIEF)
 {
 	cerr << "Enter ThiefState" << endl;
 }

@@ -5,7 +5,7 @@
 
 //
 
-MVMagicianState::MVMagicianState(shared_ptr<MVGame> game) : MVCharacterState(game)
+MVMagicianState::MVMagicianState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::MAGIER)
 {
 	cerr << "Enter MagicianState" << endl;
 }

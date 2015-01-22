@@ -5,7 +5,7 @@
 
 //
 
-MVArchitectState::MVArchitectState(shared_ptr<MVGame> game) : MVCharacterState(game)
+MVArchitectState::MVArchitectState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::BOUWMEESTER)
 {
 	cerr << "Enter ArchitectState" << endl;
 }

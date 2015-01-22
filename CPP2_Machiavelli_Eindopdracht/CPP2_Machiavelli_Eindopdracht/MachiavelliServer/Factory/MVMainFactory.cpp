@@ -19,7 +19,8 @@ vector<unique_ptr<MVCharacter>> MVMainFactory::loadCharacters()
 
 	for (int i = 0; i < characterData.size(); i++)
 	{
-		characters.push_back(unique_ptr<MVCharacter>(new MVCharacter(stoi(characterData[i][0]), characterData[i][1])));
+		MVEnum::Characters character = MVEnum::getCharacter(stoi(characterData[i][0]));
+		characters.push_back(unique_ptr<MVCharacter>(new MVCharacter(character, characterData[i][1])));
 	}
 	return characters;
 }
