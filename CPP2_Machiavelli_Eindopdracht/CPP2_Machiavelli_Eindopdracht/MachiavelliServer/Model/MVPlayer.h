@@ -19,6 +19,7 @@ public:
 	vector<shared_ptr<MVCharacter>> getCharacterCards() const;
 	bool HasCharacterCard(MVEnum::Characters id) const;
 	void write(string msg);
+	void writeLine(string msg);
 	bool addCoin();
 	bool addCoins(int amount);
 	bool addBuildingCard();

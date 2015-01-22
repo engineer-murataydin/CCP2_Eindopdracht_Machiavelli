@@ -25,8 +25,8 @@ void MVDealState::render(shared_ptr<MVPlayer> player) const
 
 	for (size_t i = 0; i < characterCards.size(); i++)
 	{
-		player->write(MVEnum::messageToString(MVEnum::CARD_OVERVIEW_FULL));
-		player->write(characterCards[i]->getName());
+		player->writeLine(MVEnum::messageToString(MVEnum::CARD_OVERVIEW_FULL));
+		player->writeLine(characterCards[i]->getName());
 	}
 }
 
@@ -36,11 +36,11 @@ void MVDealState::onEnter()
 	vector<shared_ptr<MVPlayer>> players = MVGame::Instance()->getPlayers();
 	for (size_t i = 0; i < players.size(); i++)
 	{
-		players[i]->write(MVEnum::messageToString(MVEnum::START_GAME));
+		players[i]->writeLine(MVEnum::messageToString(MVEnum::START_GAME));
 	}
-	MVGame::Instance()->getKing()->write(MVEnum::messageToString(MVEnum::YOU_ARE_THE_KING));
+	MVGame::Instance()->getKing()->writeLine(MVEnum::messageToString(MVEnum::YOU_ARE_THE_KING));
 	MVGame::Instance()->shuffleCharacterDeck();
-	MVGame::Instance()->getKing()->write(MVEnum::messageToString(MVEnum::CHARACTER_CARDS_SHUFFLED));
+	MVGame::Instance()->getKing()->writeLine(MVEnum::messageToString(MVEnum::CHARACTER_CARDS_SHUFFLED));
 	//MVGame::Instance()->
 }
 

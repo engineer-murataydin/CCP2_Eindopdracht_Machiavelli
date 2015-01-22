@@ -77,14 +77,7 @@ void Server::handle_client(Socket* socket) // this function runs in a separate t
 			queue.put(command);
 
 		}
-		catch (const exception& ex) {
-			client->write("ERROR: ");
-			client->write(ex.what());
-			client->write("\n");
-		}
-		catch (...) {
-			client->write("ERROR: something went wrong during handling of your request. Sorry!\n\r");
-		}
+		catch (...) {}
 	}
 }
 

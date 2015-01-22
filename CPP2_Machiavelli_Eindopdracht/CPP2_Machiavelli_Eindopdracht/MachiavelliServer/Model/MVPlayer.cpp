@@ -1,5 +1,6 @@
 #include "MVPlayer.h"
 #include "../Controller/MVGame.h"
+#include <sstream>
 
 MVPlayer::MVPlayer(Socket* socket)
 {
@@ -44,6 +45,13 @@ void MVPlayer::write(string msg)
 	catch (...)
 	{
 	}
+}
+
+void MVPlayer::writeLine(string msg)
+{
+	stringstream s;
+	s << msg << "\n\r";
+	write(s.str());
 }
 
 bool MVPlayer::addCoin()
