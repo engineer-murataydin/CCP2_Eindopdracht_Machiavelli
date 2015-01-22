@@ -104,6 +104,8 @@ string MVEnum::messageToString(Messages message)
 		return "Disconnected";
 	case MVEnum::DISCONNECTED_PLAYER:
 		return "Player has disconnected";
+	case MVEnum::CARDS_SHUFFLED:
+		return "All cards has been shuffled";
 	default:
 		break;
 	}

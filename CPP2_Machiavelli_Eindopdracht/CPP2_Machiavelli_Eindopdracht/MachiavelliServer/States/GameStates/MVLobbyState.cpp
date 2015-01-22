@@ -4,6 +4,10 @@
 MVLobbyState::MVLobbyState(shared_ptr<MVGame> game) :MVGameState(game)
 {
 	cerr << "Enter LobbyState" << endl;
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		players[i]->write(MVEnum::messageToString(MVEnum::CARDS_SHUFFLED));
+	}
 }
 
 MVLobbyState::~MVLobbyState()
