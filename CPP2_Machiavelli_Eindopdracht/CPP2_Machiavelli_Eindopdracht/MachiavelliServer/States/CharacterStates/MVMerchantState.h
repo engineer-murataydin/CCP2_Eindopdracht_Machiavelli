@@ -8,12 +8,12 @@
 //
 using namespace std;
 
-class MVDealerState :
+class MVMerchantState :
 	public MVCharacterState
 {
 public:
-	MVDealerState(shared_ptr<MVGame> game);
-	virtual ~MVDealerState();
+	MVMerchantState(shared_ptr<MVGame> game);
+	virtual ~MVMerchantState();
 	virtual void update(shared_ptr<MVPlayer> player, string message);
 	virtual void render(shared_ptr<MVPlayer> player) const;
 	virtual void checkState();

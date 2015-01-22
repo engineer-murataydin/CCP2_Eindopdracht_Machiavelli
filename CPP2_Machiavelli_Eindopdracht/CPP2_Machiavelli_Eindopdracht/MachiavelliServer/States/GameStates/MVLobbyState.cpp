@@ -20,6 +20,7 @@ void MVLobbyState::checkState()
 {
 	if (game->getPlayers().size() >= 2)
 	{
+		game->start();
 		game->setState(unique_ptr<MVDealState>(new MVDealState(game)));
 	}
 }

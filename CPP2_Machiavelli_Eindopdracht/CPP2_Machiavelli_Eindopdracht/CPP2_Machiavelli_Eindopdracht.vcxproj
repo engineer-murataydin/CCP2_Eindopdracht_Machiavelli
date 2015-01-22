@@ -98,7 +98,7 @@
     <ClCompile Include="MachiavelliServer\States\CharacterStates\MVArchitectState.cpp" />
     <ClCompile Include="MachiavelliServer\States\CharacterStates\MVAssassinState.cpp" />
     <ClCompile Include="MachiavelliServer\States\CharacterStates\MVCondottiereState.cpp" />
-    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVDealerState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVMerchantState.cpp" />
     <ClCompile Include="MachiavelliServer\States\CharacterStates\MVKingState.cpp" />
     <ClCompile Include="MachiavelliServer\States\CharacterStates\MVMagicianState.cpp" />
     <ClCompile Include="MachiavelliServer\States\CharacterStates\MVThiefState.cpp" />
@@ -132,7 +132,7 @@
     <ClInclude Include="MachiavelliServer\States\CharacterStates\MVArchitectState.h" />
     <ClInclude Include="MachiavelliServer\States\CharacterStates\MVAssassinState.h" />
     <ClInclude Include="MachiavelliServer\States\CharacterStates\MVCondottiereState.h" />
-    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVDealerState.h" />
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVMerchantState.h" />
     <ClInclude Include="MachiavelliServer\States\CharacterStates\MVKingState.h" />
     <ClInclude Include="MachiavelliServer\States\CharacterStates\MVMagicianState.h" />
     <ClInclude Include="MachiavelliServer\States\CharacterStates\MVThiefState.h" />

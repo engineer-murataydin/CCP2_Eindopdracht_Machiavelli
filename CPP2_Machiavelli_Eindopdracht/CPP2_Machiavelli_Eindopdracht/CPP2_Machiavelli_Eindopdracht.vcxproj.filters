@@ -96,16 +96,16 @@
     <ClCompile Include="MachiavelliServer\States\CharacterStates\MVKingState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVPreacherState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVDealerState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MachiavelliServer\States\CharacterStates\MVArchitectState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MachiavelliServer\States\CharacterStates\MVCondottiereState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVPreacherState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVMerchantState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -200,13 +200,13 @@
     <ClInclude Include="MachiavelliServer\States\CharacterStates\MVPreacherState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVDealerState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MachiavelliServer\States\CharacterStates\MVArchitectState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MachiavelliServer\States\CharacterStates\MVCondottiereState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVMerchantState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

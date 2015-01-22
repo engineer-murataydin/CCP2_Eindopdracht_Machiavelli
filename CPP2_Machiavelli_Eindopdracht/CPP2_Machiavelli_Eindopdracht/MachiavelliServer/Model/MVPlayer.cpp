@@ -81,7 +81,7 @@ bool MVPlayer::addBuildingCard()
 {
 	if (MVGame::Instance()->hasBuildingCards())
 	{
-		BuildingCards.push_back(move(MVGame::Instance()->MoveBuilding()));
+		BuildingCards.push_back(move(MVGame::Instance()->getBuilding()));
 		return true;
 	}
 	return false;

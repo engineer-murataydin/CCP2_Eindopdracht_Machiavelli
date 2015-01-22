@@ -44,9 +44,6 @@ MVGame::MVGame()
 		coins.push(unique_ptr<MVCoin>(new MVCoin()));
 	}
 
-	buildingDeck.shuffle();
-	characterDeck.shuffle();
-
 	state = unique_ptr<MVGameState>(new MVLobbyState(instance));
 }
 
@@ -64,10 +61,6 @@ bool MVGame::addPlayer(shared_ptr<MVPlayer> player)
 	if (players.size() < 2)
 	{
 		players.push_back(player);
-		if (players.size() == 2)
-		{
-			start();
-		}
 		return true;
 	}
 	return false;
@@ -98,6 +91,9 @@ bool MVGame::isRunning()
 
 void MVGame::start()
 {
+	buildingDeck.shuffle();
+	characterDeck.shuffle();
+
 	for (size_t i = 0; i < players.size(); i++)
 	{
 		players[i]->addCoins(2);
@@ -183,14 +179,24 @@ bool MVGame::hasBuildingCards()
 	return buildingDeck.HasCard();
 }
 
-unique_ptr<MVBuilding> MVGame::MoveBuilding(int pos)
+unique_ptr<MVBuilding> MVGame::getBuilding()
 {
-	return buildingDeck.moveCardAt(pos);
+	return buildingDeck.moveTopCard();
 }
 
-unique_ptr<MVCharacter> MVGame::MoveCharacter(int pos)
+unique_ptr<MVCharacter> MVGame::getCharacter(int pos)
 {
 	return characterDeck.moveCardAt(pos);
+}
+
+void MVGame::setBuildingCard(unique_ptr<MVBuilding>card)
+{
+	usedBuildingDeck.AddCard(move(card));
+}
+
+void MVGame::setCharacterCard(unique_ptr<MVCharacter>card)
+{
+	usedCharacterDeck.AddCard(move(card));
 }
 
 void MVGame::checkPlayers()
