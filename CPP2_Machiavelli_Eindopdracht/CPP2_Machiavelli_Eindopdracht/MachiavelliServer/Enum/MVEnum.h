@@ -14,21 +14,38 @@ public:
 
 	enum Colors
 	{
-		UNKNOWN_COLOR = -1, GEEL, BLAUW, GROEN, ROOD, LILA
+		UNKNOWN_COLOR = -1, 
+		GEEL, 
+		BLAUW, 
+		GROEN, 
+		ROOD, 
+		LILA
 	};
 	static Colors getColor(string color);
 	static string colorToString(Colors color);
 
 	enum Characters
 	{
-		UNKNOWN_CHARACHTER = -1, MOORDENAAR, DIEF, MAGIER, KONING, PREDIKER, KOOPMAN, BOUWMEESTER, CONDOTTIERE 
+		UNKNOWN_CHARACHTER = -1, 
+		MOORDENAAR,
+		DIEF, 
+		MAGIER, 
+		KONING, 
+		PREDIKER, 
+		KOOPMAN, 
+		BOUWMEESTER, 
+		CONDOTTIERE 
 	};
 	static Characters getCharacter(string character);
 	static string characterToString(Characters character);
 
 	enum Messages
 	{
-		UNKNOWN_MESSAGE = -1, CONNECTED, DISCONNECTED, DISCONNECTED_PLAYER
+		UNKNOWN_MESSAGE = -1, 
+		CONNECTED, 
+		DISCONNECTED, 
+		DISCONNECTED_PLAYER,
+		CARDS_SHUFFLED
 	};
 	static Messages getMessage(string message);
 	static string messageToString(Messages message);
