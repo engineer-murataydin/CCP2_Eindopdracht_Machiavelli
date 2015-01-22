@@ -15,7 +15,7 @@ MVMerchantState::~MVMerchantState()
 	
 }
 
-void MVMerchantState::update(shared_ptr<MVPlayer> player, string message)
+void MVMerchantState::update(shared_ptr<MVPlayer> player, int message)
 {
 
 }
@@ -39,4 +39,15 @@ void MVMerchantState::onEnter()
 void MVMerchantState::onExit()
 {
 	cerr << "Exit MerchantState" << endl;
+}
+
+vector<MVEnum::Action> MVMerchantState::getActions() const
+{
+	vector<MVEnum::Action> actions = MVCharacterState::getActions();
+
+	if (special)
+	{
+		actions.push_back(MVEnum::CLAIM_GOLD);
+	}
+	return actions;
 }

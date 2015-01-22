@@ -7,7 +7,7 @@ MVLobbyState::MVLobbyState(shared_ptr<MVGame> game) :MVGameState(game)
 MVLobbyState::~MVLobbyState()
 {}
 
-void MVLobbyState::update(shared_ptr<MVPlayer> player, string message)
+void MVLobbyState::update(shared_ptr<MVPlayer> player, int message)
 {}
 
 void MVLobbyState::checkState()

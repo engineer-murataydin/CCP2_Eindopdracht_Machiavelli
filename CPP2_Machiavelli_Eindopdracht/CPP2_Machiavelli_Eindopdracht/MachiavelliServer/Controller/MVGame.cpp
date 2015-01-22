@@ -115,7 +115,13 @@ void MVGame::setState(shared_ptr<MVGameState> state)
 
 void MVGame::update(shared_ptr<MVPlayer> player, string msg)
 {
-	state->update(player, msg);
+	try{
+		state->update(player, stoi(msg));
+	}
+	catch (...)
+	{
+		player->writeLine("\"" + msg + "\" is geen geldig nummer");
+	}
 }
 
 void MVGame::render(shared_ptr<MVPlayer> player) const

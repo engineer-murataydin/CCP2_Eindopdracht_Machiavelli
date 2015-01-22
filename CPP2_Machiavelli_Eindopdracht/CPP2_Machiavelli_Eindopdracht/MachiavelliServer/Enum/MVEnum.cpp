@@ -125,7 +125,7 @@ string MVEnum::messageToString(Messages message)
 	case MVEnum::BUILDING_CARDS_SHUFFLED:
 		return "Gebouwkaarten zijn geschud";
 	case MVEnum::CHARACTER_CARDS_SHUFFLED:
-		return "Karakterkaarten zijn geschud"; 
+		return "Karakterkaarten zijn geschud";
 	case MVEnum::WAITING_FOR_PLAYER:
 		return "Wachten op andere spelers...";
 	case MVEnum::YOU_ARE_THE_KING:
@@ -144,6 +144,62 @@ string MVEnum::messageToString(Messages message)
 		return "Jij bent aan de beurt. Kies een kaart: ";
 	case MVEnum::REMOVED_CARD:
 		return "Weggelegd karakter door jou: ";
+	default:
+		break;
+	}
+}
+
+MVEnum::Action MVEnum::getAction(string action)
+{
+	for (int i = DETAILS; i <= DESTROY_BUILDING; i++)
+	{
+		Action tempAction = static_cast<Action>(i);
+		if (actionToString(tempAction) == action)
+		{
+			return tempAction;
+		}
+	}
+	return UNKOWN_ACTION;
+}
+
+MVEnum::Action MVEnum::getAction(int id)
+{
+	for (int i = DETAILS; i <= DESTROY_BUILDING; i++)
+	{
+		if (i == id)
+		{
+			return static_cast<Action>(i);
+		}
+	}
+	return UNKOWN_ACTION;
+}
+
+string MVEnum::actionToString(MVEnum::Action action)
+{
+	switch (action)
+	{
+	case MVEnum::DETAILS:
+		return "Bekijk het goud en de gebouwen van de tegenstander";
+	case MVEnum::CHOOSE_GOLD:
+		return "Neem 2 goudstukken";
+	case MVEnum::CHOOSE_CARDS:
+		return "Neem 2 bouwkaarten en leg er 1 af";
+	case MVEnum::CLAIM_CARDS:
+		return "Pak 2 gebouwenkaarten";
+	case MVEnum::BUILD:
+		return "Plaats een gebouw";
+	case MVEnum::KILL:
+		return "Kies een character om te vermoorden";
+	case MVEnum::STEAL:
+		return "Kies een character om al zijn goud te stelen";
+	case MVEnum::SWAP_WITH_PLAYER:
+		return "Kies een character al je kaarten mee te ruilen";
+	case MVEnum::TRADE_WITH_DECK:
+		return "Kies kaarten om in te wisselen met de stapel";
+	case MVEnum::CLAIM_GOLD:
+		return "Claim extra goudstukken";
+	case MVEnum::DESTROY_BUILDING:
+		return "Kies een character om een gebouw bij weg te halen";
 	default:
 		break;
 	}

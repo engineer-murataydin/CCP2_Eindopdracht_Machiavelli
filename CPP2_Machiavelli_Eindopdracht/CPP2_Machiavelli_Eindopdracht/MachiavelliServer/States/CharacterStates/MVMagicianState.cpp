@@ -15,7 +15,7 @@ MVMagicianState::~MVMagicianState()
 
 }
 
-void MVMagicianState::update(shared_ptr<MVPlayer> player, string message)
+void MVMagicianState::update(shared_ptr<MVPlayer> player, int message)
 {
 
 }
@@ -49,4 +49,16 @@ void MVMagicianState::onExit()
 {
 	MVCharacterState::onExit();
 	cerr << "Exit MagicianState" << endl;
+}
+
+vector<MVEnum::Action> MVMagicianState::getActions() const
+{
+	vector<MVEnum::Action> actions = MVCharacterState::getActions();
+
+	if (special)
+	{
+		actions.push_back(MVEnum::SWAP_WITH_PLAYER);
+		actions.push_back(MVEnum::TRADE_WITH_DECK);
+	}
+	return actions;
 }

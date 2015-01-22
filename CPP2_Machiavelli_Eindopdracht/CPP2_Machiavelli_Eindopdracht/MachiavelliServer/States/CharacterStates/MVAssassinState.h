@@ -14,14 +14,14 @@ class MVAssassinState :
 public:
 	MVAssassinState(shared_ptr<MVGame> game);
 	virtual ~MVAssassinState();
-	virtual void update(shared_ptr<MVPlayer> player, string message);
+	virtual void update(shared_ptr<MVPlayer> player, int message);
 	virtual void render(shared_ptr<MVPlayer> player) const;
 	virtual void onEnter();
 	virtual void onExit();
 	virtual void checkState();
-	virtual vector<string> getActions() const;
+	virtual vector<MVEnum::Action> getActions() const;
 
-	void killCharacter(MVEnum::Characters chosenCharacter);
+	void killCharacter(shared_ptr<MVPlayer> player);
 
 protected:
 	vector<MVEnum::Characters> getPlayersToKill();

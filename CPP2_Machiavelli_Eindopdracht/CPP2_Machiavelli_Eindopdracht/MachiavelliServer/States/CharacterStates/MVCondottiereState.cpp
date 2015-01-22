@@ -13,7 +13,7 @@ MVCondottiereState::~MVCondottiereState()
 {
 }
 
-void MVCondottiereState::update(shared_ptr<MVPlayer> player, string message)
+void MVCondottiereState::update(shared_ptr<MVPlayer> player, int message)
 {
 
 }
@@ -30,6 +30,7 @@ void MVCondottiereState::render(shared_ptr<MVPlayer> player) const
 
 void MVCondottiereState::takeCharacterCard(MVEnum::Characters characterTake)
 {
+	special2 = false;
 }
 
 void MVCondottiereState::onEnter()
@@ -43,4 +44,19 @@ void MVCondottiereState::onExit()
 {
 	MVCharacterState::onExit();
 	cerr << "Exit CondottiereState" << endl;
+}
+
+vector<MVEnum::Action> MVCondottiereState::getActions() const
+{
+	vector<MVEnum::Action> actions = MVCharacterState::getActions();
+
+	if (special)
+	{
+		actions.push_back(MVEnum::CLAIM_GOLD);
+	}
+	if (special2)
+	{
+		actions.push_back(MVEnum::DESTROY_BUILDING);
+	}
+	return actions;
 }

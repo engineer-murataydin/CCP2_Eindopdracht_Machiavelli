@@ -13,7 +13,7 @@ MVThiefState::~MVThiefState()
 {
 }
 
-void MVThiefState::update(shared_ptr<MVPlayer> player, string message)
+void MVThiefState::update(shared_ptr<MVPlayer> player, int message)
 {
 
 }
@@ -43,4 +43,15 @@ void MVThiefState::onExit()
 {
 	MVCharacterState::onExit();
 	cerr << "Exit ThiefState" << endl;
+}
+
+vector<MVEnum::Action> MVThiefState::getActions() const
+{
+	vector<MVEnum::Action> actions = MVCharacterState::getActions();
+
+	if (special)
+	{
+		actions.push_back(MVEnum::STEAL);
+	}
+	return actions;
 }

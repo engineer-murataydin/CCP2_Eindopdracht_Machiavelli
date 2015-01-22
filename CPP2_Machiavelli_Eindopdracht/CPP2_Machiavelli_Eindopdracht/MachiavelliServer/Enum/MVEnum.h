@@ -63,5 +63,24 @@ public:
 	};
 	static Messages getMessage(string message);
 	static string messageToString(Messages message);
+
+	enum Action
+	{
+		UNKOWN_ACTION = 0,
+		DETAILS,
+		CHOOSE_GOLD,
+		CHOOSE_CARDS,
+		CLAIM_CARDS,
+		BUILD,
+		KILL,
+		STEAL,
+		SWAP_WITH_PLAYER,
+		TRADE_WITH_DECK,
+		CLAIM_GOLD,
+		DESTROY_BUILDING
+	};
+	static Action getAction(string action);
+	static Action getAction(int id);
+	static string actionToString(Action action);
 };
 

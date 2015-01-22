@@ -108,26 +108,31 @@ vector<shared_ptr<MVCharacter>> MVPlayer::getCharacterCardsPlayer()
 void MVPlayer::print()
 {
 	stringstream s;
-	s << "goud: " << Coins.size();
-	writeLine(s.str());
-	writeLine();
+	s << ToString();
 
-	writeLine("Gebouwen:");
-	for (size_t i = 0; i < BuildBuildings.size(); i++)
-	{
-		s = stringstream(" ");
-		s << BuildBuildings[i]->toString();
-		writeLine(s.str());
-	}
-	writeLine();
 	writeLine("Handkaarten");
 	for (size_t i = 0; i < BuildingCards.size(); i++)
 	{
-		s = stringstream(" ");
-		s << BuildingCards[i]->toString();
+		s = stringstream();
+		s << " " << BuildingCards[i]->toString();
 		writeLine(s.str());
 	}
+	writeLine();
+}
 
+string MVPlayer::ToString()
+{
+	stringstream s;
+	s << "goud: " << Coins.size() << "\n\r";
+
+	s << "Gebouwen:" << "\n\r";
+	for (size_t i = 0; i < BuildBuildings.size(); i++)
+	{
+		s << " ";
+		s << BuildBuildings[i]->toString() << "\n\r";
+	}
+	s << "\n\r";
+	return s.str();
 }
 
 vector<shared_ptr<MVBuilding>> MVPlayer::getBuildingCardsPlayer()

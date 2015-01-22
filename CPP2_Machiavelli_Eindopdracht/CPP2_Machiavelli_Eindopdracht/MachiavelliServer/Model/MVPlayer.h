@@ -28,6 +28,7 @@ public:
 	bool build(shared_ptr<MVBuilding> building);
 
 	void print();
+	string ToString();
 
 	void addCharacterCard(shared_ptr<MVCharacter> characterCard);
 	vector<shared_ptr<MVCharacter>> getCharacterCardsPlayer();

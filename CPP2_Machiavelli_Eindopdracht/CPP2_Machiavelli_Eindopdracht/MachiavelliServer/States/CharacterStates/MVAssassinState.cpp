@@ -16,9 +16,17 @@ MVAssassinState::~MVAssassinState()
 
 }
 
-void MVAssassinState::update(shared_ptr<MVPlayer> player, string message)
+void MVAssassinState::update(shared_ptr<MVPlayer> player, int message)
 {
-
+	switch (getActions()[message-1])
+	{
+	case MVEnum::KILL:
+		killCharacter(player);
+		break;
+	default:
+		MVCharacterState::update(player, message);
+		return;
+	}
 }
 
 void MVAssassinState::checkState()
@@ -29,19 +37,19 @@ void MVAssassinState::checkState()
 void MVAssassinState::render(shared_ptr<MVPlayer> player) const
 {
 	MVCharacterState::render(player);
-	vector<string> actions = getActions();
+	vector<MVEnum::Action> actions = getActions();
 	for (size_t i = 0; i < actions.size(); i++)
 	{
 		stringstream s;
-		s << "[" << i + 1 << "] " + actions[i];
+		s << "[" << i + 1 << "] " + MVEnum::actionToString(actions[i]);
 		player->writeLine(s.str());
 	}
 
 }
 
-void MVAssassinState::killCharacter(MVEnum::Characters chosenCharacter)
+void MVAssassinState::killCharacter(shared_ptr<MVPlayer> player)
 {
-	game->characterKilled(chosenCharacter);
+	//game->characterKilled(chosenCharacter);
 }
 
 vector<MVEnum::Characters> MVAssassinState::getPlayersToKill()
@@ -61,13 +69,13 @@ void MVAssassinState::onExit()
 	cerr << "Exit AssassinState" << endl;
 }
 
-vector<string> MVAssassinState::getActions() const
+vector<MVEnum::Action> MVAssassinState::getActions() const
 {
-	vector<string> actions = MVCharacterState::getActions();
+	vector<MVEnum::Action> actions = MVCharacterState::getActions();
 
 	if (special)
 	{
-		actions.push_back("Kies een character om te vermoorden");
+		actions.push_back(MVEnum::KILL);
 	}
 	return actions;
 }

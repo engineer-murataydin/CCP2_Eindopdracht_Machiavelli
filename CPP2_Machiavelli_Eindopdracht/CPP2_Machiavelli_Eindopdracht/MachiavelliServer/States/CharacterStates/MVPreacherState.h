@@ -14,10 +14,11 @@ class MVPreacherState :
 public:
 	MVPreacherState(shared_ptr<MVGame> game);
 	virtual ~MVPreacherState();
-	virtual void update(shared_ptr<MVPlayer> player, string message);
+	virtual void update(shared_ptr<MVPlayer> player, int message);
 	virtual void render(shared_ptr<MVPlayer> player) const;
 	virtual void onEnter();
 	virtual void onExit();
 	virtual void checkState();
+	virtual vector<MVEnum::Action> getActions() const;
 };
 

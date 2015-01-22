@@ -13,39 +13,34 @@ MVDealState::MVDealState(shared_ptr<MVGame> game) : MVGameState(game)
 MVDealState::~MVDealState()
 {}
 
-void MVDealState::update(shared_ptr<MVPlayer> player, string message)
+void MVDealState::update(shared_ptr<MVPlayer> player, int message)
 {
-	try
+	shared_ptr<MVCharacter> chosen = game->getCharacter(message - 1);
+	vector<shared_ptr<MVCharacter>> characterCards = MVGame::Instance()->getCharacterDeck().getDeck();
+	if (chosen)
 	{
-		shared_ptr<MVCharacter> chosen = game->getCharacter(stoi(message) - 1);
-		vector<shared_ptr<MVCharacter>> characterCards = MVGame::Instance()->getCharacterDeck().getDeck();
-		if (chosen)
+		if (!hasChosenCard)
 		{
-			if (!hasChosenCard)
-			{
-				player->addCharacterCard(chosen);
-				curPlayer->writeLine(MVEnum::messageToString(MVEnum::CHOSEN_CARD) + chosen->getName());
-				hasChosenCard = true;
-				curPlayer = game->getOtherPlayer(curPlayer);
-				curPlayer->writeLine(MVEnum::messageToString(MVEnum::TURN_PLAYER));
-			}
-			else
-			{
-				hasChosenCard = false;
-				game->setCharacterCard(chosen);
-				curPlayer->writeLine(MVEnum::messageToString(MVEnum::REMOVED_CARD) + chosen->getName());
-			}
+			player->addCharacterCard(chosen);
+			curPlayer->writeLine(MVEnum::messageToString(MVEnum::CHOSEN_CARD) + chosen->getName());
+			hasChosenCard = true;
+			curPlayer = game->getOtherPlayer(curPlayer);
+			curPlayer->writeLine(MVEnum::messageToString(MVEnum::TURN_PLAYER));
+		}
+		else
+		{
+			hasChosenCard = false;
+			game->setCharacterCard(chosen);
+			curPlayer->writeLine(MVEnum::messageToString(MVEnum::REMOVED_CARD) + chosen->getName());
 		}
 	}
-	catch (...)
-	{
-		player->writeLine("\"" + message + "\" is geen geldig nummer");
-	}
 
-	vector<shared_ptr<MVCharacter>> characterCards = MVGame::Instance()->getCharacterDeck().getDeck();
+	characterCards = MVGame::Instance()->getCharacterDeck().getDeck();
 	for (size_t i = 0; i < characterCards.size(); i++)
 	{
-		curPlayer->writeLine("[" + to_string(i + 1) + "] " + characterCards[i]->getName());
+		stringstream s;
+		s << "[" << to_string(i + 1) << "] " << characterCards[i]->getName();
+		curPlayer->writeLine(s.str());
 	}
 	curPlayer->writeLine(MVEnum::messageToString(MVEnum::CHOOSE_CARD));
 
