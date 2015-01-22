@@ -121,17 +121,17 @@ string MVEnum::messageToString(Messages message)
 	case MVEnum::READY_GAME:
 		return "Machiavelli! The game is loading...";
 	case MVEnum::START_GAME:
-		return "\n\rPlay the game!!! Welcome to Machiavelli\n\r";
+		return "Play the game!!! Welcome to Machiavelli";
 	case MVEnum::BUILDING_CARDS_SHUFFLED:
 		return "Building cards has been shuffled";
 	case MVEnum::CHARACTER_CARDS_SHUFFLED:
 		return "Character cards has been shuffled"; 
 	case MVEnum::WAITING_FOR_PLAYER:
-		return "Waiting for other players...\n\r";
+		return "Waiting for other players...";
 	case MVEnum::YOU_ARE_THE_KING:
 		return "You're the king!";
 	case MVEnum::CARD_OVERVIEW_FULL:
-		return "These are all character cards:\n";
+		return "These are all character cards:";
 	default:
 		break;
 	}

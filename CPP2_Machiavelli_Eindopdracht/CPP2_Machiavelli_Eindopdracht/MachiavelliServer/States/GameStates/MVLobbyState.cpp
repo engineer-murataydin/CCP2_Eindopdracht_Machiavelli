@@ -20,7 +20,7 @@ void MVLobbyState::checkState()
 
 void MVLobbyState::render(shared_ptr<MVPlayer> player) const
 {
-	player->write(MVEnum::messageToString(MVEnum::WAITING_FOR_PLAYER));
+	player->writeLine(MVEnum::messageToString(MVEnum::WAITING_FOR_PLAYER));
 }
 
 void MVLobbyState::onEnter()

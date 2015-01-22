@@ -83,9 +83,9 @@ void MVGame::start()
 	{
 		players[i]->addCoins(2);
 		players[i]->addBuildingCards(4);
-		players[i]->write(MVEnum::messageToString(MVEnum::CONNECTED_PLAYER));
-		players[i]->write(MVEnum::messageToString(MVEnum::READY_GAME));
-		players[i]->write(MVEnum::messageToString(MVEnum::BUILDING_CARDS_SHUFFLED));
+		players[i]->writeLine(MVEnum::messageToString(MVEnum::CONNECTED_PLAYER));
+		players[i]->writeLine(MVEnum::messageToString(MVEnum::READY_GAME));
+		players[i]->writeLine(MVEnum::messageToString(MVEnum::BUILDING_CARDS_SHUFFLED));
 	}
 
 	uniform_int_distribution<int> dist(0, players.size() - 1);
@@ -101,7 +101,7 @@ void MVGame::quit(MVEnum::Messages message)
 {
 	for (size_t i = 0; i < players.size(); i++)
 	{
-		players[i]->write(MVEnum::messageToString(message));
+		players[i]->writeLine(MVEnum::messageToString(message));
 	}
 	/*shared_ptr<MVGame> mvgame(new MVGame());
 	Instance().swap(mvgame);*/
