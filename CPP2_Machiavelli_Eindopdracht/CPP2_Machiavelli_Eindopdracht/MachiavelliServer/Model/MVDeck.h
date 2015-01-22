@@ -15,7 +15,7 @@ public:
 	};
 
 	void shuffle()
-	{ 
+	{
 		random_shuffle(deck.begin(), deck.end());
 	};
 
@@ -26,9 +26,16 @@ public:
 
 	shared_ptr<T> moveCardAt(int index)
 	{
-		shared_ptr<T> card(deck[index]);
-		deck.erase(deck.begin() + index);
-		return card;
+		if (index >= 0 && index < deck.size())
+		{
+			shared_ptr<T> card(deck[index]);
+			deck.erase(deck.begin() + index);
+			return card;
+		}
+		else
+		{
+			return shared_ptr<T>();
+		}
 	};
 
 	void mergeDeck(MVDeck<T> deck)

@@ -14,7 +14,7 @@ public:
 
 	enum Colors
 	{
-		UNKNOWN_COLOR = -1,
+		UNKNOWN_COLOR = 0,
 		GEEL,
 		BLAUW,
 		GROEN,
@@ -26,7 +26,7 @@ public:
 
 	enum Characters
 	{
-		UNKNOWN_CHARACHTER = -1,
+		UNKNOWN_CHARACHTER = 0,
 		MOORDENAAR,
 		DIEF,
 		MAGIER,
@@ -42,7 +42,7 @@ public:
 
 	enum Messages
 	{
-		UNKNOWN_MESSAGE = -1,
+		UNKNOWN_MESSAGE = 0,
 		CONNECTED,
 		CONNECTED_PLAYER,
 		DISCONNECTED,
@@ -56,7 +56,10 @@ public:
 		CARD_OVERVIEW_FULL,
 		TOP_CARD_OF_DECK,
 		CARD_ON_TABLE,
-		CHOOSE_CARD
+		CHOOSE_CARD,
+		CHOSEN_CARD,
+		REMOVED_CARD,
+		TURN_PLAYER
 	};
 	static Messages getMessage(string message);
 	static string messageToString(Messages message);

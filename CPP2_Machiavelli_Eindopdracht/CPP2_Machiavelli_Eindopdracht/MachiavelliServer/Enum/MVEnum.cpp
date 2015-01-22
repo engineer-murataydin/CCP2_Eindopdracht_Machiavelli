@@ -51,8 +51,8 @@ MVEnum::Characters MVEnum::getCharacter(int id)
 		{
 			return static_cast<Characters>(i);
 		}
-		return UNKNOWN_CHARACHTER;
 	}
+	return UNKNOWN_CHARACHTER;
 }
 
 MVEnum::Characters MVEnum::getCharacter(string character)
@@ -111,33 +111,39 @@ string MVEnum::messageToString(Messages message)
 	switch (message)
 	{
 	case MVEnum::CONNECTED:
-		return "Connected";
+		return "Verbonden";
 	case MVEnum::CONNECTED_PLAYER:
-		return "Players all connected!";
+		return "Alle spelers zijn verbonden!";
 	case MVEnum::DISCONNECTED:
-		return "Disconnected";
+		return "Verbinding verbroken";
 	case MVEnum::DISCONNECTED_PLAYER:
-		return "Player has disconnected";
+		return "Je tegenstander is gestopt! Verbinding verbroken";
 	case MVEnum::READY_GAME:
-		return "Machiavelli! The game is loading...";
+		return "Machiavelli! Het spel is aan het laden...";
 	case MVEnum::START_GAME:
-		return "Play the game!!! Welcome to Machiavelli";
+		return "Speel het spel!!! Welkom bij Machiavelli";
 	case MVEnum::BUILDING_CARDS_SHUFFLED:
-		return "Building cards has been shuffled";
+		return "Gebouwkaarten zijn geschud";
 	case MVEnum::CHARACTER_CARDS_SHUFFLED:
-		return "Character cards has been shuffled"; 
+		return "Karakterkaarten zijn geschud"; 
 	case MVEnum::WAITING_FOR_PLAYER:
-		return "Waiting for other players...";
+		return "Wachten op andere spelers...";
 	case MVEnum::YOU_ARE_THE_KING:
-		return "You're the king!";
+		return "Jij bent de koning!";
 	case MVEnum::CARD_OVERVIEW_FULL:
-		return "These are all character cards:";
+		return "Dit zijn alle beschikbare karakter kaarten:";
 	case MVEnum::TOP_CARD_OF_DECK:
-		return "This is the card on top of the deck:";
+		return "Dit is de bovenste kaart van de stapel:";
 	case MVEnum::CARD_ON_TABLE:
-		return "The card is removed from the deck";
+		return "Het kaart is weggehaald van de stapel en op tafel geplaatst";
 	case MVEnum::CHOOSE_CARD:
-		return "Choose a character card number:";
+		return "Kies een karakter kaartnummer:";
+	case MVEnum::CHOSEN_CARD:
+		return "Gekozen karakter door jou: ";
+	case MVEnum::TURN_PLAYER:
+		return "Jij bent aan de beurt. Kies een kaart: ";
+	case MVEnum::REMOVED_CARD:
+		return "Weggelegd karakter door jou: ";
 	default:
 		break;
 	}

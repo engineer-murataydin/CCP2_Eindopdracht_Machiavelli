@@ -53,6 +53,7 @@ public:
 	shared_ptr<MVPlayer> getPlayer(shared_ptr<Socket> socket) const;
 
 	shared_ptr<MVPlayer> getKing();
+	shared_ptr<MVPlayer> getOtherPlayer(shared_ptr<MVPlayer> player);
 	void shuffleCharacterDeck();
 	void shuffleBuildingDeck();
 

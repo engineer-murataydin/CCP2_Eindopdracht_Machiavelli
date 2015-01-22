@@ -112,6 +112,7 @@ void MVGame::setState(shared_ptr<MVGameState> state)
 	this->state = move(state);
 	this->state->onEnter();
 }
+
 void MVGame::update(shared_ptr<MVPlayer> player, string msg)
 {
 	state->update(player, msg);
@@ -243,4 +244,15 @@ shared_ptr<MVGameState> MVGame::getState()
 void MVGame::restart()
 {
 	instance.reset(new MVGame());
+}
+
+shared_ptr<MVPlayer> MVGame::getOtherPlayer(shared_ptr<MVPlayer> player)
+{
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		if (players[i] != player)
+		{
+			return players[i];
+		}
+	}
 }
