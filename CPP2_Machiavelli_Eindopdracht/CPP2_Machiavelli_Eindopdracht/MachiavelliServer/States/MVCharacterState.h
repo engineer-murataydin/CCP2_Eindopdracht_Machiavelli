@@ -16,6 +16,8 @@ public:
 	virtual ~MVCharacterState();
 	virtual void update(shared_ptr<MVPlayer> player, string message);
 	virtual void render(shared_ptr<MVPlayer> player) const;
+	virtual void onEnter();
+	virtual void onExit();
 	virtual void checkState();
 };
 

@@ -7,12 +7,12 @@
 
 MVAssassinState::MVAssassinState(shared_ptr<MVGame> game) : MVCharacterState(game)
 {
-	cerr << "Enter AssassinState" << endl;
+	
 }
 
 MVAssassinState::~MVAssassinState()
 {
-	cerr << "Exit AssassinState" << endl;
+	
 }
 
 void MVAssassinState::update(shared_ptr<MVPlayer> player, string message)
@@ -62,4 +62,14 @@ void MVAssassinState::killCharacter(MVEnum::Characters chosenCharacter)
 	{
 
 	}
+}
+
+void MVAssassinState::onEnter()
+{
+	cerr << "Enter AssassinState" << endl;
+}
+
+void MVAssassinState::onExit()
+{
+	cerr << "Exit AssassinState" << endl;
 }

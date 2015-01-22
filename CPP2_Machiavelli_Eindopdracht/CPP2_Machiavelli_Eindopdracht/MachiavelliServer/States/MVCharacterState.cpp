@@ -19,3 +19,9 @@ void MVCharacterState::checkState()
 
 void MVCharacterState::render(shared_ptr<MVPlayer> player) const
 {}
+
+void MVCharacterState::onEnter()
+{}
+
+void MVCharacterState::onExit()
+{}

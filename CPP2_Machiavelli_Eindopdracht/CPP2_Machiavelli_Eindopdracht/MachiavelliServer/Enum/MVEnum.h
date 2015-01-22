@@ -43,9 +43,16 @@ public:
 	{
 		UNKNOWN_MESSAGE = -1, 
 		CONNECTED, 
+		CONNECTED_PLAYER,
 		DISCONNECTED, 
 		DISCONNECTED_PLAYER,
-		CARDS_SHUFFLED
+		WAITING_FOR_PLAYER,
+		READY_GAME,
+		START_GAME,
+		CHARACTER_CARDS_SHUFFLED,
+		BUILDING_CARDS_SHUFFLED,
+		YOU_ARE_THE_KING,
+		CARD_OVERVIEW_FULL
 	};
 	static Messages getMessage(string message);
 	static string messageToString(Messages message);

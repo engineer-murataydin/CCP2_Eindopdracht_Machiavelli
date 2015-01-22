@@ -7,12 +7,10 @@
 
 MVCondottiereState::MVCondottiereState(shared_ptr<MVGame> game) : MVCharacterState(game)
 {
-	cerr << "Enter CondottiereState" << endl;
 }
 
 MVCondottiereState::~MVCondottiereState()
 {
-	cerr << "Exit CondottiereState" << endl;
 }
 
 void MVCondottiereState::update(shared_ptr<MVPlayer> player, string message)
@@ -58,4 +56,15 @@ void MVCondottiereState::takeCharacterCard(MVEnum::Characters characterTake)
 	{
 
 	}
+}
+
+void MVCondottiereState::onEnter()
+{
+	cerr << "Enter CondottiereState" << endl;
+
+}
+
+void MVCondottiereState::onExit()
+{
+	cerr << "Exit CondottiereState" << endl;
 }

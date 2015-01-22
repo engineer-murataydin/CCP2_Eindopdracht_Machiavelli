@@ -114,7 +114,7 @@ Server::Server()
 			while (connected <= 2 && (client = server.accept()) != nullptr) {
 
 				// communicate with client over new socket in separate thread
-				if (this->game->addPlayer(unique_ptr<MVPlayer>(new MVPlayer(client))))
+				if (this->game->addPlayer(shared_ptr<MVPlayer>(new MVPlayer(client))))
 				{
 					thread handler{ handle_client, client };
 					handler.detach(); // detaching is usually ugly, but in this case the right thing to do

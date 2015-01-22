@@ -28,10 +28,10 @@ public:
 	shared_ptr<MVPlayer> getCurrentPlayer();
 	vector<shared_ptr<MVPlayer>> getPlayers();
 	unique_ptr<MVCoin> MoveCoin();
-	unique_ptr<MVBuilding> getBuilding();
-	unique_ptr<MVCharacter>getCharacter(int pos = 0);
-	void setBuildingCard(unique_ptr<MVBuilding>card);
-	void setCharacterCard(unique_ptr<MVCharacter>card);
+	shared_ptr<MVBuilding> getBuilding();
+	shared_ptr<MVCharacter>getCharacter(int pos = 0);
+	void setBuildingCard(shared_ptr<MVBuilding>card);
+	void setCharacterCard(shared_ptr<MVCharacter>card);
 	bool hasCoins();
 	bool hasBuildingCards();
 
@@ -39,7 +39,8 @@ public:
 	void render(shared_ptr<MVPlayer> player) const;
 	void checkState();
 
-	void setState(unique_ptr<MVGameState> state);
+	void setState(shared_ptr<MVGameState> state);
+	shared_ptr<MVGameState> getState();
 
 	void checkPlayers();
 
@@ -48,8 +49,15 @@ public:
 
 	shared_ptr<MVPlayer> getPlayer(shared_ptr<Socket> socket) const;
 
+	shared_ptr<MVPlayer> getKing();
+	void shuffleCharacterDeck();
+	void shuffleBuildingDeck();
+
+	MVDeck<MVCharacter> getCharacterDeck();
+
 private:
 	MVGame();
+	shared_ptr<MVPlayer> king;
 	static shared_ptr<MVGame> instance;
 	static bool running;
 	int turn;
@@ -60,7 +68,7 @@ private:
 	MVDeck<MVCharacter> usedCharacterDeck;
 	MVDeck<MVBuilding> buildingDeck;
 	MVDeck<MVBuilding> usedBuildingDeck;
-	unique_ptr<MVGameState> state;
+	shared_ptr<MVGameState> state;
 
 	static default_random_engine dre;
 };
