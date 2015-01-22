@@ -18,13 +18,13 @@ void Server::consume_command() // runs in its own thread
 					if (game->isCurrentPlayer(game->getPlayer(client)))
 					{
 						game->update(game->getPlayer(client), command.get_cmd());
+						game->render(game->getPlayer(client));
 					}
 					else
 					{
 						client->write("Niet jouw beurt!\n\r");
 					}
-
-					game->render(game->getPlayer(client));
+					game->checkState();
 				}
 				catch (const exception& ex) {
 					client->write("Sorry, ");
@@ -50,7 +50,6 @@ void Server::handle_client(Socket* socket) // this function runs in a separate t
 	while (MVGame::isRunning()) { // game loop
 
 		shared_ptr<MVGame> game(MVGame::Instance());
-		game->checkState();
 
 		try {
 			// read first line of request
@@ -61,7 +60,6 @@ void Server::handle_client(Socket* socket) // this function runs in a separate t
 				client->write("Bye!\n\r");
 				break; // out of game loop, will end this thread and close connection
 			}
-			game->checkState();
 			ClientCommand command{ cmd, client };
 			queue.put(command);
 

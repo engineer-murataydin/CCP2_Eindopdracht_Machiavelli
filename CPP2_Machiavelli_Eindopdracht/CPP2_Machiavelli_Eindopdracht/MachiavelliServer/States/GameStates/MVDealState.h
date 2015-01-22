@@ -19,5 +19,10 @@ public:
 	virtual void onEnter();
 	virtual void onExit();
 	virtual void checkState();
+	virtual bool isCurrentPlayer(shared_ptr<MVPlayer>player);
+
+private:
+	shared_ptr<MVPlayer> curPlayer;
+	bool hasChosenCard;
 };
 

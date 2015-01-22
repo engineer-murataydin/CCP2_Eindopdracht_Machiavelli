@@ -47,10 +47,10 @@ void MVCharacterState::onEnter()
 void MVCharacterState::onExit()
 {}
 
-vector<string> MVCharacterState::getActions()
+vector<string> MVCharacterState::getActions() const
 {
 	vector<string> actions;
-	actions.push_back("[0] Bekijk het goud en de gebouwen van de tegenstander");
+	actions.push_back("Bekijk het goud en de gebouwen van de tegenstander");
 
 	if (actionOne)
 	{
@@ -79,7 +79,7 @@ void MVCharacterState::buildBuilding(shared_ptr<MVPlayer> player, shared_ptr<MVB
 	}
 }
 
-bool MVCharacterState::canBuild()
+bool MVCharacterState::canBuild() const
 {
 	return build < 1;
 }

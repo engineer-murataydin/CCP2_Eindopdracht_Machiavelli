@@ -1,5 +1,6 @@
 //
 #include "MVAssassinState.h"
+#include <sstream>
 
 //
 
@@ -28,7 +29,13 @@ void MVAssassinState::checkState()
 void MVAssassinState::render(shared_ptr<MVPlayer> player) const
 {
 	MVCharacterState::render(player);
-
+	vector<string> actions = getActions();
+	for (size_t i = 0; i < actions.size(); i++)
+	{
+		stringstream s;
+		s << "[" << i + 1 << "] " + actions[i];
+		player->writeLine(s.str());
+	}
 
 }
 
@@ -54,7 +61,7 @@ void MVAssassinState::onExit()
 	cerr << "Exit AssassinState" << endl;
 }
 
-vector<string> MVAssassinState::getActions()
+vector<string> MVAssassinState::getActions() const
 {
 	vector<string> actions = MVCharacterState::getActions();
 

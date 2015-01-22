@@ -19,7 +19,7 @@ public:
 	virtual void onEnter();
 	virtual void onExit();
 	virtual void checkState();
-	virtual vector<string> getActions();
+	virtual vector<string> getActions() const;
 
 	void killCharacter(MVEnum::Characters chosenCharacter);
 
