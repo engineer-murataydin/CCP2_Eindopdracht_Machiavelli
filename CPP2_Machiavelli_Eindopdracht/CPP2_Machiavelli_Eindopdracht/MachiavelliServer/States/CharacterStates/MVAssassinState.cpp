@@ -27,6 +27,8 @@ void MVAssassinState::checkState()
 
 void MVAssassinState::render(shared_ptr<MVPlayer> player) const
 {
+	MVCharacterState::render(player);
+
 
 }
 
@@ -42,10 +44,23 @@ vector<MVEnum::Characters> MVAssassinState::getPlayersToKill()
 
 void MVAssassinState::onEnter()
 {
+	MVCharacterState::onEnter();
 	cerr << "Enter AssassinState" << endl;
 }
 
 void MVAssassinState::onExit()
 {
+	MVCharacterState::onExit();
 	cerr << "Exit AssassinState" << endl;
+}
+
+vector<string> MVAssassinState::getActions()
+{
+	vector<string> actions = MVCharacterState::getActions();
+
+	if (special)
+	{
+		actions.push_back("Kies een character om te vermoorden");
+	}
+	return actions;
 }

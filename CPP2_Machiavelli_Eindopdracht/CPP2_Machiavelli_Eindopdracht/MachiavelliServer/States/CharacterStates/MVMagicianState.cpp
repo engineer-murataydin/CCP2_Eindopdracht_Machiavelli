@@ -7,12 +7,12 @@
 
 MVMagicianState::MVMagicianState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::MAGIER)
 {
-	
+
 }
 
 MVMagicianState::~MVMagicianState()
 {
-	
+
 }
 
 void MVMagicianState::update(shared_ptr<MVPlayer> player, string message)
@@ -41,10 +41,12 @@ void MVMagicianState::changePawCards()
 
 void MVMagicianState::onEnter()
 {
+	MVCharacterState::onEnter();
 	cerr << "Enter MagicianState" << endl;
 }
 
 void MVMagicianState::onExit()
 {
+	MVCharacterState::onExit();
 	cerr << "Exit MagicianState" << endl;
 }

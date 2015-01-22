@@ -8,6 +8,9 @@ public:
 	virtual ~MVBuilding();
 	int getPrice() const;
 	MVEnum::Colors getColor() const;
+	string getColorString() const;
+
+	virtual string toString() const;
 protected:
 	const int cost;
 	const MVEnum::Colors color;

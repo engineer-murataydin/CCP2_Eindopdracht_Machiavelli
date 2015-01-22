@@ -19,14 +19,20 @@ public:
 	vector<shared_ptr<MVCharacter>> getCharacterCards() const;
 	bool HasCharacterCard(MVEnum::Characters id) const;
 	void write(string msg);
-	void writeLine(string msg);
+	void writeLine(string msg = "");
 	bool addCoin();
 	bool addCoins(int amount);
 	bool addBuildingCard();
 	bool addBuildingCards(int amount);
 
+	bool build(shared_ptr<MVBuilding> building);
+
+	void print();
+
 	void addCharacterCard(shared_ptr<MVCharacter> characterCard);
 	vector<shared_ptr<MVCharacter>> getCharacterCardsPlayer();
+	vector<shared_ptr<MVBuilding>> getBuildingCardsPlayer();
+	vector<shared_ptr<MVBuilding>> getBuildBuildingCardsPlayer();
 
 private:
 	vector<shared_ptr<MVCharacter>> characterCards;

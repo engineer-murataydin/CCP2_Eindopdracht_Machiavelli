@@ -16,6 +16,7 @@ public:
 	MVSpecialBuilding(string name, int price, MVEnum::Colors color, string description);
 	virtual ~MVSpecialBuilding();
 	string getDescription() const;
+	string MVSpecialBuilding::toString() const;
 protected:
 	const string description;
 };

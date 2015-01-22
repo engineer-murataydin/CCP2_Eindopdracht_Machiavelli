@@ -30,41 +30,17 @@ void MVCondottiereState::render(shared_ptr<MVPlayer> player) const
 
 void MVCondottiereState::takeCharacterCard(MVEnum::Characters characterTake)
 {
-	character = MVEnum::characterToString(characterTake);
-
-	if (character == "Moordenaar")
-	{
-
-	}
-	else if (character == "Magier")
-	{
-
-	}
-	else if (character == "Koning")
-	{
-
-	}
-	else if (character == "Prediker")
-	{
-
-	}
-	else if (character == "Koopman")
-	{
-
-	}
-	else if (character == "Bouwmeester")
-	{
-
-	}
 }
 
 void MVCondottiereState::onEnter()
 {
+	MVCharacterState::onEnter();
 	cerr << "Enter CondottiereState" << endl;
 
 }
 
 void MVCondottiereState::onExit()
 {
+	MVCharacterState::onExit();
 	cerr << "Exit CondottiereState" << endl;
 }

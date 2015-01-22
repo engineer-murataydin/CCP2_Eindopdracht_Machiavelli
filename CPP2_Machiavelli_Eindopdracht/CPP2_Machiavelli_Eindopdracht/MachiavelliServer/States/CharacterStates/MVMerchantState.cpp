@@ -32,6 +32,7 @@ void MVMerchantState::render(shared_ptr<MVPlayer> player) const
 
 void MVMerchantState::onEnter()
 {
+	
 	cerr << "Enter MerchantState" << endl;
 }
 

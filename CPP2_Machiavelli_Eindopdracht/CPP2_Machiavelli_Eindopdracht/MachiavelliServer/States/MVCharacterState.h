@@ -20,13 +20,19 @@ public:
 	virtual void onExit();
 	virtual void checkState();
 	virtual bool canEndTurn();
+	virtual vector<string> getActions();
 	virtual bool isCurrentPlayer(shared_ptr<MVPlayer>player);
 
 protected:
+	bool special;
 	bool actionOne;
-	bool hasBuild;
 
 	bool done;
+
+	int build;
+
+	virtual bool canBuild();
+	void buildBuilding(shared_ptr<MVPlayer> player, shared_ptr<MVBuilding> building);
 
 	MVEnum::Characters character;
 };

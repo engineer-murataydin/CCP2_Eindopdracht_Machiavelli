@@ -1,5 +1,6 @@
 //
 #include "MVDealState.h"
+#include <sstream>
 
 //
 
@@ -22,7 +23,11 @@ void MVDealState::checkState()
 }
 
 void MVDealState::render(shared_ptr<MVPlayer> player) const
-{}
+{
+	player->print();
+	stringstream s;
+
+}
 
 void MVDealState::onEnter()
 {

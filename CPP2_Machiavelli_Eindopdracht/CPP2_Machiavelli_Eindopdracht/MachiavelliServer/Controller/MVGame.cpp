@@ -244,3 +244,8 @@ void MVGame::restart()
 {
 	instance.reset(new MVGame());
 }
+
+void MVGame::setKing(shared_ptr<MVPlayer> player)
+{
+	king = player;
+}

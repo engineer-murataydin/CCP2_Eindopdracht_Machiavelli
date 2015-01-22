@@ -23,6 +23,5 @@ public:
 	void takeCharacterCard(MVEnum::Characters characterTake);
 
 protected:
-	string character;
 };
 

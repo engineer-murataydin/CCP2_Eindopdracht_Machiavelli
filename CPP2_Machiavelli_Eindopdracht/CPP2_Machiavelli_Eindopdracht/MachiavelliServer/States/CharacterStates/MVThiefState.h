@@ -23,6 +23,5 @@ public:
 	void robCharacter(MVEnum::Characters chosenCharacter);
 
 protected:
-	string character;
 };
 

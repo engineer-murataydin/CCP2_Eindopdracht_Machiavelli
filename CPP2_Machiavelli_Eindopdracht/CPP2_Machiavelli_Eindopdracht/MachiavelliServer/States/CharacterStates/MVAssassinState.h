@@ -19,11 +19,11 @@ public:
 	virtual void onEnter();
 	virtual void onExit();
 	virtual void checkState();
+	virtual vector<string> getActions();
 
 	void killCharacter(MVEnum::Characters chosenCharacter);
 
 protected:
 	vector<MVEnum::Characters> getPlayersToKill();
-	string character;
 };
 
