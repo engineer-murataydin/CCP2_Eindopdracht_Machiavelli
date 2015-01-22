@@ -22,7 +22,7 @@ shared_ptr<MVGame> MVGame::Instance()
 MVGame::MVGame()
 {
 	instance = shared_ptr<MVGame>(this);
-	dre = default_random_engine(time(NULL));
+	dre = default_random_engine(time(0)); //NULL
 
 	running = true;
 
