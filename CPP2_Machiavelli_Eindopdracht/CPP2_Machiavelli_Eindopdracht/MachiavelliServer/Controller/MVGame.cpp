@@ -76,17 +76,20 @@ bool MVGame::isRunning()
 
 void MVGame::start()
 {
-	buildingDeck.shuffle();
-	characterDeck.shuffle();
+	shuffleCharacterDeck();
+	shuffleBuildingDeck();
 
 	for (size_t i = 0; i < players.size(); i++)
 	{
 		players[i]->addCoins(2);
 		players[i]->addBuildingCards(4);
+		players[i]->write(MVEnum::messageToString(MVEnum::CONNECTED_PLAYER));
+		players[i]->write(MVEnum::messageToString(MVEnum::READY_GAME));
+		players[i]->write(MVEnum::messageToString(MVEnum::BUILDING_CARDS_SHUFFLED));
 	}
 
 	uniform_int_distribution<int> dist(0, players.size() - 1);
-	players[dist(dre)]->setKing(true);
+	king = players[dist(dre)];
 }
 
 default_random_engine MVGame::getDre()
@@ -110,9 +113,11 @@ vector<shared_ptr<MVPlayer>> MVGame::getPlayers()
 	return players;
 }
 
-void MVGame::setState(unique_ptr<MVGameState> state)
+void MVGame::setState(shared_ptr<MVGameState> state)
 {
+	this->state->onExit();
 	this->state = move(state);
+	this->state->onEnter();
 }
 void MVGame::update(shared_ptr<MVPlayer> player, string msg)
 {
@@ -148,7 +153,6 @@ unique_ptr<MVCoin> MVGame::MoveCoin()
 	return coin;
 }
 
-
 bool MVGame::hasCoins()
 {
 	return !coins.empty();
@@ -159,24 +163,24 @@ bool MVGame::hasBuildingCards()
 	return buildingDeck.HasCard();
 }
 
-unique_ptr<MVBuilding> MVGame::getBuilding()
+shared_ptr<MVBuilding> MVGame::getBuilding()
 {
 	return buildingDeck.moveTopCard();
 }
 
-unique_ptr<MVCharacter> MVGame::getCharacter(int pos)
+shared_ptr<MVCharacter> MVGame::getCharacter(int pos)
 {
 	return characterDeck.moveCardAt(pos);
 }
 
-void MVGame::setBuildingCard(unique_ptr<MVBuilding>card)
+void MVGame::setBuildingCard(shared_ptr<MVBuilding>card)
 {
-	usedBuildingDeck.AddCard(move(card));
+	usedBuildingDeck.AddCard(card);
 }
 
-void MVGame::setCharacterCard(unique_ptr<MVCharacter>card)
+void MVGame::setCharacterCard(shared_ptr<MVCharacter>card)
 {
-	usedCharacterDeck.AddCard(move(card));
+	usedCharacterDeck.AddCard(card);
 }
 
 void MVGame::checkPlayers()
@@ -215,4 +219,29 @@ void MVGame::characterKilled(MVEnum::Characters character)
 void MVGame::characterStolen(MVEnum::Characters character)
 {
 	stolenFrom = character;
+}
+
+shared_ptr<MVPlayer> MVGame::getKing()
+{
+	return king;
+}
+
+void MVGame::shuffleCharacterDeck()
+{
+	characterDeck.shuffle();
+}
+
+void MVGame::shuffleBuildingDeck()
+{
+	buildingDeck.shuffle();
+}
+
+MVDeck<MVCharacter> MVGame::getCharacterDeck()
+{
+	return characterDeck;
+}
+
+shared_ptr<MVGameState> MVGame::getState()
+{
+	return state;
 }

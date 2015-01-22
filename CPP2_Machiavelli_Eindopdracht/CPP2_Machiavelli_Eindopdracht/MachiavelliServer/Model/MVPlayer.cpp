@@ -12,10 +12,6 @@ MVPlayer::~MVPlayer()
 }
 
 
-bool MVPlayer::isKing() const
-{
-	return king;
-}
 
 shared_ptr<Socket> MVPlayer::getSocket() const
 {
@@ -48,11 +44,6 @@ void MVPlayer::write(string msg)
 	catch (...)
 	{
 	}
-}
-
-void MVPlayer::setKing(bool value)
-{
-	king = value;
 }
 
 bool MVPlayer::addCoin()

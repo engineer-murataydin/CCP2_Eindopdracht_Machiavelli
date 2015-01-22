@@ -7,12 +7,10 @@
 
 MVThiefState::MVThiefState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::DIEF)
 {
-	cerr << "Enter ThiefState" << endl;
 }
 
 MVThiefState::~MVThiefState()
 {
-	cerr << "Exit ThiefState" << endl;
 }
 
 void MVThiefState::update(shared_ptr<MVPlayer> player, string message)
@@ -62,4 +60,15 @@ void MVThiefState::robCharacter(MVEnum::Characters chosenCharacter)
 	{
 
 	}
+}
+
+void MVThiefState::onEnter()
+{
+	cerr << "Enter ThiefState" << endl;
+}
+
+void MVThiefState::onExit()
+{
+	cerr << "Exit ThiefState" << endl;
+
 }

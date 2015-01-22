@@ -29,3 +29,9 @@ bool MVCharacterState::canEndTurn()
 {
 	return actionOne;
 }
+
+void MVCharacterState::onEnter()
+{}
+
+void MVCharacterState::onExit()
+{}

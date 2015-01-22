@@ -15,8 +15,6 @@ public:
 	MVPlayer(Socket* socket);
 	virtual ~MVPlayer();
 
-	void setKing(bool value);
-	bool isKing() const;
 	shared_ptr<Socket> getSocket() const;
 	vector<shared_ptr<MVCharacter>> getCharacterCards() const;
 	bool HasCharacterCard(MVEnum::Characters id) const;
@@ -32,7 +30,5 @@ private:
 	vector<shared_ptr<MVBuilding>> BuildBuildings;
 	queue<unique_ptr<MVCoin>> Coins;
 	shared_ptr<Socket> socket;
-
-	bool king;
 };
 

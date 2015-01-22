@@ -112,12 +112,26 @@ string MVEnum::messageToString(Messages message)
 	{
 	case MVEnum::CONNECTED:
 		return "Connected";
+	case MVEnum::CONNECTED_PLAYER:
+		return "Players all connected!";
 	case MVEnum::DISCONNECTED:
 		return "Disconnected";
 	case MVEnum::DISCONNECTED_PLAYER:
 		return "Player has disconnected";
-	case MVEnum::CARDS_SHUFFLED:
-		return "All cards has been shuffled";
+	case MVEnum::READY_GAME:
+		return "Machiavelli! The game is loading...";
+	case MVEnum::START_GAME:
+		return "\n\rPlay the game!!! Welcome to Machiavelli\n\r";
+	case MVEnum::BUILDING_CARDS_SHUFFLED:
+		return "Building cards has been shuffled";
+	case MVEnum::CHARACTER_CARDS_SHUFFLED:
+		return "Character cards has been shuffled"; 
+	case MVEnum::WAITING_FOR_PLAYER:
+		return "Waiting for other players...\n\r";
+	case MVEnum::YOU_ARE_THE_KING:
+		return "You're the king!";
+	case MVEnum::CARD_OVERVIEW_FULL:
+		return "These are all character cards:\n";
 	default:
 		break;
 	}

@@ -9,9 +9,9 @@ class MVDeck
 public:
 	MVDeck(){};
 	virtual ~MVDeck(){};
-	void AddCard(unique_ptr<T> card)
+	void AddCard(shared_ptr<T> card)
 	{
-		deck.push_back(move(card));
+		deck.push_back(card);
 	};
 
 	void shuffle()
@@ -19,14 +19,14 @@ public:
 		random_shuffle(deck.begin(), deck.end());
 	};
 
-	unique_ptr<T> moveTopCard()
+	shared_ptr<T> moveTopCard()
 	{
 		return moveCardAt(0);
 	};
 
-	unique_ptr<T> moveCardAt(int index)
+	shared_ptr<T> moveCardAt(int index)
 	{
-		unique_ptr<T> card(move(deck[index]));
+		shared_ptr<T> card(deck[index]);
 		deck.erase(deck.begin() + index);
 		return card;
 	};
@@ -35,7 +35,7 @@ public:
 	{
 		while (deck.HasCard())
 		{
-			this->deck.push_back(move(deck.getTopCard()));
+			this->deck.push_back(deck.getTopCard());
 		}
 	};
 
@@ -44,7 +44,17 @@ public:
 		return !deck.empty();
 	};
 
+	int size()
+	{
+		return deck.size();
+	}
+
+	vector<shared_ptr<T>> getDeck()
+	{
+		return deck;
+	}
+
 private:
-	vector<unique_ptr<T>> deck;
+	vector<shared_ptr<T>> deck;
 };
 
