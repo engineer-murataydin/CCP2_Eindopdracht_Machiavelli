@@ -5,7 +5,7 @@
 
 //
 
-MVCondottiereState::MVCondottiereState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::CONDOTTIERE)
+MVCondottiereState::MVCondottiereState(shared_ptr<MVGame> game) : MVClaimGoldCharacterState(game, MVEnum::CONDOTTIERE, MVEnum::ROOD)
 {
 }
 
@@ -52,7 +52,7 @@ void MVCondottiereState::onExit()
 
 vector<MVEnum::Action> MVCondottiereState::getActions() const
 {
-	vector<MVEnum::Action> actions = MVCharacterState::getActions();
+	vector<MVEnum::Action> actions = MVClaimGoldCharacterState::getActions();
 
 	if (special)
 	{

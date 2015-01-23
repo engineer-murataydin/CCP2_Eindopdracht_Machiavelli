@@ -1,5 +1,6 @@
 #pragma once
-#include "../MVGameState.h"
+#include "MVActionState.h"
+
 class MVTradeWithDeckActionState :
 	public MVActionState
 {

@@ -1,7 +1,7 @@
 #pragma once
 
 //
-#include "../MVCharacterState.h"
+#include "MVClaimGoldCharacterState.h"
 
 //
 
@@ -9,7 +9,7 @@
 using namespace std;
 
 class MVMerchantState :
-	public MVCharacterState
+	public MVClaimGoldCharacterState
 {
 public:
 	MVMerchantState(shared_ptr<MVGame> game);

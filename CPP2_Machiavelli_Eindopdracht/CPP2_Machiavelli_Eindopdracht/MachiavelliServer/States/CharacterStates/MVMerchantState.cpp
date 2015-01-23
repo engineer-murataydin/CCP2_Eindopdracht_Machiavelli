@@ -5,14 +5,14 @@
 
 //
 
-MVMerchantState::MVMerchantState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::KOOPMAN)
+MVMerchantState::MVMerchantState(shared_ptr<MVGame> game) : MVClaimGoldCharacterState(game, MVEnum::KOOPMAN, MVEnum::GROEN)
 {
-	
+
 }
 
 MVMerchantState::~MVMerchantState()
 {
-	
+
 }
 
 void MVMerchantState::update(shared_ptr<MVPlayer> player, int message)
@@ -32,7 +32,7 @@ void MVMerchantState::render(shared_ptr<MVPlayer> player) const
 
 void MVMerchantState::onEnter()
 {
-	
+	MVClaimGoldCharacterState::onEnter();
 	cerr << "Enter MerchantState" << endl;
 }
 
@@ -43,7 +43,7 @@ void MVMerchantState::onExit()
 
 vector<MVEnum::Action> MVMerchantState::getActions() const
 {
-	vector<MVEnum::Action> actions = MVCharacterState::getActions();
+	vector<MVEnum::Action> actions = MVClaimGoldCharacterState::getActions();
 
 	if (special)
 	{

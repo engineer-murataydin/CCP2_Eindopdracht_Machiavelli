@@ -5,7 +5,7 @@
 
 //
 
-MVKingState::MVKingState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::KONING)
+MVKingState::MVKingState(shared_ptr<MVGame> game) : MVClaimGoldCharacterState(game, MVEnum::KONING, MVEnum::GEEL)
 {
 
 }
@@ -34,7 +34,7 @@ void MVKingState::onEnter()
 {
 	//game->setKing(
 	game->getPlayer(character);
-	MVCharacterState::onEnter();
+	MVClaimGoldCharacterState::onEnter();
 
 	cerr << "Enter KingState" << endl;
 }
@@ -46,7 +46,7 @@ void MVKingState::onExit()
 
 vector<MVEnum::Action> MVKingState::getActions() const
 {
-	vector<MVEnum::Action> actions = MVCharacterState::getActions();
+	vector<MVEnum::Action> actions = MVClaimGoldCharacterState::getActions();
 
 	if (special)
 	{
