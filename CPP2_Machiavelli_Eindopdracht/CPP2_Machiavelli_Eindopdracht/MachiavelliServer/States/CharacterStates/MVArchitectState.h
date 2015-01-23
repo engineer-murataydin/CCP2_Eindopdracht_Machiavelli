@@ -20,5 +20,10 @@ public:
 	virtual void onExit();
 	virtual void checkState();
 	virtual vector<MVEnum::Action> getActions() const;
+
+protected:
+
+	void getCards(shared_ptr<MVPlayer> player);
+	bool canBuild();
 };
 

@@ -45,9 +45,6 @@
     <ClCompile Include="MachiavelliServer\States\MVGameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MVMain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MachiavelliServer\Model\MVCard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -106,6 +103,30 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MachiavelliServer\States\CharacterStates\MVMerchantState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVActionState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVBuildActionState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVDestroyBuildingActionState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVMurderActionState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVStealActionState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVSwapWithPlayerActionState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVTradeWithDeckActionState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MVMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -207,6 +228,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MachiavelliServer\States\CharacterStates\MVMerchantState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVActionState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVBuildActionState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVDestroyBuildingActionState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVMurderActionState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVStealActionState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVSwapWithPlayerActionState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVTradeWithDeckActionState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

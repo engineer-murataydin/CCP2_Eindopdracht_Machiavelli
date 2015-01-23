@@ -107,8 +107,15 @@
     <ClCompile Include="MachiavelliServer\States\MVGameState.cpp" />
     <ClCompile Include="MachiavelliServer\States\GameStates\MVLobbyState.cpp" />
     <ClCompile Include="MachiavelliServer\States\GameStates\MVDealState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVActionState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVBuildActionState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVDestroyBuildingActionState.cpp" />
     <ClCompile Include="MVMain.cpp" />
     <ClCompile Include="MachiavelliServer\Model\MVSpecialBuilding.cpp" />
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVMurderActionState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVStealActionState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVSwapWithPlayerActionState.cpp" />
+    <ClCompile Include="MachiavelliServer\States\ActionStates\MVTradeWithDeckActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MachiavelliServer\Controller\MVFileController.h" />
@@ -143,6 +150,13 @@
     <ClInclude Include="MachiavelliServer\Model\MVDeck.h" />
     <ClInclude Include="MachiavelliServer\States\GameStates\MVLobbyState.h" />
     <ClInclude Include="MachiavelliServer\States\GameStates\MVDealState.h" />
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVActionState.h" />
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVBuildActionState.h" />
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVDestroyBuildingActionState.h" />
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVMurderActionState.h" />
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVStealActionState.h" />
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVSwapWithPlayerActionState.h" />
+    <ClInclude Include="MachiavelliServer\States\ActionStates\MVTradeWithDeckActionState.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
