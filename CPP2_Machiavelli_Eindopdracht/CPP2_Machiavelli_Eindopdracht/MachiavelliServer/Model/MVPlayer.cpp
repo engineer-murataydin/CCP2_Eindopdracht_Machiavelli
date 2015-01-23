@@ -83,6 +83,17 @@ bool MVPlayer::addBuildingCard()
 	return false;
 }
 
+bool MVPlayer::addBuildingCard(shared_ptr<MVBuilding> building)
+{
+	if (building)
+	{
+		BuildingCards.push_back(move(building));
+		return true;
+	}
+	return false;
+}
+
+
 bool MVPlayer::addBuildingCards(int amount)
 {
 	for (int i = 0; i < amount; i++)
@@ -109,29 +120,43 @@ void MVPlayer::print()
 {
 	stringstream s;
 	s << ToString();
+	writeLine(s.str());
 
 	writeLine("Handkaarten");
-	for (size_t i = 0; i < BuildingCards.size(); i++)
+	if (BuildingCards.size() > 0)
 	{
-		s = stringstream();
-		s << " " << BuildingCards[i]->toString();
-		writeLine(s.str());
+		for (size_t i = 0; i < BuildingCards.size(); i++)
+		{
+			s = stringstream();
+			s << " " << BuildingCards[i]->toString();
+			writeLine(s.str());
+		}
+	}
+	else
+	{
+		writeLine(" ---");
 	}
 	writeLine();
 }
 
 string MVPlayer::ToString()
 {
+	string endl = "\n\r";
 	stringstream s;
-	s << "goud: " << Coins.size() << "\n\r";
+	s << "goud: " << Coins.size() << endl << endl;
 
-	s << "Gebouwen:" << "\n\r";
-	for (size_t i = 0; i < BuildBuildings.size(); i++)
+	s << "Gebouwen:" << endl;
+	if (BuildBuildings.size())
 	{
-		s << " ";
-		s << BuildBuildings[i]->toString() << "\n\r";
+		for (size_t i = 0; i < BuildBuildings.size(); i++)
+		{
+			s << " " << BuildBuildings[i]->toString() << endl;
+		}
 	}
-	s << "\n\r";
+	else
+	{
+		s << " ---" << endl;
+	}
 	return s.str();
 }
 
@@ -197,6 +222,51 @@ bool MVPlayer::destroyBuilding(shared_ptr<MVBuilding> building)
 
 void MVPlayer::swapCards(shared_ptr<MVPlayer> player)
 {
-	vector<shared_ptr<MVBuilding>> temp = player->getBuildingCardsPlayer();
-	MVGame::Instance()->getOtherPlayer(player)->getBuildingCardsPlayer() = temp;
+	if (player.get() != this)
+	{
+		vector<shared_ptr<MVBuilding>> temp = player->BuildingCards;
+		player->BuildingCards = BuildingCards;
+		BuildingCards = temp;
+	}
+}
+
+int MVPlayer::getBuildCardAmount()
+{
+	return BuildBuildings.size();
+
+}
+
+
+int MVPlayer::getBuildCardAmount(MVEnum::Colors color)
+{
+	int count = 0;
+
+	for (size_t i = 0; i < BuildBuildings.size(); i++)
+	{
+		if (BuildBuildings[i]->getColor() == color)
+		{
+			count++;
+		}
+	}
+
+	return count;
+}
+
+void MVPlayer::returnCharacters()
+{
+	while (!characterCards.empty())
+	{
+		MVGame::Instance()->setCharacterCard(move(characterCards.front()));
+		characterCards.erase(characterCards.begin());
+	}
+}
+
+int MVPlayer::getScore()
+{
+	int score = 0;
+	for (size_t i = 0; i < BuildBuildings.size(); i++)
+	{
+		score += BuildBuildings[i]->getPrice();
+	}
+	return score;
 }

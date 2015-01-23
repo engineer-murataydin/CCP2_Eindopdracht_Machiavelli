@@ -25,7 +25,8 @@ public:
 	void nextTurn();
 	static bool isRunning();
 	static default_random_engine getDre();
-	bool isCurrentPlayer(shared_ptr<MVPlayer>);
+	bool isCurrentPlayer(shared_ptr<MVPlayer> player);
+	shared_ptr<MVPlayer> getCurrentPlayer();
 	vector<shared_ptr<MVPlayer>> getPlayers();
 	unique_ptr<MVCoin> MoveCoin();
 	void SetCoin(unique_ptr<MVCoin> coin);
@@ -66,6 +67,8 @@ public:
 	void shuffleBuildingDeck();
 
 	MVDeck<MVCharacter> getCharacterDeck();
+	void mergeCharacters();
+
 
 private:
 

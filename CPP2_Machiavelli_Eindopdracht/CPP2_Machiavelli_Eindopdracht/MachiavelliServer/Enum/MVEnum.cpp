@@ -39,7 +39,7 @@ string MVEnum::colorToString(Colors color)
 	case MVEnum::LILA:
 		return "lila";
 	default:
-		break;
+		return "UNKNOWN";
 	}
 }
 
@@ -89,7 +89,7 @@ string MVEnum::characterToString(Characters character)
 	case MVEnum::CONDOTTIERE:
 		return "Condottiere";
 	default:
-		break;
+		return "UNKNOWN";
 	}
 }
 
@@ -135,7 +135,7 @@ string MVEnum::messageToString(Messages message)
 	case MVEnum::TOP_CARD_OF_DECK:
 		return "Dit is de bovenste kaart van de stapel:";
 	case MVEnum::CARD_ON_TABLE:
-		return "Het kaart is weggehaald van de stapel en op tafel geplaatst";
+		return "De kaart is weggehaald van de stapel en op tafel geplaatst";
 	case MVEnum::CHOOSE_CARD:
 		return "Kies een karakter kaartnummer:";
 	case MVEnum::CHOSEN_CARD:
@@ -145,7 +145,7 @@ string MVEnum::messageToString(Messages message)
 	case MVEnum::REMOVED_CARD:
 		return "Weggelegd karakter door jou: ";
 	default:
-		break;
+		return "UNKNOWN";
 	}
 }
 
@@ -180,6 +180,8 @@ string MVEnum::actionToString(MVEnum::Action action)
 	{
 	case MVEnum::DETAILS:
 		return "Bekijk het goud en de gebouwen van de tegenstander";
+	case MVEnum::END_TURN:
+		return "Eindig beurt";
 	case MVEnum::CHOOSE_GOLD:
 		return "Neem 2 goudstukken";
 	case MVEnum::CHOOSE_CARDS:
@@ -201,6 +203,6 @@ string MVEnum::actionToString(MVEnum::Action action)
 	case MVEnum::DESTROY_BUILDING:
 		return "Kies een character om een gebouw bij weg te halen";
 	default:
-		break;
+		return "UNKNOWN";
 	}
 }

@@ -18,7 +18,7 @@ void Server::consume_command() // runs in its own thread
 					if (game->isCurrentPlayer(game->getPlayer(client)))
 					{
 						game->update(game->getPlayer(client), command.get_cmd());
-						game->render(game->getPlayer(client));
+						game->render(game->getCurrentPlayer());
 					}
 					else
 					{
@@ -95,6 +95,7 @@ Server::Server()
 				{
 					thread handler{ handle_client, client };
 					handler.detach(); // detaching is usually ugly, but in this case the right thing to do
+					game->checkState();
 				}
 				cerr << "server listening again" << '\n';
 			}

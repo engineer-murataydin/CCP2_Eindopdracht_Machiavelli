@@ -42,7 +42,11 @@ public:
 	{
 		while (deck.HasCard())
 		{
-			this->deck.push_back(deck.getTopCard());
+			shared_ptr<T> card = deck.moveCardAt(0);
+			if (card)
+			{
+				this->deck.push_back(card);
+			}
 		}
 	};
 

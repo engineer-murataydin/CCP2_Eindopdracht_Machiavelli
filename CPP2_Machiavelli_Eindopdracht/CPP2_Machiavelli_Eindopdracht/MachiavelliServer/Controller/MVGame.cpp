@@ -224,6 +224,17 @@ bool MVGame::isCurrentPlayer(shared_ptr<MVPlayer> player)
 	return states.top()->isCurrentPlayer(player);
 }
 
+shared_ptr<MVPlayer> MVGame::getCurrentPlayer()
+{
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		if (isCurrentPlayer(players[i]))
+		{
+			return players[i];
+		}
+	}
+}
+
 void MVGame::characterKilled(MVEnum::Characters character)
 {
 	killed = character;
@@ -293,4 +304,9 @@ MVEnum::Characters MVGame::getKilled()
 MVEnum::Characters MVGame::getStolen()
 {
 	return stolenFrom;
+}
+
+void MVGame::mergeCharacters()
+{
+	characterDeck.mergeDeck(usedCharacterDeck);
 }

@@ -1,6 +1,7 @@
 //
 #include "MVCharacterState.h"
 #include "ActionStates\MVBuildActionState.h"
+#include "ActionStates\MVGetCardActionState.h"
 #include <sstream>
 
 //
@@ -15,29 +16,32 @@ MVCharacterState::~MVCharacterState()
 
 void MVCharacterState::update(shared_ptr<MVPlayer> player, int message)
 {
-	switch (getActions()[message - 1])
+	vector<MVEnum::Action> actions = getActions();
+	if (message >= 0 && message < actions.size())
 	{
-	case MVEnum::DETAILS:
-		Details(player);
-		return;
-	case MVEnum::END_TURN:
-		EndTurn();
-		return;
-	case MVEnum::CHOOSE_GOLD:
-		ChooseGold(player);
-		return;
-	case MVEnum::CHOOSE_CARDS:
-		ChooseCards(player);
-		return;
-	case MVEnum::BUILD:
-		Build(player);
-	default:
-		break;
+		switch (actions[message])
+		{
+		case MVEnum::DETAILS:
+			Details(player);
+			return;
+		case MVEnum::END_TURN:
+			EndTurn();
+			return;
+		case MVEnum::CHOOSE_GOLD:
+			ChooseGold(player);
+			return;
+		case MVEnum::CHOOSE_CARDS:
+			ChooseCards(player);
+			return;
+		case MVEnum::BUILD:
+			Build(player);
+		default:
+			break;
+		}
+
+
 	}
 }
-
-void MVCharacterState::checkState()
-{}
 
 void MVCharacterState::render(shared_ptr<MVPlayer> player) const
 {
@@ -47,6 +51,13 @@ void MVCharacterState::render(shared_ptr<MVPlayer> player) const
 	player->writeLine(s.str());
 	player->print();
 	player->writeLine("Maak je keuze:");
+	vector<MVEnum::Action> actions = getActions();
+	for (size_t i = 0; i < actions.size(); i++)
+	{
+		stringstream s;
+		s << "[" << to_string(i + 1) << "] " << MVEnum::actionToString(actions[i]);
+		player->writeLine(s.str());
+	}
 }
 
 bool MVCharacterState::isCurrentPlayer(shared_ptr<MVPlayer>player)
@@ -56,22 +67,29 @@ bool MVCharacterState::isCurrentPlayer(shared_ptr<MVPlayer>player)
 
 bool MVCharacterState::canEndTurn() const
 {
-	return actionOne;
+	return !actionOne;
 }
 
 void MVCharacterState::onEnter()
 {
 	shared_ptr<MVPlayer> player = game->getPlayer(character);
-	if (player)
+	if (player && game->getKilled() != character)
 	{
+		render(player);
 		player->buildInCurrentTurn = 0;
 		if (player == game->getPlayer(game->getStolen()))
 		{
 			player->moveAllCoinsTo(game->getPlayer(MVEnum::DIEF));
 		}
+		actionOne = true;
+		special = true;
+		render(player);
 	}
-	actionOne = true;
-	special = true;
+	else
+	{
+		done = true;
+		checkState();
+	}
 }
 
 void MVCharacterState::onExit()
@@ -107,9 +125,8 @@ bool MVCharacterState::canBuild() const
 void MVCharacterState::Details(shared_ptr<MVPlayer> player)
 {
 	stringstream s;
-	s << "Andere speler:" << endl;
-	s << game->getOtherPlayer(player)->ToString();
-	player->writeLine(s.str());
+	player->writeLine("Andere speler:");
+	player->writeLine(game->getOtherPlayer(player)->ToString());
 }
 
 void MVCharacterState::ChooseGold(shared_ptr<MVPlayer> player)
@@ -120,8 +137,8 @@ void MVCharacterState::ChooseGold(shared_ptr<MVPlayer> player)
 
 void MVCharacterState::ChooseCards(shared_ptr<MVPlayer> player)
 {
-	if (player->addBuildingCards(2))
-		actionOne = false;
+	game->pushState(shared_ptr<MVGetCardActionState>(new MVGetCardActionState(game, player)));
+	actionOne = false;
 }
 
 void MVCharacterState::Build(shared_ptr<MVPlayer> player)

@@ -1,5 +1,7 @@
 //
 #include "MVCondottiereState.h"
+#include "../GameStates/MVDealState.h"
+#include "../ActionStates/MVDestroyBuildingActionState.h"
 
 //
 
@@ -15,52 +17,55 @@ MVCondottiereState::~MVCondottiereState()
 
 void MVCondottiereState::update(shared_ptr<MVPlayer> player, int message)
 {
-	switch (getActions()[message - 1])
+	message--;
+	vector<MVEnum::Action> actions = getActions();
+	if (message >= 0 && message < actions.size())
 	{
-	case MVEnum::DESTROY_BUILDING:
-		//killCharacter(player);
-		break;
-	default:
-		MVCharacterState::update(player, message);
-		return;
+		switch (actions[message])
+		{
+		case MVEnum::DESTROY_BUILDING:
+			DestroyBuilding(player);
+			break;
+		default:
+			MVClaimGoldCharacterState::update(player, message);
+			return;
+		}
 	}
 }
 
 void MVCondottiereState::checkState()
 {
-
+	if (done)
+	{
+		game->setState(shared_ptr<MVDealState>(new MVDealState(game)));
+	}
 }
-
-void MVCondottiereState::render(shared_ptr<MVPlayer> player) const
-{
-
-}
-
 
 void MVCondottiereState::onEnter()
 {
-	MVCharacterState::onEnter();
 	cerr << "Enter CondottiereState" << endl;
+	MVClaimGoldCharacterState::onEnter();
 
 }
 
 void MVCondottiereState::onExit()
 {
-	MVCharacterState::onExit();
 	cerr << "Exit CondottiereState" << endl;
+	MVClaimGoldCharacterState::onExit();
 }
 
 vector<MVEnum::Action> MVCondottiereState::getActions() const
 {
 	vector<MVEnum::Action> actions = MVClaimGoldCharacterState::getActions();
 
-	if (special)
-	{
-		actions.push_back(MVEnum::CLAIM_GOLD);
-	}
 	if (special2)
 	{
 		actions.push_back(MVEnum::DESTROY_BUILDING);
 	}
 	return actions;
+}
+
+void MVCondottiereState::DestroyBuilding(shared_ptr<MVPlayer> player)
+{
+	game->pushState(shared_ptr<MVDestroyBuildingActionState>(new MVDestroyBuildingActionState(game, player)));
 }

@@ -18,7 +18,6 @@ public:
 	virtual void render(shared_ptr<MVPlayer> player) const;
 	virtual void onEnter();
 	virtual void onExit();
-	virtual void checkState();
 	virtual bool canEndTurn() const;
 	virtual vector<MVEnum::Action> getActions() const;
 	virtual bool isCurrentPlayer(shared_ptr<MVPlayer>player);

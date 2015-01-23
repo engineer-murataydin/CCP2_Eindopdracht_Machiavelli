@@ -1,5 +1,6 @@
 //
 #include "MVKingState.h"
+#include "MVPreacherState.h"
 
 //
 
@@ -15,42 +16,30 @@ MVKingState::~MVKingState()
 
 }
 
-void MVKingState::update(shared_ptr<MVPlayer> player, int message)
-{
-
-}
-
 void MVKingState::checkState()
 {
-
-}
-
-void MVKingState::render(shared_ptr<MVPlayer> player) const
-{
-
+	if (done)
+	{
+		game->setState(shared_ptr<MVPreacherState>(new MVPreacherState(game)));
+	}
 }
 
 void MVKingState::onEnter()
 {
-	//game->setKing(
-	game->getPlayer(character);
-	MVClaimGoldCharacterState::onEnter();
-
 	cerr << "Enter KingState" << endl;
+
+
+	shared_ptr<MVPlayer> player = game->getPlayer(character);
+	if (player&& game->getKilled() != character)
+	{
+		game->setKing(player);
+	}
+	
+	MVClaimGoldCharacterState::onEnter();
 }
 
 void MVKingState::onExit()
 {
 	cerr << "Exit KingState" << endl;
-}
-
-vector<MVEnum::Action> MVKingState::getActions() const
-{
-	vector<MVEnum::Action> actions = MVClaimGoldCharacterState::getActions();
-
-	if (special)
-	{
-		actions.push_back(MVEnum::CLAIM_GOLD);
-	}
-	return actions;
+	MVClaimGoldCharacterState::onExit();
 }

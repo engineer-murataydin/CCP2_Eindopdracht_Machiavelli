@@ -15,6 +15,7 @@ public:
 	MVPlayer(Socket* socket);
 	virtual ~MVPlayer();
 
+	int getScore();
 	shared_ptr<Socket> getSocket() const;
 	vector<shared_ptr<MVCharacter>> getCharacterCards() const;
 	bool HasCharacterCard(MVEnum::Characters id) const;
@@ -23,6 +24,7 @@ public:
 	bool addCoin();
 	bool addCoins(int amount);
 	bool addBuildingCard();
+	bool addBuildingCard(shared_ptr<MVBuilding> building);
 	bool addBuildingCards(int amount);
 
 	int getCoinAmount();
@@ -37,10 +39,15 @@ public:
 	vector<shared_ptr<MVCharacter>> getCharacterCardsPlayer();
 	vector<shared_ptr<MVBuilding>> getBuildingCardsPlayer();
 	vector<shared_ptr<MVBuilding>> getBuildBuildingCardsPlayer();
+	void returnCharacters();
+
 	int buildInCurrentTurn;
 
 	void moveAllCoinsTo(shared_ptr<MVPlayer>player);
 	void swapCards(shared_ptr<MVPlayer> player);
+
+	int getBuildCardAmount(MVEnum::Colors color);
+	int getBuildCardAmount();
 
 private:
 	vector<shared_ptr<MVCharacter>> characterCards;

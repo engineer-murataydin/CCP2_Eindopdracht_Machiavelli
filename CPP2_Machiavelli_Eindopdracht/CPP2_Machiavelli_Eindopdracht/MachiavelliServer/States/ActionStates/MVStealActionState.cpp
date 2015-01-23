@@ -13,12 +13,12 @@ MVStealActionState::~MVStealActionState()
 void MVStealActionState::update(shared_ptr<MVPlayer> player, int message)
 {
 	game->characterStolen(getStealable()[message - 1]);
-
+	game->popState();
 }
 
 void MVStealActionState::render(shared_ptr<MVPlayer> player) const
 {
-	player->writeLine("Met welke character wil je kaarten ruilen?");
+	player->writeLine("Van welk character wil je al zijn goud?");
 	vector<MVEnum::Characters> characters = getStealable();
 	for (size_t i = 0; i < characters.size(); i++)
 	{

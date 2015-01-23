@@ -15,7 +15,6 @@ public:
 	MVCondottiereState(shared_ptr<MVGame> game);
 	virtual ~MVCondottiereState();
 	virtual void update(shared_ptr<MVPlayer> player, int message);
-	virtual void render(shared_ptr<MVPlayer> player) const;
 	virtual void onEnter();
 	virtual void onExit();
 	virtual void checkState();
@@ -23,5 +22,7 @@ public:
 
 protected:
 	bool special2;
+
+	void DestroyBuilding(shared_ptr<MVPlayer> player);
 };
 

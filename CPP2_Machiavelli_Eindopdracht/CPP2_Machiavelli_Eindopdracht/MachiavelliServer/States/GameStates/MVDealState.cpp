@@ -2,6 +2,8 @@
 #include "MVDealState.h"
 #include <sstream>
 #include "../CharacterStates/MVAssassinState.h"
+#include "MVFinishState.h"
+
 
 //
 
@@ -34,16 +36,6 @@ void MVDealState::update(shared_ptr<MVPlayer> player, int message)
 			curPlayer->writeLine(MVEnum::messageToString(MVEnum::REMOVED_CARD) + chosen->getName());
 		}
 	}
-
-	characterCards = MVGame::Instance()->getCharacterDeck().getDeck();
-	for (size_t i = 0; i < characterCards.size(); i++)
-	{
-		stringstream s;
-		s << "[" << to_string(i + 1) << "] " << characterCards[i]->getName();
-		curPlayer->writeLine(s.str());
-	}
-	curPlayer->writeLine(MVEnum::messageToString(MVEnum::CHOOSE_CARD));
-
 }
 
 void MVDealState::checkState()
@@ -56,21 +48,47 @@ void MVDealState::checkState()
 
 void MVDealState::render(shared_ptr<MVPlayer> player) const
 {
-	player->print();
-	stringstream s;
+	if (hasChosenCard)
+	{
+		player->writeLine("Kies een karakter kaart om weg te leggen");
+	}
+	else
+	{
+		player->writeLine("Kies een karakter kaart voor jezelf");
+	}
 
+	curPlayer->writeLine(MVEnum::messageToString(MVEnum::CARD_OVERVIEW_FULL));
+	vector<shared_ptr<MVCharacter>> characterCards = MVGame::Instance()->getCharacterDeck().getDeck();
+	for (size_t i = 0; i < characterCards.size(); i++)
+	{
+		stringstream s;
+		s << "[" << to_string(i + 1) << "] " << characterCards[i]->getName();
+		curPlayer->writeLine(s.str());
+	}
+	curPlayer->writeLine(MVEnum::messageToString(MVEnum::CHOOSE_CARD));
 }
 
 void MVDealState::onEnter()
 {
+	game->characterKilled(MVEnum::UNKNOWN_CHARACHTER);
+	game->characterStolen(MVEnum::UNKNOWN_CHARACHTER);
+
+	vector<shared_ptr<MVPlayer>> players = game->getPlayers();
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		players[i]->returnCharacters();
+		if (players[i]->getBuildCardAmount() >= 8)
+		{
+			game->setState(shared_ptr<MVFinishState>(new MVFinishState(game)));
+		}
+	}
+
+	game->mergeCharacters();
+
+
 	cerr << "Enter DealState" << endl;
 	hasChosenCard = false;
 	curPlayer = game->getKing();
-	vector<shared_ptr<MVPlayer>> players = MVGame::Instance()->getPlayers();
-	for (size_t i = 0; i < players.size(); i++)
-	{
-		players[i]->writeLine(MVEnum::messageToString(MVEnum::START_GAME));
-	}
 	curPlayer->writeLine(MVEnum::messageToString(MVEnum::YOU_ARE_THE_KING));
 	game->shuffleCharacterDeck();
 	curPlayer->writeLine(MVEnum::messageToString(MVEnum::CHARACTER_CARDS_SHUFFLED));
@@ -80,12 +98,7 @@ void MVDealState::onEnter()
 	game->setCharacterCard(mvc);
 	vector<shared_ptr<MVCharacter>> characterCards = MVGame::Instance()->getCharacterDeck().getDeck();
 	curPlayer->writeLine(MVEnum::messageToString(MVEnum::CARD_ON_TABLE));
-	curPlayer->writeLine(MVEnum::messageToString(MVEnum::CARD_OVERVIEW_FULL));
-	for (size_t i = 0; i < characterCards.size(); i++)
-	{
-		curPlayer->writeLine("[" + to_string(i + 1) + "] " + characterCards[i]->getName());
-	}
-	curPlayer->writeLine(MVEnum::messageToString(MVEnum::CHOOSE_CARD));
+	render(curPlayer);
 }
 
 void MVDealState::onExit()

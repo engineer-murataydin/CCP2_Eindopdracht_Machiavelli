@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <sstream>
 
 #include "../Controller/MVGame.h"
 #include "../Model/MVPlayer.h"

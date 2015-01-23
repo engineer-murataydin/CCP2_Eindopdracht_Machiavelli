@@ -18,14 +18,20 @@ MVArchitectState::~MVArchitectState()
 
 void MVArchitectState::update(shared_ptr<MVPlayer> player, int message)
 {
-	switch (getActions()[message - 1])
+	message--;
+	vector<MVEnum::Action> actions = getActions();
+	if (message >= 0 && message < actions.size())
 	{
-	case MVEnum::CLAIM_CARDS:
-		getCards(player);
-		break;
-	default:
-		MVCharacterState::update(player, message);
-		return;
+		switch (actions[message])
+		{
+		case MVEnum::CLAIM_CARDS:
+			getCards(player);
+			break;
+		default:
+			MVCharacterState::update(player, message);
+			return;
+		}
+
 	}
 }
 
@@ -37,19 +43,21 @@ void MVArchitectState::checkState()
 	}
 }
 
-void MVArchitectState::render(shared_ptr<MVPlayer> player) const
-{
-
-}
-
 void MVArchitectState::onEnter()
 {
 	cerr << "Enter ArchitectState" << endl;
+	MVCharacterState::onEnter();
+	shared_ptr<MVPlayer> player = game->getPlayer(character);
+	if (player)
+	{
+		player->addBuildingCards(2);
+	}
 }
 
 void MVArchitectState::onExit()
 {
 	cerr << "Exit ArchitectState" << endl;
+	MVCharacterState::onExit();
 }
 
 vector<MVEnum::Action> MVArchitectState::getActions() const

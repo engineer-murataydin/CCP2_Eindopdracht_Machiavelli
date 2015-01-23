@@ -20,14 +20,19 @@ MVAssassinState::~MVAssassinState()
 
 void MVAssassinState::update(shared_ptr<MVPlayer> player, int message)
 {
-	switch (getActions()[message - 1])
+	message--;
+	vector<MVEnum::Action> actions = getActions();
+	if (message >= 0 && message < actions.size())
 	{
-	case MVEnum::KILL:
-		killCharacter(player);
-		break;
-	default:
-		MVCharacterState::update(player, message);
-		return;
+		switch (actions[message])
+		{
+		case MVEnum::KILL:
+			killCharacter(player);
+			break;
+		default:
+			MVCharacterState::update(player, message);
+			return;
+		}
 	}
 }
 
@@ -39,18 +44,6 @@ void MVAssassinState::checkState()
 	}
 }
 
-void MVAssassinState::render(shared_ptr<MVPlayer> player) const
-{
-	MVCharacterState::render(player);
-	vector<MVEnum::Action> actions = getActions();
-	for (size_t i = 0; i < actions.size(); i++)
-	{
-		stringstream s;
-		s << "[" << i + 1 << "] " + MVEnum::actionToString(actions[i]);
-		player->writeLine(s.str());
-	}
-}
-
 void MVAssassinState::killCharacter(shared_ptr<MVPlayer> player)
 {
 	special = false;
@@ -59,14 +52,14 @@ void MVAssassinState::killCharacter(shared_ptr<MVPlayer> player)
 
 void MVAssassinState::onEnter()
 {
-	MVCharacterState::onEnter();
 	cerr << "Enter AssassinState" << endl;
+	MVCharacterState::onEnter();
 }
 
 void MVAssassinState::onExit()
 {
-	MVCharacterState::onExit();
 	cerr << "Exit AssassinState" << endl;
+	MVCharacterState::onExit();
 }
 
 vector<MVEnum::Action> MVAssassinState::getActions() const

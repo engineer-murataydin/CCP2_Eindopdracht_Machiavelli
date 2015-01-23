@@ -1,6 +1,7 @@
 //
 #include "MVThiefState.h"
 #include "MVMagicianState.h"
+#include "../ActionStates/MVStealActionState.h"
 //
 
 //
@@ -15,7 +16,20 @@ MVThiefState::~MVThiefState()
 
 void MVThiefState::update(shared_ptr<MVPlayer> player, int message)
 {
-
+	message--;
+	vector<MVEnum::Action> actions = getActions();
+	if (message >= 0 && message < actions.size())
+	{
+		switch (actions[message])
+		{
+		case MVEnum::STEAL:
+			robCharacter(player);
+			break;
+		default:
+			MVCharacterState::update(player, message);
+			return;
+		}
+	}
 }
 
 void MVThiefState::checkState()
@@ -26,26 +40,22 @@ void MVThiefState::checkState()
 	}
 }
 
-void MVThiefState::render(shared_ptr<MVPlayer> player) const
+void MVThiefState::robCharacter(shared_ptr<MVPlayer> player)
 {
-
-}
-
-void MVThiefState::robCharacter(MVEnum::Characters chosenCharacter)
-{
-
+	special = false;
+	game->pushState(shared_ptr<MVStealActionState>(new MVStealActionState(game, player)));
 }
 
 void MVThiefState::onEnter()
 {
-	MVCharacterState::onEnter();
 	cerr << "Enter ThiefState" << endl;
+	MVCharacterState::onEnter();
 }
 
 void MVThiefState::onExit()
 {
-	MVCharacterState::onExit();
 	cerr << "Exit ThiefState" << endl;
+	MVCharacterState::onExit();
 }
 
 vector<MVEnum::Action> MVThiefState::getActions() const
