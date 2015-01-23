@@ -167,3 +167,9 @@ bool MVPlayer::build(shared_ptr<MVBuilding> building)
 	}
 	return false;
 }
+
+void MVPlayer::swapCards(shared_ptr<MVPlayer> player)
+{
+	vector<shared_ptr<MVBuilding>> temp = player->getBuildingCardsPlayer();
+	MVGame::Instance()->getOtherPlayer(player)->getBuildingCardsPlayer() = temp;
+}

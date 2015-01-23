@@ -2,12 +2,10 @@
 #include <sstream>
 
 MVMurderActionState::MVMurderActionState(shared_ptr<MVGame> game, shared_ptr<MVPlayer> player) : MVActionState(game, player)
-{
-}
+{}
 
 MVMurderActionState::~MVMurderActionState()
-{
-}
+{}
 
 void MVMurderActionState::update(shared_ptr<MVPlayer> player, int message)
 {

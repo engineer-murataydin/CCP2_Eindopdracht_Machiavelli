@@ -21,7 +21,7 @@ public:
 	virtual void checkState();
 	virtual vector<MVEnum::Action> getActions() const;
 
-	void swapPawCards();
-	void changePawCards();
+	void swapPawCards(shared_ptr<MVPlayer> player);
+	void tradePawCards(shared_ptr<MVPlayer> player);
 };
 

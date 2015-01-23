@@ -36,6 +36,8 @@ public:
 	vector<shared_ptr<MVBuilding>> getBuildBuildingCardsPlayer();
 	int buildInCurrentTurn;
 
+	void swapCards(shared_ptr<MVPlayer> player);
+
 private:
 	vector<shared_ptr<MVCharacter>> characterCards;
 	vector<shared_ptr<MVBuilding>> BuildingCards;
