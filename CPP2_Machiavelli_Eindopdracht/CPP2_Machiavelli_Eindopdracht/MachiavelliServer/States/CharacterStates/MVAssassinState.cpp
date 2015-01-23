@@ -49,17 +49,12 @@ void MVAssassinState::render(shared_ptr<MVPlayer> player) const
 		s << "[" << i + 1 << "] " + MVEnum::actionToString(actions[i]);
 		player->writeLine(s.str());
 	}
-
 }
 
 void MVAssassinState::killCharacter(shared_ptr<MVPlayer> player)
 {
+	special = false;
 	game->pushState(shared_ptr<MVMurderActionState>(new MVMurderActionState(game, player)));
-}
-
-vector<MVEnum::Characters> MVAssassinState::getPlayersToKill()
-{
-	return{ MVEnum::MOORDENAAR, MVEnum::DIEF, MVEnum::MAGIER, MVEnum::KONING, MVEnum::PREDIKER, MVEnum::KOOPMAN, MVEnum::BOUWMEESTER, MVEnum::CONDOTTIERE };
 }
 
 void MVAssassinState::onEnter()

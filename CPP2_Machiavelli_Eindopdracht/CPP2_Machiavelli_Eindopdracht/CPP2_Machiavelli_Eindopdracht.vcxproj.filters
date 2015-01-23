@@ -120,9 +120,6 @@
     <ClCompile Include="MachiavelliServer\States\ActionStates\MVStealActionState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MachiavelliServer\States\ActionStates\MVSwapWithPlayerActionState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MachiavelliServer\States\ActionStates\MVTradeWithDeckActionState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -246,9 +243,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MachiavelliServer\States\ActionStates\MVStealActionState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MachiavelliServer\States\ActionStates\MVSwapWithPlayerActionState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MachiavelliServer\States\ActionStates\MVTradeWithDeckActionState.h">

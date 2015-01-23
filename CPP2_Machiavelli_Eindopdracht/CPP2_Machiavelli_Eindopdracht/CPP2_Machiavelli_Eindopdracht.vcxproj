@@ -115,7 +115,6 @@
     <ClCompile Include="MachiavelliServer\Model\MVSpecialBuilding.cpp" />
     <ClCompile Include="MachiavelliServer\States\ActionStates\MVMurderActionState.cpp" />
     <ClCompile Include="MachiavelliServer\States\ActionStates\MVStealActionState.cpp" />
-    <ClCompile Include="MachiavelliServer\States\ActionStates\MVSwapWithPlayerActionState.cpp" />
     <ClCompile Include="MachiavelliServer\States\ActionStates\MVTradeWithDeckActionState.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,7 +155,6 @@
     <ClInclude Include="MachiavelliServer\States\ActionStates\MVDestroyBuildingActionState.h" />
     <ClInclude Include="MachiavelliServer\States\ActionStates\MVMurderActionState.h" />
     <ClInclude Include="MachiavelliServer\States\ActionStates\MVStealActionState.h" />
-    <ClInclude Include="MachiavelliServer\States\ActionStates\MVSwapWithPlayerActionState.h" />
     <ClInclude Include="MachiavelliServer\States\ActionStates\MVTradeWithDeckActionState.h" />
     <ClInclude Include="MachiavelliServer\States\CharacterStates\MVClaimGoldCharacterState.h" />
     <ClInclude Include="targetver.h" />

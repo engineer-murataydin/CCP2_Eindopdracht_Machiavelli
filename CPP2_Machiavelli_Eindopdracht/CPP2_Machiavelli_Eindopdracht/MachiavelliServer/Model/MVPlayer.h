@@ -40,6 +40,7 @@ public:
 	int buildInCurrentTurn;
 
 	void moveAllCoinsTo(shared_ptr<MVPlayer>player);
+	void swapCards(shared_ptr<MVPlayer> player);
 
 private:
 	vector<shared_ptr<MVCharacter>> characterCards;
