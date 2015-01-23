@@ -61,7 +61,7 @@ vector<MVEnum::Action> MVArchitectState::getActions() const
 
 bool MVArchitectState::canBuild()
 {
-	return build < 3;
+	return game->getPlayer(character)->buildInCurrentTurn < 3;
 }
 
 void MVArchitectState::getCards(shared_ptr<MVPlayer> player)

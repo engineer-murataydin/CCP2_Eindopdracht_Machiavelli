@@ -22,6 +22,7 @@ public:
 	virtual bool canEndTurn();
 	virtual vector<MVEnum::Action> getActions() const;
 	virtual bool isCurrentPlayer(shared_ptr<MVPlayer>player);
+	void Build();
 
 protected:
 	bool special;
@@ -29,10 +30,7 @@ protected:
 
 	bool done;
 
-	int build;
-
 	virtual bool canBuild() const;
-	void buildBuilding(shared_ptr<MVPlayer> player, shared_ptr<MVBuilding> building);
 	void Details(shared_ptr<MVPlayer> player);
 	void ChooseGold(shared_ptr<MVPlayer> player);
 	void ChooseCards(shared_ptr<MVPlayer> player);

@@ -28,6 +28,7 @@ public:
 	bool isCurrentPlayer(shared_ptr<MVPlayer>);
 	vector<shared_ptr<MVPlayer>> getPlayers();
 	unique_ptr<MVCoin> MoveCoin();
+	void SetCoin(unique_ptr<MVCoin> coin);
 	shared_ptr<MVBuilding> getBuilding();
 	shared_ptr<MVCharacter>getCharacter(int pos = 0);
 	void setBuildingCard(shared_ptr<MVBuilding>card);
@@ -40,7 +41,7 @@ public:
 	void checkState();
 
 	void setState(shared_ptr<MVGameState> state);
-	void popState(shared_ptr<MVGameState> state);
+	void popState();
 	void pushState(shared_ptr<MVGameState> state);
 
 	shared_ptr<MVGameState> getState();

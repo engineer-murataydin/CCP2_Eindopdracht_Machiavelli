@@ -113,7 +113,7 @@ void MVGame::setState(shared_ptr<MVGameState> state)
 	states.top()->onEnter();
 }
 
-void MVGame::popState(shared_ptr<MVGameState> state)
+void MVGame::popState()
 {
 	states.top()->onExit();
 	states.pop();
@@ -278,4 +278,9 @@ shared_ptr<MVPlayer> MVGame::getOtherPlayer(shared_ptr<MVPlayer> player)
 			return players[i];
 		}
 	}
+}
+
+void MVGame::SetCoin(unique_ptr<MVCoin> coin)
+{
+	coins.push(move(coin));
 }

@@ -1,5 +1,6 @@
 //
 #include "MVCharacterState.h"
+#include "ActionStates\MVBuildActionState.h"
 #include <sstream>
 
 //
@@ -14,7 +15,7 @@ MVCharacterState::~MVCharacterState()
 
 void MVCharacterState::update(shared_ptr<MVPlayer> player, int message)
 {
-	switch (getActions()[message-1])
+	switch (getActions()[message - 1])
 	{
 	case MVEnum::DETAILS:
 		Details(player);
@@ -57,6 +58,11 @@ bool MVCharacterState::canEndTurn()
 
 void MVCharacterState::onEnter()
 {
+	shared_ptr<MVPlayer> player = game->getPlayer(character);
+	if (player)
+	{
+		player->buildInCurrentTurn = 0;
+	}
 	actionOne = true;
 	special = true;
 }
@@ -81,20 +87,10 @@ vector<MVEnum::Action> MVCharacterState::getActions() const
 	return actions;
 }
 
-void MVCharacterState::buildBuilding(shared_ptr<MVPlayer> player, shared_ptr<MVBuilding> building)
-{
-	if (canBuild())
-	{
-		if (player->build(building))
-		{
-			build++;
-		}
-	}
-}
 
 bool MVCharacterState::canBuild() const
 {
-	return build < 1;
+	return game->getPlayer(character)->buildInCurrentTurn < 1;
 }
 
 void MVCharacterState::Details(shared_ptr<MVPlayer> player)
@@ -119,5 +115,5 @@ void MVCharacterState::ChooseCards(shared_ptr<MVPlayer> player)
 
 void MVCharacterState::Build(shared_ptr<MVPlayer> player)
 {
-
+	game->pushState(shared_ptr<MVBuildActionState>(new MVBuildActionState(game, player)));
 }

@@ -155,6 +155,12 @@ bool MVPlayer::build(shared_ptr<MVBuilding> building)
 			{
 				BuildingCards.erase(BuildingCards.begin() + i);
 				BuildBuildings.push_back(building);
+				for (size_t i = 0; i < building->getPrice(); i++)
+				{
+					MVGame::Instance()->SetCoin(move(Coins.front()));
+					Coins.pop();
+				}
+				buildInCurrentTurn++;
 				return true;
 			}
 		}
