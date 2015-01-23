@@ -22,8 +22,5 @@ public:
 	virtual vector<MVEnum::Action> getActions() const;
 
 	void killCharacter(shared_ptr<MVPlayer> player);
-
-protected:
-	vector<MVEnum::Characters> getPlayersToKill();
 };
 

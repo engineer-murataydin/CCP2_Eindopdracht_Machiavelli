@@ -13,5 +13,9 @@ public:
 	virtual void onEnter();
 	virtual void onExit();
 	virtual void checkState();
+
+protected:
+	vector<MVEnum::Characters> getPlayersToKill();
+	vector<MVEnum::Characters> characterCards;
 };
 
