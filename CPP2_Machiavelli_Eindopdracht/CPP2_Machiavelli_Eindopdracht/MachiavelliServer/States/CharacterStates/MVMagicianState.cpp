@@ -1,5 +1,6 @@
 //
 #include "MVMagicianState.h"
+#include "MVKingState.h"
 
 //
 
@@ -22,7 +23,10 @@ void MVMagicianState::update(shared_ptr<MVPlayer> player, int message)
 
 void MVMagicianState::checkState()
 {
-
+	if (done)
+	{
+		game->setState(shared_ptr<MVKingState>(new MVKingState(game)));
+	}
 }
 
 void MVMagicianState::render(shared_ptr<MVPlayer> player) const

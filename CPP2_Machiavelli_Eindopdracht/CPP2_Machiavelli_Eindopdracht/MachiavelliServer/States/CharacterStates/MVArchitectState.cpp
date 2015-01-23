@@ -1,5 +1,6 @@
 //
 #include "MVArchitectState.h"
+#include "MVCondottiereState.h"
 
 //
 
@@ -30,7 +31,10 @@ void MVArchitectState::update(shared_ptr<MVPlayer> player, int message)
 
 void MVArchitectState::checkState()
 {
-
+	if (done)
+	{
+		game->setState(shared_ptr<MVCondottiereState>(new MVCondottiereState(game)));
+	}
 }
 
 void MVArchitectState::render(shared_ptr<MVPlayer> player) const

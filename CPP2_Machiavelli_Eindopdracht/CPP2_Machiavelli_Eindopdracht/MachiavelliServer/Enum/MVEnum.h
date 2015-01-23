@@ -67,6 +67,7 @@ public:
 	enum Action
 	{
 		UNKOWN_ACTION = 0,
+		END_TURN,
 		DETAILS,
 		CHOOSE_GOLD,
 		CHOOSE_CARDS,

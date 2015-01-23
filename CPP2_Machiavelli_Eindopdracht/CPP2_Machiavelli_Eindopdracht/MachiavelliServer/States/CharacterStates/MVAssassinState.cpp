@@ -1,5 +1,6 @@
 //
 #include "MVAssassinState.h"
+#include "MVThiefState.h"
 #include "../ActionStates/MVMurderActionState.h"
 #include <sstream>
 
@@ -32,7 +33,10 @@ void MVAssassinState::update(shared_ptr<MVPlayer> player, int message)
 
 void MVAssassinState::checkState()
 {
-
+	if (done)
+	{
+		game->setState(shared_ptr<MVThiefState>(new MVThiefState(game)));
+	}
 }
 
 void MVAssassinState::render(shared_ptr<MVPlayer> player) const

@@ -193,7 +193,7 @@ string MVEnum::actionToString(MVEnum::Action action)
 	case MVEnum::STEAL:
 		return "Kies een character om al zijn goud te stelen";
 	case MVEnum::SWAP_WITH_PLAYER:
-		return "Kies een character al je kaarten mee te ruilen";
+		return "Kies een character om al je kaarten mee te ruilen";
 	case MVEnum::TRADE_WITH_DECK:
 		return "Kies kaarten om in te wisselen met de stapel";
 	case MVEnum::CLAIM_GOLD:

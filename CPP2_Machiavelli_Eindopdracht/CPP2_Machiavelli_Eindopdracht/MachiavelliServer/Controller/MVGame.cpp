@@ -284,3 +284,13 @@ void MVGame::SetCoin(unique_ptr<MVCoin> coin)
 {
 	coins.push(move(coin));
 }
+
+MVEnum::Characters MVGame::getKilled()
+{
+	return killed;
+}
+
+MVEnum::Characters MVGame::getStolen()
+{
+	return stolenFrom;
+}

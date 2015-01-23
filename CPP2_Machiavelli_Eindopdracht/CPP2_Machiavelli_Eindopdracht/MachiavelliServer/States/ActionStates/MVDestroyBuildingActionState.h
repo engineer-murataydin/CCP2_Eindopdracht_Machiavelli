@@ -1,5 +1,6 @@
 #pragma once
 #include "MVActionState.h"
+#include "../../Enum/MVEnum.h"
 
 class MVDestroyBuildingActionState :
 	public MVActionState
@@ -13,5 +14,6 @@ public:
 	virtual void onEnter();
 	virtual void onExit();
 	virtual void checkState();
+
 };
 

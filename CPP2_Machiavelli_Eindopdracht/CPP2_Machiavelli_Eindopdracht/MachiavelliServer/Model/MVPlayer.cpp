@@ -167,3 +167,30 @@ bool MVPlayer::build(shared_ptr<MVBuilding> building)
 	}
 	return false;
 }
+
+void MVPlayer::moveAllCoinsTo(shared_ptr<MVPlayer>player)
+{
+	while (!Coins.empty())
+	{
+		player->Coins.push(move(Coins.front()));
+		Coins.pop();
+	}
+}
+
+int MVPlayer::getCoinAmount()
+{
+	return Coins.size();
+}
+bool MVPlayer::destroyBuilding(shared_ptr<MVBuilding> building)
+{
+	for (size_t i = 0; i < BuildBuildings.size(); i++)
+	{
+		if (BuildBuildings[i] == building)
+		{
+			MVGame::Instance()->setBuildingCard(BuildBuildings[i]);
+			BuildBuildings.erase(BuildBuildings.begin() + 1);
+			return true;
+		}
+	}
+	return false;
+}

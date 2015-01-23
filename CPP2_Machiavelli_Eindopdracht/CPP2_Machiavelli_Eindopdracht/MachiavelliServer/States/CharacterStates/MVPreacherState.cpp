@@ -1,5 +1,6 @@
 //
 #include "MVPreacherState.h"
+#include "MVMerchantState.h"
 
 //
 
@@ -22,7 +23,10 @@ void MVPreacherState::update(shared_ptr<MVPlayer> player, int message)
 
 void MVPreacherState::checkState()
 {
-
+	if (done)
+	{
+		game->setState(shared_ptr<MVMerchantState>(new MVMerchantState(game)));
+	}
 }
 
 void MVPreacherState::render(shared_ptr<MVPlayer> player) const

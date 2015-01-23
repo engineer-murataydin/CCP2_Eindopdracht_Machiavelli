@@ -19,7 +19,7 @@ public:
 	virtual void onEnter();
 	virtual void onExit();
 	virtual void checkState();
-	virtual bool canEndTurn();
+	virtual bool canEndTurn() const;
 	virtual vector<MVEnum::Action> getActions() const;
 	virtual bool isCurrentPlayer(shared_ptr<MVPlayer>player);
 	void Build();
@@ -30,6 +30,7 @@ protected:
 
 	bool done;
 
+	void EndTurn();
 	virtual bool canBuild() const;
 	void Details(shared_ptr<MVPlayer> player);
 	void ChooseGold(shared_ptr<MVPlayer> player);

@@ -1,5 +1,6 @@
 //
 #include "MVMerchantState.h"
+#include "MVArchitectState.h"
 
 //
 
@@ -22,7 +23,10 @@ void MVMerchantState::update(shared_ptr<MVPlayer> player, int message)
 
 void MVMerchantState::checkState()
 {
-
+	if (done)
+	{
+		game->setState(shared_ptr<MVArchitectState>(new MVArchitectState(game)));
+	}
 }
 
 void MVMerchantState::render(shared_ptr<MVPlayer> player) const

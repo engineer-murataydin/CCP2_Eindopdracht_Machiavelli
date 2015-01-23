@@ -20,6 +20,9 @@ void MVCharacterState::update(shared_ptr<MVPlayer> player, int message)
 	case MVEnum::DETAILS:
 		Details(player);
 		return;
+	case MVEnum::END_TURN:
+		EndTurn();
+		return;
 	case MVEnum::CHOOSE_GOLD:
 		ChooseGold(player);
 		return;
@@ -51,7 +54,7 @@ bool MVCharacterState::isCurrentPlayer(shared_ptr<MVPlayer>player)
 	return game->getPlayer(character) == player;
 }
 
-bool MVCharacterState::canEndTurn()
+bool MVCharacterState::canEndTurn() const
 {
 	return actionOne;
 }
@@ -62,6 +65,10 @@ void MVCharacterState::onEnter()
 	if (player)
 	{
 		player->buildInCurrentTurn = 0;
+		if (player == game->getPlayer(game->getStolen()))
+		{
+			player->moveAllCoinsTo(game->getPlayer(MVEnum::DIEF));
+		}
 	}
 	actionOne = true;
 	special = true;
@@ -74,6 +81,10 @@ vector<MVEnum::Action> MVCharacterState::getActions() const
 {
 	vector<MVEnum::Action> actions;
 	actions.push_back(MVEnum::DETAILS);
+	if (canEndTurn())
+	{
+		actions.push_back(MVEnum::END_TURN);
+	}
 
 	if (actionOne)
 	{
@@ -116,4 +127,9 @@ void MVCharacterState::ChooseCards(shared_ptr<MVPlayer> player)
 void MVCharacterState::Build(shared_ptr<MVPlayer> player)
 {
 	game->pushState(shared_ptr<MVBuildActionState>(new MVBuildActionState(game, player)));
+}
+
+void MVCharacterState::EndTurn()
+{
+	done = true;
 }

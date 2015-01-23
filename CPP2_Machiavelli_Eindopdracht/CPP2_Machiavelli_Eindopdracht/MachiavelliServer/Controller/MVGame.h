@@ -51,6 +51,8 @@ public:
 	void quit(MVEnum::Messages message);
 	void start();
 
+	MVEnum::Characters getKilled();
+	MVEnum::Characters getStolen();
 	void characterKilled(MVEnum::Characters character);
 	void characterStolen(MVEnum::Characters character);
 

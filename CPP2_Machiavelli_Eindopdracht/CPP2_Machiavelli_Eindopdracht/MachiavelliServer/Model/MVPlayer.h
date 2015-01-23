@@ -25,7 +25,10 @@ public:
 	bool addBuildingCard();
 	bool addBuildingCards(int amount);
 
+	int getCoinAmount();
+
 	bool build(shared_ptr<MVBuilding> building);
+	bool destroyBuilding(shared_ptr<MVBuilding> building);
 
 	void print();
 	string ToString();
@@ -35,6 +38,8 @@ public:
 	vector<shared_ptr<MVBuilding>> getBuildingCardsPlayer();
 	vector<shared_ptr<MVBuilding>> getBuildBuildingCardsPlayer();
 	int buildInCurrentTurn;
+
+	void moveAllCoinsTo(shared_ptr<MVPlayer>player);
 
 private:
 	vector<shared_ptr<MVCharacter>> characterCards;
