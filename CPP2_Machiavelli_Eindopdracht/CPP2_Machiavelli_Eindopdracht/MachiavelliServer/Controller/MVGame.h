@@ -5,6 +5,7 @@
 #include "../Model/MVDeck.h"
 #include <vector>
 #include <queue>
+#include <stack>
 #include <random>
 #include "../Enum/MVEnum.h"
 
@@ -39,6 +40,9 @@ public:
 	void checkState();
 
 	void setState(shared_ptr<MVGameState> state);
+	void popState(shared_ptr<MVGameState> state);
+	void pushState(shared_ptr<MVGameState> state);
+
 	shared_ptr<MVGameState> getState();
 
 	void checkPlayers();
@@ -61,6 +65,8 @@ public:
 	MVDeck<MVCharacter> getCharacterDeck();
 
 private:
+
+	stack<shared_ptr<MVGameState>> states;
 	MVEnum::Characters killed;
 	MVEnum::Characters stolenFrom;
 
@@ -77,7 +83,6 @@ private:
 	MVDeck<MVCharacter> usedCharacterDeck;
 	MVDeck<MVBuilding> buildingDeck;
 	MVDeck<MVBuilding> usedBuildingDeck;
-	shared_ptr<MVGameState> state;
 
 	static default_random_engine dre;
 };

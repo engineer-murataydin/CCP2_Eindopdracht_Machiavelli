@@ -21,8 +21,6 @@ public:
 	virtual void checkState();
 	virtual vector<MVEnum::Action> getActions() const;
 
-	void takeCharacterCard(MVEnum::Characters characterTake);
-
 protected:
 	bool special2;
 };

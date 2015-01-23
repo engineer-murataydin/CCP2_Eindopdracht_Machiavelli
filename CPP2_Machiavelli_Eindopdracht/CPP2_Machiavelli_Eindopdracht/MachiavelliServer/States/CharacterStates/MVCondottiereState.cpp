@@ -15,7 +15,15 @@ MVCondottiereState::~MVCondottiereState()
 
 void MVCondottiereState::update(shared_ptr<MVPlayer> player, int message)
 {
-
+	switch (getActions()[message - 1])
+	{
+	case MVEnum::DESTROY_BUILDING:
+		//killCharacter(player);
+		break;
+	default:
+		MVCharacterState::update(player, message);
+		return;
+	}
 }
 
 void MVCondottiereState::checkState()
@@ -28,10 +36,6 @@ void MVCondottiereState::render(shared_ptr<MVPlayer> player) const
 
 }
 
-void MVCondottiereState::takeCharacterCard(MVEnum::Characters characterTake)
-{
-	special2 = false;
-}
 
 void MVCondottiereState::onEnter()
 {

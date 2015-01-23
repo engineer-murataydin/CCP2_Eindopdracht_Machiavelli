@@ -129,6 +129,9 @@
     <ClCompile Include="MVMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MachiavelliServer\States\CharacterStates\MVClaimGoldCharacterState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MachiavelliServer\Controller\MVFileController.h">
@@ -249,6 +252,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MachiavelliServer\States\ActionStates\MVTradeWithDeckActionState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachiavelliServer\States\CharacterStates\MVClaimGoldCharacterState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

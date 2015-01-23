@@ -46,7 +46,7 @@ MVGame::MVGame()
 		coins.push(unique_ptr<MVCoin>(new MVCoin()));
 	}
 
-	state = unique_ptr<MVGameState>(new MVLobbyState(instance));
+	states.push(shared_ptr<MVGameState>(new MVLobbyState(instance)));
 }
 
 MVGame::~MVGame()
@@ -108,15 +108,27 @@ vector<shared_ptr<MVPlayer>> MVGame::getPlayers()
 
 void MVGame::setState(shared_ptr<MVGameState> state)
 {
-	this->state->onExit();
-	this->state = move(state);
-	this->state->onEnter();
+	states.top()->onExit();
+	states.top() = move(state);
+	states.top()->onEnter();
+}
+
+void MVGame::popState(shared_ptr<MVGameState> state)
+{
+	states.top()->onExit();
+	states.pop();
+}
+
+void MVGame::pushState(shared_ptr<MVGameState> state)
+{
+	states.push(state);
+	states.top()->onEnter();
 }
 
 void MVGame::update(shared_ptr<MVPlayer> player, string msg)
 {
 	try{
-		state->update(player, stoi(msg));
+		states.top()->update(player, stoi(msg));
 	}
 	catch (...)
 	{
@@ -126,12 +138,12 @@ void MVGame::update(shared_ptr<MVPlayer> player, string msg)
 
 void MVGame::render(shared_ptr<MVPlayer> player) const
 {
-	state->render(player);
+	states.top()->render(player);
 }
 
 void MVGame::checkState()
 {
-	state->checkState();
+	states.top()->checkState();
 }
 
 shared_ptr<MVPlayer> MVGame::getPlayer(shared_ptr<Socket> socket) const
@@ -209,7 +221,7 @@ shared_ptr<MVPlayer> MVGame::getPlayer(MVEnum::Characters character)
 
 bool MVGame::isCurrentPlayer(shared_ptr<MVPlayer> player)
 {
-	return state->isCurrentPlayer(player);
+	return states.top()->isCurrentPlayer(player);
 }
 
 void MVGame::characterKilled(MVEnum::Characters character)
@@ -244,7 +256,7 @@ MVDeck<MVCharacter> MVGame::getCharacterDeck()
 
 shared_ptr<MVGameState> MVGame::getState()
 {
-	return state;
+	return states.top();
 }
 
 void MVGame::restart()

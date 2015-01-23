@@ -1,5 +1,6 @@
 //
 #include "MVAssassinState.h"
+#include "../ActionStates/MVMurderActionState.h"
 #include <sstream>
 
 //
@@ -18,7 +19,7 @@ MVAssassinState::~MVAssassinState()
 
 void MVAssassinState::update(shared_ptr<MVPlayer> player, int message)
 {
-	switch (getActions()[message-1])
+	switch (getActions()[message - 1])
 	{
 	case MVEnum::KILL:
 		killCharacter(player);
@@ -49,7 +50,7 @@ void MVAssassinState::render(shared_ptr<MVPlayer> player) const
 
 void MVAssassinState::killCharacter(shared_ptr<MVPlayer> player)
 {
-	//game->characterKilled(chosenCharacter);
+	game->pushState(shared_ptr<MVMurderActionState>(new MVMurderActionState(game, player)));
 }
 
 vector<MVEnum::Characters> MVAssassinState::getPlayersToKill()

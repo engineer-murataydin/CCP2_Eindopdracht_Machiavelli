@@ -1,5 +1,5 @@
 #pragma once
-#include "../MVGameState.h"
+#include "MVActionState.h"
 class MVMurderActionState :
 	public MVActionState
 {
