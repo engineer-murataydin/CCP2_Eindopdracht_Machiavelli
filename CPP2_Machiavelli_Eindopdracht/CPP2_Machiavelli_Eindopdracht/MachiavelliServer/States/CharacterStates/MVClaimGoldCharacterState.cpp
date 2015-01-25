@@ -1,6 +1,6 @@
 #include "MVClaimGoldCharacterState.h"
 
-MVClaimGoldCharacterState::MVClaimGoldCharacterState(shared_ptr<MVGame> game, MVEnum::Characters character, MVEnum::Colors color) :MVCharacterState(game, character), color(color)
+MVClaimGoldCharacterState::MVClaimGoldCharacterState(MVEnum::Characters character, MVEnum::Colors color) :MVCharacterState(character), color(color)
 {
 }
 
@@ -12,7 +12,6 @@ MVClaimGoldCharacterState::~MVClaimGoldCharacterState()
 
 void MVClaimGoldCharacterState::update(shared_ptr<MVPlayer> player, int message)
 {
-	message--;
 	vector<MVEnum::Action> actions = getActions();
 	if (message >= 0 && message < actions.size())
 	{

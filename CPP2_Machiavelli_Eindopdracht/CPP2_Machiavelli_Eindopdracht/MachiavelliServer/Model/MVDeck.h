@@ -65,6 +65,11 @@ public:
 		return deck;
 	}
 
+	void clear()
+	{
+		deck.clear();
+	}
+
 private:
 	vector<shared_ptr<T>> deck;
 };

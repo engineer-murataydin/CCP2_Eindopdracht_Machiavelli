@@ -6,7 +6,7 @@
 
 //
 
-MVMerchantState::MVMerchantState(shared_ptr<MVGame> game) : MVClaimGoldCharacterState(game, MVEnum::KOOPMAN, MVEnum::GROEN)
+MVMerchantState::MVMerchantState() : MVClaimGoldCharacterState(MVEnum::KOOPMAN, MVEnum::GROEN)
 {
 
 }
@@ -20,7 +20,7 @@ void MVMerchantState::checkState()
 {
 	if (done)
 	{
-		game->setState(shared_ptr<MVArchitectState>(new MVArchitectState(game)));
+		game->setState(shared_ptr<MVArchitectState>(new MVArchitectState()));
 	}
 }
 

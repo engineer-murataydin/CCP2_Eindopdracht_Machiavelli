@@ -1,7 +1,7 @@
 #include "MVDestroyBuildingActionState.h"
 #include <sstream>
 
-MVDestroyBuildingActionState::MVDestroyBuildingActionState(shared_ptr<MVGame> game, shared_ptr<MVPlayer> player) : MVActionState(game, player)
+MVDestroyBuildingActionState::MVDestroyBuildingActionState( shared_ptr<MVPlayer> player) : MVActionState(player)
 {
 }
 
@@ -21,9 +21,9 @@ void MVDestroyBuildingActionState::update(shared_ptr<MVPlayer> player, int messa
 	{
 		shared_ptr<MVPlayer> otherPlayer = game->getOtherPlayer(player);
 		vector<shared_ptr<MVBuilding>> buildings = otherPlayer->getBuildBuildingCardsPlayer();
-		if (player->getCoinAmount() >= buildings[message - 1]->getPrice() - 1)
+		if (player->getCoinAmount() >= buildings[message]->getPrice() - 1)
 		{
-			otherPlayer->destroyBuilding(buildings[message - 1]);
+			otherPlayer->destroyBuilding(buildings[message]);
 		}
 	}
 }
@@ -44,12 +44,14 @@ void MVDestroyBuildingActionState::render(shared_ptr<MVPlayer> player) const
 
 void MVDestroyBuildingActionState::onEnter()
 {
-
+	cerr << "Enter DestroyBuildingState" << endl;
+	MVActionState::onEnter();
 }
 
 void MVDestroyBuildingActionState::onExit()
 {
-
+	cerr << "Exit DestroyBuildingState" << endl;
+	MVActionState::onExit();
 }
 
 void MVDestroyBuildingActionState::checkState()

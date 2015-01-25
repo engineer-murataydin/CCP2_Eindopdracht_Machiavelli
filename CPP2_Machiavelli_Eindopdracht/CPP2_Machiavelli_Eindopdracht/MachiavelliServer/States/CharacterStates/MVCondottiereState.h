@@ -12,7 +12,7 @@ class MVCondottiereState :
 	public MVClaimGoldCharacterState
 {
 public:
-	MVCondottiereState(shared_ptr<MVGame> game);
+	MVCondottiereState();
 	virtual ~MVCondottiereState();
 	virtual void update(shared_ptr<MVPlayer> player, int message);
 	virtual void onEnter();

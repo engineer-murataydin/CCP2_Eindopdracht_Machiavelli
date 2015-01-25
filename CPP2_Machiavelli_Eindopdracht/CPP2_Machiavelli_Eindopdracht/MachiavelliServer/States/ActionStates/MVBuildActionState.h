@@ -5,7 +5,7 @@ class MVBuildActionState :
 	public MVActionState
 {
 public:
-	MVBuildActionState(shared_ptr<MVGame> game, shared_ptr<MVPlayer> player);
+	MVBuildActionState(shared_ptr<MVPlayer> player);
 	virtual ~MVBuildActionState();
 
 	virtual void update(shared_ptr<MVPlayer> player, int message);

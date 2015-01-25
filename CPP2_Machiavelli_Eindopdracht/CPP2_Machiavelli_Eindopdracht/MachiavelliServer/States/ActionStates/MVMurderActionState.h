@@ -5,7 +5,7 @@ class MVMurderActionState :
 	public MVActionState
 {
 public:
-	MVMurderActionState(shared_ptr<MVGame> game, shared_ptr<MVPlayer> player);
+	MVMurderActionState(shared_ptr<MVPlayer> player);
 	virtual ~MVMurderActionState();
 
 	virtual void update(shared_ptr<MVPlayer> player, int message);

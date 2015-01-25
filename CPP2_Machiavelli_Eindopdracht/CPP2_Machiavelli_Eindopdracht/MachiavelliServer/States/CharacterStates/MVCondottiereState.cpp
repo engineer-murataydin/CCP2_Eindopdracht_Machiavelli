@@ -7,7 +7,7 @@
 
 //
 
-MVCondottiereState::MVCondottiereState(shared_ptr<MVGame> game) : MVClaimGoldCharacterState(game, MVEnum::CONDOTTIERE, MVEnum::ROOD)
+MVCondottiereState::MVCondottiereState() : MVClaimGoldCharacterState(MVEnum::CONDOTTIERE, MVEnum::ROOD)
 {
 }
 
@@ -17,7 +17,6 @@ MVCondottiereState::~MVCondottiereState()
 
 void MVCondottiereState::update(shared_ptr<MVPlayer> player, int message)
 {
-	message--;
 	vector<MVEnum::Action> actions = getActions();
 	if (message >= 0 && message < actions.size())
 	{
@@ -37,7 +36,7 @@ void MVCondottiereState::checkState()
 {
 	if (done)
 	{
-		game->setState(shared_ptr<MVDealState>(new MVDealState(game)));
+		game->setState(shared_ptr<MVDealState>(new MVDealState()));
 	}
 }
 
@@ -67,5 +66,5 @@ vector<MVEnum::Action> MVCondottiereState::getActions() const
 
 void MVCondottiereState::DestroyBuilding(shared_ptr<MVPlayer> player)
 {
-	game->pushState(shared_ptr<MVDestroyBuildingActionState>(new MVDestroyBuildingActionState(game, player)));
+	game->pushState(shared_ptr<MVDestroyBuildingActionState>(new MVDestroyBuildingActionState(player)));
 }

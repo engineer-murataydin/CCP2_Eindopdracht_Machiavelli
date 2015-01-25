@@ -2,7 +2,7 @@
 #include "../MVCharacterState.h"
 #include <sstream>
 
-MVBuildActionState::MVBuildActionState(shared_ptr<MVGame> game, shared_ptr<MVPlayer> player) : MVActionState(game, player)
+MVBuildActionState::MVBuildActionState(shared_ptr<MVPlayer> player) : MVActionState(player)
 {}
 
 MVBuildActionState::~MVBuildActionState()
@@ -17,7 +17,7 @@ void MVBuildActionState::update(shared_ptr<MVPlayer> player, int message)
 	}
 	else
 	{
-		shared_ptr<MVBuilding> chosen = player->getBuildingCardsPlayer()[message - 1];
+		shared_ptr<MVBuilding> chosen = player->getBuildingCardsPlayer()[message];
 		player->build(chosen);
 		game->popState();
 		return;
@@ -42,11 +42,13 @@ void MVBuildActionState::render(shared_ptr<MVPlayer> player) const
 void MVBuildActionState::onEnter()
 {
 	cerr << "Enter BuildState" << endl;
+	MVActionState::onEnter();
 }
 
 void MVBuildActionState::onExit()
 {
 	cerr << "Exit BuildState" << endl;
+	MVActionState::onExit();
 }
 
 void MVBuildActionState::checkState()

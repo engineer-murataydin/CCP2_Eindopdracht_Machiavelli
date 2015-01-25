@@ -9,7 +9,7 @@
 
 //
 
-MVDealState::MVDealState(shared_ptr<MVGame> game) : MVGameState(game)
+MVDealState::MVDealState()
 {}
 
 MVDealState::~MVDealState()
@@ -17,7 +17,7 @@ MVDealState::~MVDealState()
 
 void MVDealState::update(shared_ptr<MVPlayer> player, int message)
 {
-	shared_ptr<MVCharacter> chosen = game->getCharacter(message - 1);
+	shared_ptr<MVCharacter> chosen = game->getCharacter(message);
 	vector<shared_ptr<MVCharacter>> characterCards = MVGame::Instance()->getCharacterDeck().getDeck();
 	if (chosen)
 	{
@@ -42,7 +42,7 @@ void MVDealState::checkState()
 {
 	if (game->getCharacterDeck().getDeck().size() == 0)
 	{
-		game->setState(shared_ptr<MVAssassinState>(new MVAssassinState(game)));
+		game->setState(shared_ptr<MVAssassinState>(new MVAssassinState()));
 	}
 }
 
@@ -79,7 +79,7 @@ void MVDealState::onEnter()
 		players[i]->returnCharacters();
 		if (players[i]->getBuildCardAmount() >= 8)
 		{
-			game->setState(shared_ptr<MVFinishState>(new MVFinishState(game)));
+			game->setState(shared_ptr<MVFinishState>(new MVFinishState()));
 		}
 	}
 

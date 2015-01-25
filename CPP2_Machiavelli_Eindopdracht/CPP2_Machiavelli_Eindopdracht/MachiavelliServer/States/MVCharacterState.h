@@ -12,7 +12,7 @@ class MVCharacterState :
 	public MVGameState
 {
 public:
-	MVCharacterState(shared_ptr<MVGame> game, MVEnum::Characters character);
+	MVCharacterState(MVEnum::Characters character);
 	virtual ~MVCharacterState();
 	virtual void update(shared_ptr<MVPlayer> player, int message);
 	virtual void render(shared_ptr<MVPlayer> player) const;

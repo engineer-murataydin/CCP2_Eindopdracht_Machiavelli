@@ -6,7 +6,7 @@ class MVTradeWithDeckActionState :
 	public MVActionState
 {
 public:
-	MVTradeWithDeckActionState(shared_ptr<MVGame> game, shared_ptr<MVPlayer> player);
+	MVTradeWithDeckActionState(shared_ptr<MVPlayer> player);
 	virtual ~MVTradeWithDeckActionState();
 
 	virtual void update(shared_ptr<MVPlayer> player, int message);

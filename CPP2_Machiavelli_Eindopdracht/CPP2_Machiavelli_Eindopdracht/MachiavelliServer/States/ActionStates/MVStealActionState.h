@@ -6,7 +6,7 @@ class MVStealActionState :
 	public MVActionState
 {
 public:
-	MVStealActionState(shared_ptr<MVGame> game, shared_ptr<MVPlayer> player);
+	MVStealActionState(shared_ptr<MVPlayer> player);
 	virtual ~MVStealActionState();
 
 	virtual void update(shared_ptr<MVPlayer> player, int message);

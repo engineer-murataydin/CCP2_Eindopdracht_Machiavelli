@@ -12,7 +12,7 @@ class MVKingState :
 	public MVClaimGoldCharacterState
 {
 public:
-	MVKingState(shared_ptr<MVGame> game);
+	MVKingState();
 	virtual ~MVKingState();
 
 	virtual void onEnter();

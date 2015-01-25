@@ -12,7 +12,7 @@ class MVPreacherState :
 	public MVClaimGoldCharacterState
 {
 public:
-	MVPreacherState(shared_ptr<MVGame> game);
+	MVPreacherState();
 	virtual ~MVPreacherState();
 	virtual void onEnter();
 	virtual void onExit();

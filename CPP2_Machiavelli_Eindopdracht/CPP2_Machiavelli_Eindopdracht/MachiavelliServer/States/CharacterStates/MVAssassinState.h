@@ -12,7 +12,7 @@ class MVAssassinState :
 	public MVCharacterState
 {
 public:
-	MVAssassinState(shared_ptr<MVGame> game);
+	MVAssassinState();
 	virtual ~MVAssassinState();
 	virtual void update(shared_ptr<MVPlayer> player, int message);
 	virtual void onEnter();

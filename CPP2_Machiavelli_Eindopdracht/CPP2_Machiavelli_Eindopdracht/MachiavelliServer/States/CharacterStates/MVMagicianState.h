@@ -12,7 +12,7 @@ class MVMagicianState :
 	public MVCharacterState
 {
 public:
-	MVMagicianState(shared_ptr<MVGame> game);
+	MVMagicianState();
 	virtual ~MVMagicianState();
 	virtual void update(shared_ptr<MVPlayer> player, int message);
 	virtual void onEnter();

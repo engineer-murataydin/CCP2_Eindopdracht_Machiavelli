@@ -4,7 +4,7 @@ class MVGetCardActionState :
 	public MVActionState
 {
 public:
-	MVGetCardActionState(shared_ptr<MVGame> game, shared_ptr<MVPlayer> player);
+	MVGetCardActionState(shared_ptr<MVPlayer> player);
 	virtual ~MVGetCardActionState();
 
 	virtual void update(shared_ptr<MVPlayer> player, int message);

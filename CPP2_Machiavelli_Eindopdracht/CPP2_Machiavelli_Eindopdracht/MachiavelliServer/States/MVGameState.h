@@ -8,7 +8,7 @@
 class MVGameState
 {
 public:
-	MVGameState(shared_ptr<MVGame> game);
+	MVGameState();
 	virtual ~MVGameState();
 	virtual void update(shared_ptr<MVPlayer> player, int message) = 0;
 	virtual void render(shared_ptr<MVPlayer> player) const = 0;

@@ -11,7 +11,7 @@ class MVLobbyState :
 	public MVGameState
 {
 public:
-	MVLobbyState(shared_ptr<MVGame> game);
+	MVLobbyState();
 	virtual ~MVLobbyState();
 	virtual void update(shared_ptr<MVPlayer> player, int message);
 	virtual void render(shared_ptr<MVPlayer> player) const;

@@ -1,7 +1,7 @@
 #include "MVLobbyState.h"
 #include "MVDealState.h"
 
-MVLobbyState::MVLobbyState(shared_ptr<MVGame> game) :MVGameState(game)
+MVLobbyState::MVLobbyState()
 {}
 
 MVLobbyState::~MVLobbyState()
@@ -14,7 +14,7 @@ void MVLobbyState::checkState()
 {
 	if (game->getPlayers().size() >= 2)
 	{
-		MVGame::Instance()->setState(unique_ptr<MVDealState>(new MVDealState(game)));
+		MVGame::Instance()->setState(unique_ptr<MVDealState>(new MVDealState()));
 	}
 }
 
@@ -30,6 +30,6 @@ void MVLobbyState::onEnter()
 
 void MVLobbyState::onExit()
 {
-	game->start();
 	cerr << "Exit LobbyState" << endl;
+	game->start();
 }

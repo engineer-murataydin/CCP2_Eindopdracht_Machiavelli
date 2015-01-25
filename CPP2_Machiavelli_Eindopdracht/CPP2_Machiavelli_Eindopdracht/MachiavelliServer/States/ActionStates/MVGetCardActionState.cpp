@@ -1,7 +1,7 @@
 #include "MVGetCardActionState.h"
 
 
-MVGetCardActionState::MVGetCardActionState(shared_ptr<MVGame> game, shared_ptr<MVPlayer> player) :MVActionState(game, player)
+MVGetCardActionState::MVGetCardActionState(shared_ptr<MVPlayer> player) :MVActionState(player)
 {
 }
 
@@ -12,7 +12,6 @@ MVGetCardActionState::~MVGetCardActionState()
 
 void MVGetCardActionState::update(shared_ptr<MVPlayer> player, int message)
 {
-	message--;
 	if (message >= 0 && message < cards.size())
 	{
 		player->addBuildingCard(cards[message]);
@@ -39,6 +38,7 @@ void MVGetCardActionState::onEnter()
 	{
 		cards.push_back(game->getBuilding());
 	}
+	MVActionState::onEnter();
 }
 
 void MVGetCardActionState::onExit()
@@ -49,6 +49,7 @@ void MVGetCardActionState::onExit()
 		game->setBuildingCard(cards.front());
 		cards.erase(cards.begin());
 	}
+	MVActionState::onExit();
 }
 
 void MVGetCardActionState::checkState()

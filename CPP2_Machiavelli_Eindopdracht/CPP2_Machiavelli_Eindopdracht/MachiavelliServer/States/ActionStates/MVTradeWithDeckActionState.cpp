@@ -1,7 +1,7 @@
 #include "MVTradeWithDeckActionState.h"
 #include <sstream>
 
-MVTradeWithDeckActionState::MVTradeWithDeckActionState(shared_ptr<MVGame> game, shared_ptr<MVPlayer> player) : MVActionState(game, player)
+MVTradeWithDeckActionState::MVTradeWithDeckActionState(shared_ptr<MVPlayer> player) : MVActionState(player)
 {}
 
 MVTradeWithDeckActionState::~MVTradeWithDeckActionState()
@@ -44,11 +44,13 @@ void MVTradeWithDeckActionState::onEnter()
 	{
 		buildingCards[bCards[i]] = false;
 	}
+	MVActionState::onEnter();
 }
 
 void MVTradeWithDeckActionState::onExit()
 {
 	cerr << "Exit TradeWithDeckActionState" << endl;
+	MVActionState::onExit();
 }
 
 void MVTradeWithDeckActionState::checkState()

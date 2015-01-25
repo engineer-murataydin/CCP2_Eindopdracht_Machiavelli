@@ -8,7 +8,7 @@
 
 //
 
-MVAssassinState::MVAssassinState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::MOORDENAAR)
+MVAssassinState::MVAssassinState() : MVCharacterState(MVEnum::MOORDENAAR)
 {
 
 }
@@ -20,7 +20,6 @@ MVAssassinState::~MVAssassinState()
 
 void MVAssassinState::update(shared_ptr<MVPlayer> player, int message)
 {
-	message--;
 	vector<MVEnum::Action> actions = getActions();
 	if (message >= 0 && message < actions.size())
 	{
@@ -40,14 +39,14 @@ void MVAssassinState::checkState()
 {
 	if (done)
 	{
-		game->setState(shared_ptr<MVThiefState>(new MVThiefState(game)));
+		game->setState(shared_ptr<MVThiefState>(new MVThiefState()));
 	}
 }
 
 void MVAssassinState::killCharacter(shared_ptr<MVPlayer> player)
 {
 	special = false;
-	game->pushState(shared_ptr<MVMurderActionState>(new MVMurderActionState(game, player)));
+	game->pushState(shared_ptr<MVMurderActionState>(new MVMurderActionState(player)));
 }
 
 void MVAssassinState::onEnter()

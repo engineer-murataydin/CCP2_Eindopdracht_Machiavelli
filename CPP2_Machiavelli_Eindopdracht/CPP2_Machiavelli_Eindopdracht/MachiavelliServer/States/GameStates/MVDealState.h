@@ -12,7 +12,7 @@ class MVDealState :
 	public MVGameState
 {
 public:
-	MVDealState(shared_ptr<MVGame> game);
+	MVDealState();
 	virtual ~MVDealState();
 	virtual void update(shared_ptr<MVPlayer> player, int message);
 	virtual void render(shared_ptr<MVPlayer> player) const;

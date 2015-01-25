@@ -6,7 +6,7 @@
 
 //
 
-MVKingState::MVKingState(shared_ptr<MVGame> game) : MVClaimGoldCharacterState(game, MVEnum::KONING, MVEnum::GEEL)
+MVKingState::MVKingState() : MVClaimGoldCharacterState(MVEnum::KONING, MVEnum::GEEL)
 {
 
 }
@@ -20,7 +20,7 @@ void MVKingState::checkState()
 {
 	if (done)
 	{
-		game->setState(shared_ptr<MVPreacherState>(new MVPreacherState(game)));
+		game->setState(shared_ptr<MVPreacherState>(new MVPreacherState()));
 	}
 }
 

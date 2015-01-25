@@ -8,7 +8,7 @@
 
 //
 
-MVCharacterState::MVCharacterState(shared_ptr<MVGame> game, MVEnum::Characters character) : MVGameState(game), character(character)
+MVCharacterState::MVCharacterState(MVEnum::Characters character) : character(character)
 {}
 
 MVCharacterState::~MVCharacterState()
@@ -137,13 +137,13 @@ void MVCharacterState::ChooseGold(shared_ptr<MVPlayer> player)
 
 void MVCharacterState::ChooseCards(shared_ptr<MVPlayer> player)
 {
-	game->pushState(shared_ptr<MVGetCardActionState>(new MVGetCardActionState(game, player)));
+	game->pushState(shared_ptr<MVGetCardActionState>(new MVGetCardActionState(player)));
 	actionOne = false;
 }
 
 void MVCharacterState::Build(shared_ptr<MVPlayer> player)
 {
-	game->pushState(shared_ptr<MVBuildActionState>(new MVBuildActionState(game, player)));
+	game->pushState(shared_ptr<MVBuildActionState>(new MVBuildActionState(player)));
 }
 
 void MVCharacterState::EndTurn()

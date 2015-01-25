@@ -1,7 +1,7 @@
 #include "MVFinishState.h"
 
 
-MVFinishState::MVFinishState(shared_ptr<MVGame> game) :MVGameState(game)
+MVFinishState::MVFinishState()
 {
 }
 

@@ -12,7 +12,7 @@ class MVMerchantState :
 	public MVClaimGoldCharacterState
 {
 public:
-	MVMerchantState(shared_ptr<MVGame> game);
+	MVMerchantState();
 	virtual ~MVMerchantState();
 	virtual void onEnter();
 	virtual void onExit();

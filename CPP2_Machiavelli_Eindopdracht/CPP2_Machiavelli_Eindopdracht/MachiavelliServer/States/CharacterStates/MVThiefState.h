@@ -12,7 +12,7 @@ class MVThiefState :
 	public MVCharacterState
 {
 public:
-	MVThiefState(shared_ptr<MVGame> game);
+	MVThiefState();
 	virtual ~MVThiefState();
 	virtual void update(shared_ptr<MVPlayer> player, int message);
 	virtual void onEnter();

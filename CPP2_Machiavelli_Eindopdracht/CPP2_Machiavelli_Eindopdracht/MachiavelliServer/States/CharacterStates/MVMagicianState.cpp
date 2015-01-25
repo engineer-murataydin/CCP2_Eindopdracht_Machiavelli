@@ -8,7 +8,7 @@
 
 //
 
-MVMagicianState::MVMagicianState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::MAGIER)
+MVMagicianState::MVMagicianState() : MVCharacterState(MVEnum::MAGIER)
 {
 
 }
@@ -21,7 +21,6 @@ MVMagicianState::~MVMagicianState()
 void MVMagicianState::update(shared_ptr<MVPlayer> player, int message)
 {
 
-	message--;
 	vector<MVEnum::Action> actions = getActions();
 	if (message >= 0 && message < actions.size())
 	{
@@ -44,7 +43,7 @@ void MVMagicianState::checkState()
 {
 	if (done)
 	{
-		game->setState(shared_ptr<MVKingState>(new MVKingState(game)));
+		game->setState(shared_ptr<MVKingState>(new MVKingState()));
 	}
 }
 
@@ -57,7 +56,7 @@ void MVMagicianState::swapPawCards(shared_ptr<MVPlayer> player)
 void MVMagicianState::tradePawCards(shared_ptr<MVPlayer> player)
 {
 	special = false;
-	game->pushState(shared_ptr<MVTradeWithDeckActionState>(new MVTradeWithDeckActionState(game, player)));
+	game->pushState(shared_ptr<MVTradeWithDeckActionState>(new MVTradeWithDeckActionState(player)));
 }
 
 void MVMagicianState::onEnter()

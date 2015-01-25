@@ -1,7 +1,7 @@
 #include "MVMurderActionState.h"
 #include <sstream>
 
-MVMurderActionState::MVMurderActionState(shared_ptr<MVGame> game, shared_ptr<MVPlayer> player) : MVActionState(game, player)
+MVMurderActionState::MVMurderActionState(shared_ptr<MVPlayer> player) : MVActionState(player)
 {}
 
 MVMurderActionState::~MVMurderActionState()
@@ -9,7 +9,7 @@ MVMurderActionState::~MVMurderActionState()
 
 void MVMurderActionState::update(shared_ptr<MVPlayer> player, int message)
 {
-	switch (getPlayersToKill()[message - 1])
+	switch (getPlayersToKill()[message])
 	{
 	case MVEnum::DIEF:
 		MVGame::Instance()->characterKilled(MVEnum::DIEF);
@@ -54,11 +54,13 @@ void MVMurderActionState::onEnter()
 {
 	cerr << "Enter MurderActionState" << endl;
 	characterCards = getPlayersToKill();
+	MVActionState::onEnter();
 }
 
 void MVMurderActionState::onExit()
 {
 	cerr << "Exit MurderActionState" << endl;
+	MVActionState::onExit();
 }
 
 void MVMurderActionState::checkState()

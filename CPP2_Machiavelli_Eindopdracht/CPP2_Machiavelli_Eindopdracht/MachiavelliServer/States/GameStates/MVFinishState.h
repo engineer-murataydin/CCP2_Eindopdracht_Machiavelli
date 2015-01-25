@@ -4,7 +4,7 @@ class MVFinishState :
 	public MVGameState
 {
 public:
-	MVFinishState(shared_ptr<MVGame> game);
+	MVFinishState();
 	virtual ~MVFinishState();
 
 	virtual void update(shared_ptr<MVPlayer> player, int message);

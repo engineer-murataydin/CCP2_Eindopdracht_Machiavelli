@@ -6,7 +6,7 @@
 
 //
 
-MVThiefState::MVThiefState(shared_ptr<MVGame> game) : MVCharacterState(game, MVEnum::DIEF)
+MVThiefState::MVThiefState() : MVCharacterState(MVEnum::DIEF)
 {
 }
 
@@ -16,7 +16,6 @@ MVThiefState::~MVThiefState()
 
 void MVThiefState::update(shared_ptr<MVPlayer> player, int message)
 {
-	message--;
 	vector<MVEnum::Action> actions = getActions();
 	if (message >= 0 && message < actions.size())
 	{
@@ -36,14 +35,14 @@ void MVThiefState::checkState()
 {
 	if (done)
 	{
-		game->setState(shared_ptr<MVMagicianState>(new MVMagicianState(game)));
+		game->setState(shared_ptr<MVMagicianState>(new MVMagicianState()));
 	}
 }
 
 void MVThiefState::robCharacter(shared_ptr<MVPlayer> player)
 {
 	special = false;
-	game->pushState(shared_ptr<MVStealActionState>(new MVStealActionState(game, player)));
+	game->pushState(shared_ptr<MVStealActionState>(new MVStealActionState(player)));
 }
 
 void MVThiefState::onEnter()

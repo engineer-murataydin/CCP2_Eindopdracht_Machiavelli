@@ -46,7 +46,7 @@ MVGame::MVGame()
 		coins.push(unique_ptr<MVCoin>(new MVCoin()));
 	}
 
-	states.push(shared_ptr<MVGameState>(new MVLobbyState(instance)));
+	states.push(shared_ptr<MVGameState>(new MVLobbyState()));
 }
 
 MVGame::~MVGame()
@@ -93,13 +93,7 @@ default_random_engine MVGame::getDre()
 }
 
 void MVGame::quit(MVEnum::Messages message)
-{
-	for (size_t i = 0; i < players.size(); i++)
-	{
-		players[i]->writeLine(MVEnum::messageToString(message));
-	}
-	running = false;
-}
+{}
 
 vector<shared_ptr<MVPlayer>> MVGame::getPlayers()
 {
@@ -109,7 +103,8 @@ vector<shared_ptr<MVPlayer>> MVGame::getPlayers()
 void MVGame::setState(shared_ptr<MVGameState> state)
 {
 	states.top()->onExit();
-	states.top() = move(state);
+	states.pop();
+	states.push(move(state));
 	states.top()->onEnter();
 }
 
@@ -128,7 +123,8 @@ void MVGame::pushState(shared_ptr<MVGameState> state)
 void MVGame::update(shared_ptr<MVPlayer> player, string msg)
 {
 	try{
-		states.top()->update(player, stoi(msg));
+		int  message = stoi(msg) - 1;
+		states.top()->update(player, message);
 	}
 	catch (...)
 	{
@@ -309,4 +305,5 @@ MVEnum::Characters MVGame::getStolen()
 void MVGame::mergeCharacters()
 {
 	characterDeck.mergeDeck(usedCharacterDeck);
+	usedCharacterDeck.clear();
 }

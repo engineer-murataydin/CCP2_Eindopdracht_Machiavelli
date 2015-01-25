@@ -12,7 +12,7 @@ class MVArchitectState :
 	public MVCharacterState
 {
 public:
-	MVArchitectState(shared_ptr<MVGame> game);
+	MVArchitectState();
 	virtual ~MVArchitectState();
 	virtual void update(shared_ptr<MVPlayer> player, int message);
 	virtual void onEnter();
@@ -23,6 +23,6 @@ public:
 protected:
 
 	void getCards(shared_ptr<MVPlayer> player);
-	bool canBuild();
+	bool canBuild() const;
 };
 

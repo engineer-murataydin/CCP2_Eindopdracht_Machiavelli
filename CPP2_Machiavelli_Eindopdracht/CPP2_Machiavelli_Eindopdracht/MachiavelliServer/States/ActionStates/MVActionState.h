@@ -4,7 +4,7 @@ class MVActionState :
 	public MVGameState
 {
 public:
-	MVActionState(shared_ptr<MVGame> game, shared_ptr<MVPlayer> player);
+	MVActionState(shared_ptr<MVPlayer> player);
 	virtual ~MVActionState();
 	virtual void update(shared_ptr<MVPlayer> player, int message);
 	virtual void render(shared_ptr<MVPlayer> player) const;
